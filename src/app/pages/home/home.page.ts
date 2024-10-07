@@ -102,8 +102,6 @@ export class HomePage implements OnInit {
   ngAfterViewInit() {
     this.initSwiper();
   }
-
-  
   initSwiper() {
     const swiperEl = this.swiperRef.nativeElement;
     const params = {

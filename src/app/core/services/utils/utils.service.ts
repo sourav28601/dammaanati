@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Share } from '@capacitor/share';
 import { AlertController } from '@ionic/angular';
-// import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -57,41 +58,41 @@ export class UtilService {
     });
   }
   async checkPermission(): Promise<boolean> {
-    return true;
-    // return new Promise(async (resolve) => {
-    //   const status = await BarcodeScanner.checkPermission({ force: true });
-    //   if (status.granted) {
-    //     resolve(true);
-    //   } else if (status.denied) {
-    //     BarcodeScanner.openAppSettings();
-    //     resolve(false);
-    //   }
-    // });
+    // return true;
+    return new Promise(async (resolve) => {
+      const status = await BarcodeScanner.checkPermission({ force: true });
+      if (status.granted) {
+        resolve(true);
+      } else if (status.denied) {
+        BarcodeScanner.openAppSettings();
+        resolve(false);
+      }
+    });
   }
 
   async startScan(): Promise<string> {
-    return "ram";
-    // return new Promise(async (resolve) => {
-    //   const allowed = await this.checkPermission();
-    //   if (allowed) {
-    //     await BarcodeScanner.hideBackground();
-    //     document.querySelector('body').classList.add('scanner-active');
-    //     const result = await BarcodeScanner.startScan();
-    //     if (result.hasContent) {
-    //       resolve(result.content);
-    //     } else {
-    //       resolve(null);
-    //     }
-    //   } else {
-    //     resolve(null);
-    //   }
-  //   }
-  // );
+    // return "ram";
+    return new Promise(async (resolve) => {
+      const allowed = await this.checkPermission();
+      if (allowed) {
+        await BarcodeScanner.hideBackground();
+        document.querySelector('body').classList.add('scanner-active');
+        const result = await BarcodeScanner.startScan();
+        if (result.hasContent) {
+          resolve(result.content);
+        } else {
+          resolve(null);
+        }
+      } else {
+        resolve(null);
+      }
+    }
+  );
   }
 
   stopScan() {
-    // BarcodeScanner.showBackground();
-    // BarcodeScanner.stopScan();
-    // document.querySelector('body').classList.remove('scanner-active');
+    BarcodeScanner.showBackground();
+    BarcodeScanner.stopScan();
+    document.querySelector('body').classList.remove('scanner-active');
   }
 }
