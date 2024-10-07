@@ -1,0 +1,31 @@
+ion-content {
+  --background: var(--ion-background-gradient);
+  .image_top {
+    margin-top: 15%;
+  }
+  h4 {
+    margin-left: 7%;
+    color: white;
+    font-family: --var(--font-family-Gilroy-Medium);
+  }
+  .langouge_button {
+    color: white;
+    --background: var(--ion-background-gradient);
+    text-transform: none;
+    font-family: --var(--font-family-Gilroy-Semibold);
+    height: 6.375vh;
+    font-size: 1.1875rem;
+    line-height: 0.625rem;
+    --border-radius: 0.875rem;
+    padding: 0 1.0625rem;
+    margin-top: 0.625rem;
+  }
+  
+  .selected {
+    --background: linear-gradient(90deg, #33374B 0%, #5B637B 100%);
+  }
+  .not-selected {
+    --background: linear-gradient(90deg, #7a85b7 0%, #94a0c6 100%);
+  }
+}
+

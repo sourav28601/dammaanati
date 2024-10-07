@@ -1,0 +1,214 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{ 'ADD_PRODUCT' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <ion-item-group>
+      <!-- <ion-item lines="none"> -->
+      <h3>{{ 'PRODUCT_DETAILS' | translate }}</h3>
+      <!-- </ion-item> -->
+      <!-- <ion-item lines="none"> -->
+      <!-- <ion-label position="stacked">{{ 'PRODUCT_NAME' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input formControlName="product_name" placeholder="{{ 'PRODUCT_NAME_PLACEHOLDER' | translate }}"></ion-input> -->
+
+      <ion-label position="stacked">{{ 'PRODUCT_NAME' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+    <ion-input formControlName="product_name" placeholder="{{ 'PRODUCT_NAME_PLACEHOLDER' | translate }}"></ion-input>
+    <ion-text color="danger" *ngIf="productForm.get('product_name').touched && productForm.get('product_name').hasError('required')">
+      {{ 'Product name is required' }}
+    </ion-text>
+      <!-- </ion-item> -->
+      <!-- <ion-item lines="none"> -->
+      <ion-label position="stacked">{{ 'CATEGORY' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select formControlName="category_id" placeholder="{{ 'SELECT_CATEGORY' | translate }}">
+        <ion-select-option *ngFor="let category of categories" [value]="category.id.toString()">
+          {{ category.name }}
+        </ion-select-option>
+      </ion-select>
+      <ion-text color="danger" *ngIf="productForm.get('category_id').touched && productForm.get('category_id').hasError('required')">
+        {{ 'Category is required' }}
+      </ion-text>
+      <!-- </ion-item> -->
+      <div style="display: flex;justify-content: flex-start;">
+        <div class="shop_details">
+          <div>
+            <div class="image-shop" *ngIf="productPictureUrl">
+              <img [src]="productPictureUrl">
+            </div>
+            <div class="image-shop" *ngIf="!productPictureUrl">
+              <ion-icon name="image-outline"></ion-icon>
+            </div>
+            <div class="product_image">
+              <ion-label position="stacked">{{ 'PRODUCT_IMAGE' | translate }}</ion-label>
+              <ion-button fill="clear" (click)="takePicture('product_picture')">
+                <ion-icon class="camera-icon" slot="start" name="camera-outline"></ion-icon>
+              </ion-button>
+              <ion-button fill="clear" (click)="triggerFileInput('image-input-product')">
+                <ion-icon slot="start" name="cloud-upload-outline"></ion-icon>
+              </ion-button>
+              <input accept="image/*" hidden type="file" id="image-input-product"
+                (change)="onFileChange($event, 'product_picture')" />
+            </div>
+          </div>
+        </div>
+        <div class="shop_details">
+          <div>
+            <div class="image-shop" *ngIf="invoiceUrl">
+              <img [src]="invoiceUrl">
+            </div>
+            <div class="image-shop" *ngIf="!invoiceUrl">
+              <ion-icon name="image-outline"></ion-icon>
+            </div>
+            <div class="product_image">
+              <ion-label position="stacked">{{ 'INVOICE_COPY' | translate }}</ion-label>
+              <ion-button fill="clear" (click)="takePicture('invoice')">
+                <ion-icon class="camera-icon" slot="start" name="camera-outline"></ion-icon>
+              </ion-button>
+              <ion-button fill="clear" (click)="triggerFileInput('image-input-invoice')">
+                <ion-icon slot="start" name="cloud-upload-outline"></ion-icon>
+              </ion-button>
+              <input accept="image/*" hidden type="file" id="image-input-invoice"
+                (change)="onFileChange($event, 'invoice')" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <ion-item lines="none"> -->
+        <ion-label position="stacked">{{ 'PURCHASE_DATE' | translate }}<span class="optional-2">({{ 'OPTIONAL' | translate }})</span></ion-label>
+        <input type="date" formControlName="purchase_date" class="date_input" (change)="formatDate($event, 'purchase_date')" maxlength="10" [min]="getMinDate()" />
+        <ion-text color="danger" *ngIf="productForm.get('purchase_date').touched && productForm.get('purchase_date').hasError('required')">
+          {{ 'Purchase date is required' }}
+        </ion-text>
+      <!-- </ion-item> -->
+    </ion-item-group>
+    <ion-item-group>
+      <!-- <ion-item> -->
+      <h3>{{ 'WARRANTY_DETAILS' | translate }}</h3>
+      <!-- </ion-item> -->
+      <!-- <ion-item lines="none"> -->
+        <ion-label position="stacked">{{ 'WARRANTY_PERIOD' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+        <ion-select formControlName="time_period" placeholder="6 Months">
+          <ion-select-option value="1">1 Month</ion-select-option>
+          <ion-select-option value="3">3 Months</ion-select-option>
+          <ion-select-option value="6">6 Months</ion-select-option>
+          <ion-select-option value="12">12 Months</ion-select-option>
+          <ion-select-option value="24">24 Months</ion-select-option>
+        </ion-select>
+        <ion-text color="danger" *ngIf="productForm.get('time_period').touched && productForm.get('time_period').hasError('required')">
+          {{ 'Warranty period is required' }}
+        </ion-text>
+      <!-- </ion-item> -->
+      <div class="calender-main-div">
+        <div>
+          <ion-label position="stacked">{{ 'WARRANTY_START_DATE' | translate }}</ion-label>
+          <input type="date" formControlName="warranty_start_date" class="date_input" (change)="formatDate($event, 'warranty_start_date')" maxlength="10" [min]="getMinDate()" required />
+          <ion-text color="danger" *ngIf="productForm.get('warranty_start_date').touched && productForm.get('warranty_start_date').hasError('required')">
+            {{ 'Warranty start date is required' }}
+          </ion-text>
+        </div>
+        <div>
+          <ion-label position="stacked">{{ 'WARRANTY_END_DATE' | translate }}</ion-label>
+          <input type="date" formControlName="warranty_end_date" class="date_input" (change)="formatDate($event, 'warranty_end_date')" maxlength="10" [min]="getMinDate()" required readonly />
+          <ion-text color="danger" *ngIf="productForm.get('warranty_end_date').touched && productForm.get('warranty_end_date').hasError('required')">
+            {{ 'Warranty end date is required' }}
+          </ion-text>
+        </div>
+      </div>
+    </ion-item-group>
+    <ion-item-group>
+      <div class="shop_details">
+        <div>
+          <div class="image-shop" *ngIf="shopPictureUrl">
+            <img [src]="shopPictureUrl">
+          </div>
+          <div class="image-shop" *ngIf="!shopPictureUrl">
+            <ion-icon name="image-outline"></ion-icon>
+          </div>
+          <div class="product_image">
+            <ion-label position="stacked">{{ 'SHOP_PICTURE' | translate }}</ion-label>
+            <ion-button fill="clear" (click)="takePicture('shop_picture')">
+              <ion-icon class="camera-icon" slot="start" name="camera-outline"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" (click)="triggerFileInput('image-input-shop')">
+              <ion-icon slot="start" name="cloud-upload-outline"></ion-icon>
+            </ion-button>
+            <input accept="image/*" hidden type="file" id="image-input-shop"
+              (change)="onFileChange($event, 'shop_picture')" />
+          </div>
+        </div>
+        <div>
+          <div class="input_box">
+            <ion-label position="stacked">{{ 'SHOP_NAME' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input formControlName="shop_name" placeholder="{{ 'SHOP_NAME_PLACEHOLDER' | translate }}"></ion-input>
+            <ion-text color="danger" *ngIf="productForm.get('shop_name').touched && productForm.get('shop_name').hasError('required')">
+              {{ 'Shop name is required' }}
+            </ion-text>
+          </div>
+          <div class="input_box">
+            <ion-label position="stacked">{{ 'CONTACT_PERSON_NAME' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input formControlName="warranty_contact_person_name" placeholder="{{ 'CONTACT_PERSON_NAME_PLACEHOLDER' | translate }}"></ion-input>
+            <ion-text color="danger" *ngIf="productForm.get('warranty_contact_person_name').touched && productForm.get('warranty_contact_person_name').hasError('required')">
+              {{ 'Contact person name is required' }}
+            </ion-text>
+            <ion-text color="danger" *ngIf="productForm.get('warranty_contact_person_name').touched && productForm.get('warranty_contact_person_name').hasError('minlength')">
+              {{ 'Contact person name must be at least 3 characters long' }}
+            </ion-text>
+          </div>
+        </div>
+      </div>
+        <!-- <div> -->
+          <div>
+            <ion-label position="stacked">{{ 'CONTACT_NO' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input
+              formControlName="warranty_contact_person_number"
+              placeholder="0300-1234567"
+              inputmode="numeric"
+              [minlength]="10"
+              [maxlength]="15"
+              (ionInput)="validatePhoneNumber($event)">
+            </ion-input>
+            <ion-text color="danger" *ngIf="productForm.get('warranty_contact_person_number').touched && productForm.get('warranty_contact_person_number').hasError('required')">
+              {{ 'Contact number is required' | translate }}
+            </ion-text>
+            <ion-text color="danger" *ngIf="productForm.get('warranty_contact_person_number').touched && productForm.get('warranty_contact_person_number').hasError('pattern')">
+              {{ 'Contact number should be between 10 to 15 digits' | translate }}
+            </ion-text>
+          </div>
+          
+          <!-- <div class="input_box">
+            <ion-label position="stacked">{{ 'SHOP_LOCATION' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input formControlName="shop_location" placeholder="{{ 'SHOP_LOCATION_PLACEHOLDER' | translate }}"></ion-input>
+            <ion-text color="danger" *ngIf="productForm.get('shop_location').touched && productForm.get('shop_location').hasError('required')">
+              {{ 'Shop location is required' | translate }}
+            </ion-text>
+          </div> -->
+          <!-- <div class="input_box"> -->
+            <ion-label position="stacked">{{ 'SHOP_LOCATION' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <!-- <div class="input-with-icon"> -->
+              <ion-input formControlName="shop_location" placeholder="{{ 'SHOP_LOCATION_PLACEHOLDER' | translate }}">
+                <ion-icon name="location-outline"(click)="openMap()" slot="end"></ion-icon>
+              </ion-input>
+            <!-- </div> -->
+          <!-- </div> -->
+          
+          <div class="input_box">
+            <ion-label position="stacked">{{ 'NOTES' | translate }}<ion-text color="danger">*</ion-text></ion-label>
+            <ion-textarea formControlName="notes" placeholder="{{ 'NOTES_PLACEHOLDER' | translate }}"></ion-textarea>
+            <ion-text color="danger" *ngIf="productForm.get('notes').touched && productForm.get('notes').hasError('required')">
+              {{ 'Notes are required' | translate }}
+            </ion-text>
+          </div>
+        <!-- </div> -->
+    </ion-item-group>
+    <div class="submit-button-container ion-margin-top">
+      <ion-button fill="clear" shape="round" class="cancel-button" (click)="navigateToHome()">{{ 'CANCEL' | translate
+        }}</ion-button>
+      <ion-button type="submit" class="submit-button">{{ 'SAVE' | translate }}</ion-button>
+    </div>
+  </form>
+</ion-content>

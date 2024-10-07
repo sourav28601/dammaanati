@@ -1,0 +1,29 @@
+<ion-tabs (ionTabsDidChange)="setCurrentTab()">  
+  <ion-fab vertical="bottom" horizontal="center" translucent="true">
+    <div class="fab-wrapper">
+      <ion-fab-button (click)="navigate()">
+        <ion-img class="add_icon" src="../../../assets/add-pr-icon.svg"></ion-img>
+      </ion-fab-button>
+    </div>
+  </ion-fab>
+  
+  <ion-tab-bar slot="bottom" class="ion-no-border custom-tab-bar">
+    <ion-tab-button tab="home" class="custom-tab-button" [ngClass]="{'selected': selectTab === 'home'}">
+      <div class="icon-container">
+        <ion-icon [name]="selectTab === 'home' ? 'home' : 'home-outline'" style="font-size: 18px;"></ion-icon>
+      </div>
+      <ion-label>{{ 'HOME' | translate }}</ion-label>
+    </ion-tab-button>
+
+    <svg height="50" viewBox="0 0 100 50" width="100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 0v50H0V0c.543 27.153 22.72 49 50 49S99.457 27.153 99.99 0h.01z" fill="transparent" fill-rule="evenodd"></path>
+    </svg>
+   
+    <ion-tab-button tab="setting" class="custom-tab-button" [ngClass]="{'selected': selectTab === 'setting'}">
+      <div class="icon-container">
+        <ion-icon name="settings" style="font-size: 18px;"></ion-icon>
+      </div>
+      <ion-label>{{ 'SETTING' | translate }}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

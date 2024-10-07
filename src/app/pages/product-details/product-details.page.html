@@ -1,0 +1,151 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{ 'PRODUCT_DETAILS' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" fullscreen="true" mode="md">
+  <div class="card-headings">
+    <ion-title>{{ product?.product_name }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="shareProduct()">
+        <ion-icon name="arrow-redo-outline" class="share_icon"></ion-icon>
+      </ion-button>
+      <ion-button (click)="deleteProductDetail(product?.id)">
+        <ion-icon name="trash-outline" color="danger" class="delete-icon"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </div>
+  <ion-text color="medium" class="ion-text-start ion-margin-start">{{timeLeft}}</ion-text>
+  <ion-card class="product-card">
+    <ion-card-content class="image-container">
+      <ion-img [src]="getProductImageSrc(product)" [alt]="product?.product_name || 'Product image'"
+        (ionError)="onImgError($event)">
+      </ion-img>
+    </ion-card-content>
+  </ion-card>
+  <ion-item-divider class="ion-margin-top"></ion-item-divider>
+  <div class="category-div">
+    <div>
+      <p>{{ 'CATEGORY' | translate }}</p>
+      <ion-text slot="end">{{ product?.Category?.name }}</ion-text>
+    </div>
+    <div>
+      <ion-item lines="none" id="view-invoice-modal">
+        <ion-note slot="end" color="success" class="view-invoice">{{ 'VIEW_INVOICE' | translate }}</ion-note>
+        <ion-icon name="chevron-forward-outline" slot="end" class="invoice-icon"></ion-icon>
+      </ion-item>
+    </div>
+  </div>
+  <ion-item-divider></ion-item-divider>
+
+  <div class="warranty-div">
+    <div>
+      <p>{{ 'WARRANTY_START_DATE' | translate }}</p>
+      <ion-text slot="end">{{ product?.warranty_start_date | date:'dd-MMMM-yyyy' }}</ion-text>
+    </div>
+    <div>
+      <p slot="end">{{ 'WARRANTY_END_DATE' | translate }}</p>
+      <ion-text slot="end">{{ product?.warranty_end_date | date:'dd-MMMM-yyyy' }}</ion-text>
+    </div>
+  </div>
+  <ion-item-divider></ion-item-divider>
+  <div class="warranty-div">
+    <div>
+      <p>{{ 'CONTACT_PERSON_NAME' | translate }}</p>
+      <ion-text slot="end">{{ product?.warranty_contact_person_name }}</ion-text>
+    </div>
+    <div>
+      <p>{{ 'CONTACT_NO' | translate }}</p>
+      <ion-text slot="end">{{ product?.warranty_contact_person_number }}</ion-text>
+    </div>
+  </div>
+  <ion-item-divider></ion-item-divider>
+  <div class="category-div">
+    <div>
+      <p>{{ 'PURCHASE_DATE' | translate }}</p>
+      <ion-text slot="end">{{ product?.purchase_date | date:'dd-MMMM-yyyy' }}</ion-text>
+    </div>
+    <div>
+      <ion-item lines="none" id="view-shop-picture-modal" (click)="preloadShopPicture()">
+        <ion-note slot="end" color="success" class="view-invoice">{{ 'SHOP_PICTURE' | translate }}</ion-note>
+        <ion-icon name="chevron-forward-outline" slot="end" class="invoice-icon"></ion-icon>
+      </ion-item>
+    </div>
+  </div>
+  <ion-item-divider></ion-item-divider>
+  <div class="contact-div">
+    <div>
+      <p>{{ 'NOTES' | translate }}</p>
+      <ion-text slot="end">{{ product?.notes }}</ion-text>
+    </div>
+    <div>
+    </div>
+  </div>
+  <ion-item-divider></ion-item-divider>
+  <div class="contact-div">
+    <div>
+      <p>{{ 'SHOP_LOCATION' | translate }}</p>
+      <ion-text slot="end">{{ product?.shop_location }}</ion-text>
+    </div>
+    <div>
+    </div>
+  </div>
+  <ion-item-divider></ion-item-divider>
+</ion-content>
+
+<ion-modal #modal trigger="view-invoice-modal" [cssClass]="'auto-size-modal'">
+  <ng-template>
+    <ion-content class="ion-padding">
+      <ion-toolbar>
+        <ion-title>{{ 'INVOICE_IMAGE' | translate }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-icon name="close-circle-outline" (click)="modal.dismiss()" size="large"></ion-icon>
+        </ion-buttons>
+      </ion-toolbar>
+      <div class="image-container">
+        <ng-container *ngIf="product?.invoice; else noInvoice">
+          <img [src]="product?.invoice" (error)="handleImageError()">
+        </ng-container>
+        <ng-template #noInvoice>
+          <div class="no-invoice-message">
+            <ion-icon name="document-outline" size="large"></ion-icon>
+            <p>{{ 'NO_INVOICE_AVAILABLE' | translate }}</p>
+          </div>
+        </ng-template>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+<ion-modal #shopPictureModal trigger="view-shop-picture-modal" [cssClass]="'auto-size-modal'">
+  <ng-template>
+    <ion-content class="ion-padding">
+      <ion-toolbar>
+        <ion-title>{{ 'SHOP_PICTURE' | translate }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-icon name="close-circle-outline" (click)="shopPictureModal.dismiss()" size="large"></ion-icon>
+        </ion-buttons>
+      </ion-toolbar>
+
+      <div class="image-container">
+        <!-- Preloaded image with condition -->
+        <ng-container *ngIf="isImageLoaded; else noShopPicture">
+          <img [src]="shopPictureUrl" (error)="handleShopPictureError()">
+        </ng-container>
+
+        <!-- Fallback if no image is available -->
+        <ng-template #noShopPicture>
+          <div class="no-picture-message">
+            <ion-icon name="image-outline" size="large"></ion-icon>
+            <p>{{ 'NO_SHOP_PICTURE_AVAILABLE' | translate }}</p>
+          </div>
+        </ng-template>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+

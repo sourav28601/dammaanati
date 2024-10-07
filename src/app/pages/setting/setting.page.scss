@@ -1,0 +1,41 @@
+ion-header {
+  ion-toolbar {
+    ion-title {
+      color: var(--color-header-title);
+      font-size: 1.56rem;
+      font-weight: 400;
+      line-height: 1.88rem;
+      text-align: center;
+      margin-right: 1.88rem;
+    }
+  }
+}
+
+ion-content {
+  ion-label {
+    color: var(--color-label);
+    font-family: Gilroy;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.2rem;
+  }
+  ion-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+    padding: 0.37rem 0.15rem 0.29rem 0.15rem;
+    gap: 0px;
+    opacity: 0px;
+  }
+  .sign-out-label {
+    color: var(--color-sign-out);
+  }
+  .setting-icons {
+    width: 1.667rem;
+    height: 1.583rem;
+    top: 0.208rem;
+    left: 0.167rem;
+    gap: 0rem;
+    border: 0.063rem 0rem 0rem 0rem;
+    opacity: 0px;
+  }
+}

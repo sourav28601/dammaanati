@@ -1,0 +1,143 @@
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item lines="none" class="ion-margin-bottom">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-label class="ion-text-center">
+        <h1>{{ 'PROFILE' | translate }}</h1>
+      </ion-label>
+      <ion-img src="../../../assets/edit-icon.svg" 
+         slot="end" 
+         class="edit-icon"
+         id="open-custom-dialog"
+         (click)="openModal()"></ion-img>
+    </ion-item>
+  </ion-list>
+
+  <div class="profile-container">
+    <div class="avatar-placeholder">
+      <ion-img [src]="profileImage"></ion-img>
+    </div>
+    <div class="user_name">
+      <ion-label>
+        <h2>{{userData?.name}}</h2>
+        <p class="email">{{userData?.email}}</p>
+      </ion-label>
+    </div>
+  </div>
+
+  <ion-list>
+    <ion-item lines="none">
+      <ion-label>
+        <h2>{{ 'GENDER' | translate }}</h2>
+        <p>{{userData?.gender}}</p>
+      </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label>
+        <h2>{{ 'CITY' | translate }}</h2>
+        <p>{{userData?.city}}</p>
+      </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label>
+        <h2>{{ 'COUNTRY' | translate }}</h2>
+        <p>{{userData?.country}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-item lines="none" class="ion-margin-top signout" (click)="signOut()">
+    <ion-img src="../../../assets/setting-icons/sign-out.svg" slot="start" class="setting-icons"></ion-img>
+    <ion-label class="sign-out-label">{{ 'SIGN_OUT' | translate }}</ion-label>
+  </ion-item>
+
+ 
+</ion-content>
+
+<ion-modal id="example-modal" #profileModal>
+  <ng-template>
+    <ion-content class="ion-padding">
+      <ion-toolbar>
+        <ion-title>{{ 'EDIT_PROFILE' | translate }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-icon name="close-circle-outline" (click)="profileModal.dismiss()" size="large"
+            class="close-icon"></ion-icon>
+        </ion-buttons>
+      </ion-toolbar>
+      <form class="email-form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <ion-item class="ion-margin-bottom" lines="none">
+          <ion-thumbnail>
+            <ion-img [src]="profileImage"></ion-img>
+          </ion-thumbnail>
+          <ion-button class="upload_imgage_btn" size="small" fill="outline" (click)="uploadImage()">
+            <ion-icon name="cloud-upload-outline" slot="start"></ion-icon>
+            {{ 'UPLOAD' | translate }}
+            <input accept="image/*" hidden type="file" id="image-input"
+              (change)="onFileChange($event, 'profile_picture')" />
+          </ion-button>
+        </ion-item>
+        <ion-label class="ion-margin-start">{{ 'NAME' | translate }}</ion-label>
+        <ion-item lines="full" class="ion-item">
+          <ion-input formControlName="name" placeholder="{{ 'ENTER_YOUR_NAME' | translate }}" 
+                     (input)="validateNameCityCountry($event, 'name')"></ion-input>
+        </ion-item>
+        
+        <ion-text color="danger"
+          *ngIf="profileForm.get('name')?.hasError('required') && profileForm.get('name')?.touched">
+          {{ 'NAME_REQUIRED' | translate }}
+        </ion-text>
+        <ion-text color="danger"
+          *ngIf="profileForm.get('name')?.hasError('forbiddenChars') && profileForm.get('name')?.touched">
+          {{ 'NAME_FORBIDDEN_CHARS' | translate }}
+        </ion-text>
+
+        <div class="gender-radio-group">
+          <ion-radio-group formControlName="gender">
+            <ion-item lines="none">
+              <ion-radio value="Male" slot="start"></ion-radio>
+              <ion-label>{{ 'MALE' | translate }}</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-radio value="Female" slot="start"></ion-radio>
+              <ion-label>{{ 'FEMALE' | translate }}</ion-label>
+            </ion-item>
+          </ion-radio-group>
+        </div>
+        <ion-label class="ion-margin-start">{{ 'CITY' | translate }}</ion-label>
+        <ion-item lines="full" class="ion-item">
+          <ion-input formControlName="city" placeholder="{{ 'ENTER_YOUR_CITY' | translate }}" 
+                     (input)="validateNameCityCountry($event, 'city')"></ion-input>
+        </ion-item>
+        <ion-text color="danger"
+          *ngIf="profileForm.get('city')?.hasError('required') && profileForm.get('city')?.touched">
+          {{ 'CITY_REQUIRED' | translate }}
+        </ion-text>
+        <ion-text color="danger"
+          *ngIf="profileForm.get('city')?.hasError('forbiddenChars') && profileForm.get('city')?.touched">
+          {{ 'CITY_FORBIDDEN_CHARS' | translate }}
+        </ion-text>
+
+        <ion-label class="ion-margin-start">{{ 'COUNTRY' | translate }}</ion-label>
+        <ion-item lines="full" class="ion-item">
+          <ion-input formControlName="country" placeholder="{{ 'ENTER_YOUR_COUNTRY' | translate }}" 
+                     (input)="validateNameCityCountry($event, 'country')"></ion-input>
+        </ion-item>
+        <ion-text color="danger" class="ion-margin-bottom"
+          *ngIf="profileForm.get('country')?.hasError('required') && profileForm.get('country')?.touched">
+          {{ 'COUNTRY_REQUIRED' | translate }}
+        </ion-text>
+        <ion-text color="danger"
+          *ngIf="profileForm.get('country')?.hasError('forbiddenChars') && profileForm.get('country')?.touched">
+          {{ 'COUNTRY_FORBIDDEN_CHARS' | translate }}
+        </ion-text>
+        <div class="ion-text-end ion-margin-top button-margin">
+          <ion-button fill="clear" class="cancel-button" size="small"
+            (click)="profileModal.dismiss()">{{ 'CANCEL' | translate }}</ion-button>
+          <ion-button size="small" fill="clear" class="save-changes-button" type="submit">{{ 'SAVE_CHANGES' | translate }}</ion-button>
+        </div>
+      </form>
+    </ion-content>
+  </ng-template>
+</ion-modal>

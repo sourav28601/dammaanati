@@ -1,0 +1,139 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+@import "./theme/variables.scss";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
+   
+@font-face {
+  font-family: 'Gilroy-Medium';
+  font-family: 'Gilroy-SemiBold';
+  font-family: 'Gilroy-Regular';
+  src: url('../src/assets/font/gilroy/Gilroy-Medium.ttf');
+  src: url('../src/assets/font/gilroy/Gilroy-SemiBold.ttf');
+  src: url('../src/assets/font/gilroy/Gilroy-Regular.ttf');
+  // src: url('../src/assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+*{
+  font-family: var(--font-family-Gilroy-Medium);
+}
+h1{
+  font-family: var(--font-family-Gilroy-Semibold);
+}
+
+font
+.text-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1rem 0;
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid var(--ion-color-medium);
+  }
+  span {
+    padding: 0 10px;
+    color: var(--ion-color-medium);
+    font-size: 14px;
+  }
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .get-started-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20%;
+    --border-radius: 1.5rem;
+    --background: var(--Wild-Blue-Yonder-50, #f4f6f9);
+    .arrow-img {
+      width: 5rem;
+      height: 0vh;
+      margin-left: 0.5rem;
+      border: 1px solid var(--Wild-Blue-Yonder-800, #565b7d);
+    }
+    .circle_image {
+      height: 4vh; 
+    }
+    span {
+      opacity: 0rem;
+      color: var(--Wild-Blue-Yonder-800, #565b7d);
+      font-family: var(--font-family-Gilroy-Medium);
+      font-size: 1rem;
+      font-weight: 400;
+    }
+  }
+}
+ion-header{
+  border-bottom: 2px solid #000000;
+}
+
+ion-button{
+    text-transform: none; 
+}
+.custom-alert {
+  .danger-button {
+    color: red !important;
+  }
+  .success-button {
+    color: darkgray !important;
+  }
+}
+.error{
+  color: red;
+}
+
+
+:root {
+  --font-family-Gilroy-Medium: 'Gilroy-Medium'
+  --font-family-Gilroy-Semibold: 'Gilroy-SemiBold',
+  --font-family-Gilroy-Regular: 'Gilroy-Regular',
+}
+.toast{
+  color: white;
+}
+ion-content {
+  --background: transparent;
+}
+
+body {
+  background: transparent;
+}

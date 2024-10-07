@@ -1,0 +1,42 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{ 'FEEDBACK_TITLE' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+    <ion-row class="ion-margin-bottom">
+      <ion-col>
+        <ion-label class="ion-margin-start">{{ 'EMAIL_ID_LABEL' | translate }}</ion-label>
+        <ion-item lines="full" class="ion-margin-top">
+          <ion-input formControlName="email" type="email" name="email" required placeholder="{{ 'EMAIL_ID_PLACEHOLDER' | translate }}" readonly></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label class="ion-margin-start">{{ 'FEEDBACK_LABEL' | translate }}</ion-label>
+        <ion-item lines="full" class="ion-margin-top">
+          <ion-textarea
+            formControlName="feedback_text"
+            required
+            placeholder="{{ 'FEEDBACK_PLACEHOLDER' | translate }}"
+            rows="4"
+            auto-grow="true"
+          ></ion-textarea>
+        </ion-item>
+        <ion-text class="ion-text-left" color="danger"
+          *ngIf="feedbackForm.get('feedback_text')?.invalid && feedbackForm.get('feedback_text')?.touched">
+          <p class="error" color="danger">{{ 'FEEDBACK_ERROR_MESSAGE' | translate }}</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <div class="ion-text-end">
+      <ion-button size="small" fill="clear" class="send-button" type="submit" [disabled]="!feedbackForm.valid">{{ 'SEND_BUTTON' | translate }}</ion-button>
+    </div>
+  </form>
+</ion-content>

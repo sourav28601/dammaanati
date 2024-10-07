@@ -1,0 +1,45 @@
+ion-content {
+  ion-label {
+    font-size: 1.1rem;
+    color: var(--ion-color-title);
+  }
+
+  .sign-out-label {
+    color: var(--background-expiration-red);
+  }
+
+  ion-item-divider {
+    min-height: 1px;
+    --padding-start: 1rem;
+    --padding-end: 1rem;
+    --background: var(--ion-color-divider);
+  }
+
+  .save-button {
+    text-transform: none;
+    --border-style: solid;
+    --border-color: transparent;
+    --background: var(--background-gradient-purple);
+    color: var(--ion-color-light-text);
+  }
+
+  .custom-radio-group {
+    --ion-color-primary: var(--background-gradient-purple);
+  }
+
+  .custom-radio-group ion-radio {
+    --color-checked: var(--background-gradient-purple);
+    --color: var(--background-gradient-purple);
+  }
+
+  .custom-toggle ion-toggle {
+    --background: var(--background-gradient-purple);
+    --background-checked: var(--background-gradient-purple);
+    --handle-background: var(--background-gradient-purple);
+    --handle-background-checked: var(--background-gradient-purple);
+  }
+
+  .save-button-margin {
+    margin-top: 8rem;
+  }
+}

@@ -1,0 +1,34 @@
+ion-content {
+    --background: url('../../../../assets/frame-1000010019@2x.png') no-repeat center center / cover;
+  
+    hr {
+      width: 40%;
+      border: none;
+      border-top: 4px solid var(--color-black);
+      margin-top: 1.3rem;
+    }
+  
+    .dammanati1 {
+      color: var(--color-primary-light);
+      font-size: 1.56rem;
+    }
+  
+    .dammanati2 {
+      color: var(--color-primary-light);
+      font-size: 1.19rem;
+    }
+  
+    .why-choose {
+      color: var(--color-accent-light);
+      font-size: 1.19rem;
+    }
+  
+    .support {
+      color: var(--color-support);
+    }
+  
+    .app-version {
+      color: var(--color-app-version);
+    }
+  }
+  

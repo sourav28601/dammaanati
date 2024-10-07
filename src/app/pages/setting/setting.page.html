@@ -1,0 +1,52 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{ 'SETTINGS_TITLE' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list class="ion-margin-bottom">
+    <ion-item lines="none" class="ion-margin-bottom" routerLink="/account-settings">
+      <ion-img src="../../../assets/setting-icons/setting.svg" slot="start" class="setting-icons"></ion-img>
+      <ion-label>{{ 'SETTINGS_ACCOUNT_SETTINGS' | translate }}</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+    <ion-item lines="none" class="ion-margin-bottom" routerLink="/notification">
+      <ion-img src="../../../assets/setting-icons/notification.svg" slot="start" class="setting-icons"></ion-img>
+      <ion-label>{{ 'SETTINGS_NOTIFICATIONS' | translate }}</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+    <ion-item lines="none" class="ion-margin-bottom" routerLink="/about">
+      <ion-img src="../../../assets/setting-icons/about.svg" slot="start" class="setting-icons"></ion-img>
+      <ion-label>{{ 'SETTINGS_ABOUT' | translate }}</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+    <ion-item lines="none" class="ion-margin-bottom" routerLink="/term-conditions">
+      <ion-img src="../../../assets/setting-icons/terms.svg" slot="start" class="setting-icons"></ion-img>
+      <ion-label>{{ 'SETTINGS_TERMS_CONDITIONS' | translate }}</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+    <ion-item lines="none" class="ion-margin-bottom" routerLink="/feedbacks">
+      <ion-img src="../../../assets/setting-icons/feedback.svg" slot="start" class="setting-icons"></ion-img>
+      <ion-label>{{ 'SETTINGS_FEEDBACK' | translate }}</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+    <ion-item lines="none" class="ion-margin-bottom" routerLink="/help-and-support">
+      <ion-img src="../../../assets/setting-icons/help.svg" slot="start" class="setting-icons"></ion-img>
+      <ion-label>{{ 'SETTINGS_HELP_SUPPORT' | translate }}</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+    <ion-item lines="none" class="ion-margin-bottom" (click)="referApp()">
+      <ion-img src="../../../assets/setting-icons/share.svg" slot="start" class="setting-icons"></ion-img>
+      <ion-label>{{ 'SETTINGS_REFER' | translate }}</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+  </ion-list>
+  <ion-item lines="none" (click)="signOut()">
+    <ion-img src="../../../assets/setting-icons/sign-out.svg" slot="start" class="setting-icons"></ion-img>
+    <ion-label class="sign-out-label">{{ 'SETTINGS_SIGN_OUT' | translate }}</ion-label>
+  </ion-item>
+</ion-content>

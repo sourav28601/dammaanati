@@ -1,0 +1,247 @@
+ion-content {
+  h1 {
+    margin-top: 0.375rem;
+    color: var(--ion-color-light-text);
+    font-size: 2.19rem;
+  }
+
+  form {
+    background-color: var(--ion-color-light-text);
+    border-radius: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    margin-bottom: 2rem;
+
+    ion-item {
+      --inner-padding-end: 0;
+      --inner-padding-start: 0;
+      margin-bottom: 1rem;
+      border-radius: 1rem;
+      --background: var(--ion-color-white);
+      border: 0.063rem solid var(--background-dark-gray);
+    }
+
+    ion-button {
+      --ripple-color: var(--background-transparent);
+    display: flex;
+    float: right;
+    }
+
+    ion-icon {
+      margin-right: 0.625rem;
+    }
+  }
+
+  .language-selection {
+    background-color: var(--ion-color-light-text);
+    border-radius: 0.5rem;
+    padding: 0.625rem;
+    margin: 0.625rem 0;
+
+    ion-item {
+      --background: var(--ion-color-light-text);
+      --padding-start: 0;
+      --inner-padding-end: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    ion-radio {
+      margin-right: 0.625rem;
+    }
+
+    ion-label {
+      color: var(--color-dark);
+    }
+  }
+
+  ion-row {
+    background-color: var(--background-transparent);
+  }
+
+  .custom-radio-group {
+    --ion-color-primary: var(--background-gradient-purple);
+  }
+
+  .custom-radio-group ion-radio {
+    --color-checked: var(--background-gradient-purple);
+    --color: var(--background-gradient-purple);
+  }
+
+  ion-toggle {
+    --ion-color-primary: var(--background-gradient-purple);
+    --ion-color-primary-rgb: var(--background-gradient-purple);
+    --ion-color-primary-contrast: var(--ion-color-white);
+    --ion-color-primary-contrast-rgb: var(--background-gradient-purple);
+    --ion-color-primary-shade: var(--background-gradient-purple);
+    --ion-color-primary-tint: var(--background-gradient-purple);
+  }
+  .sign-out-label {
+    color: var(--color-sign-out);
+  }
+  
+  .setting-icons {
+    width: 1.667rem;
+    height: 1.583rem;
+    top: 0.208rem;
+    left: 0.167rem;
+    gap: 0rem;
+    border: 0.063rem 0rem 0rem 0rem;
+    opacity: 0px;
+  }
+}
+
+// ion-modal {
+//   --height: 45vh;
+//   --border-radius: 1rem;
+//   --box-shadow: 0 0.625rem 0.9375rem -0.1875rem rgb(0 0 0 / 0.1), 0 0.25rem 0.375rem -0.25rem rgb(0 0 0 / 0.1);
+//   padding: 1.125rem;
+// }
+
+// .custom-modal {
+//   --height: 68vh;
+//   --border-radius: 1rem;
+//   --box-shadow: 0 0.625rem 0.9375rem -0.1875rem rgb(0 0 0 / 0.1), 0 0.25rem 0.375rem -0.25rem rgb(0 0 0 / 0.1);
+//   padding: 1.125rem;
+// }
+
+// ion-modal::part(backdrop) {
+//   background: var(--color-muted);
+//   opacity: 1;
+// }
+
+// ion-modal ion-toolbar {
+//   --color: var(--color-dark);
+// }
+
+.save-changes-button {
+  text-transform: none;
+  --border-style: solid;
+  --border-color: var(--background-transparent);
+  --background: var(--background-gradient-purple);
+  color: var(--ion-color-light-text);
+  // width: 50%;
+  // height: 2.81rem;
+  // --border-radius: 0.625rem;
+  height: 2.2rem;
+    --border-radius: 0.625rem;
+    margin-right: 10px;
+}
+
+ion-modal#example-modal {
+  --width: fit-content;
+  --min-width: 330px;
+  --height: fit-content;
+  --border-radius: 18px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+}
+.modal-title{
+font-family: var(--font-family-Gilroy-Medium);
+font-size: 19px;
+font-weight: bold;
+}
+.close-icon{
+  width: 52px;
+  height: 30px;
+}
+form{
+  .email-input{
+    display: flex;
+    position: relative;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    border: 2px solid #aaaaaa;;
+    border-radius: 10px;
+    padding-left: 10px !important;
+  }
+  .email-label{
+    margin-top: 0.6rem;
+  }
+  .error{
+    color: red;
+    font-size: small;
+    margin-left: 15px;
+  }
+}
+ion-modal#example-modal h1 {
+  margin: 20px 20px 10px 20px;
+}
+ion-modal::part(backdrop) {
+  background: var(--color-muted);
+  opacity: 1;
+}
+
+ion-modal ion-toolbar {
+  --color: var(--color-dark);
+}
+ion-modal#example-modal ion-icon {
+  margin-right: 6px;
+  width: 48px;
+  height: 40px;
+  padding: 4px 0;
+  color: #aaaaaa;
+}
+
+ion-modal#example-modal .wrapper {
+  margin-bottom: 10px;
+}
+
+ion-modal#password-modal {
+  --width: fit-content;
+  --min-width: 330px;
+  --height: fit-content;
+  --border-radius: 18px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+  --padding:1rem;
+}
+.modal-title{
+font-family: var(--font-family-Gilroy-Medium);
+font-size: 19px;
+font-weight: bold;
+}
+.close-icon{
+  width: 52px;
+  height: 30px;
+}
+form{
+  .password-input{
+    border: 2px solid #aaaaaa;;
+    border-radius: 10px;
+    // padding: 10px !important;
+    // padding-left: 10px !important;
+    height: 7vh;
+    // margin: 0.2rem;
+
+  }
+  .password-label{
+    margin-top: 0.6rem;
+  }
+  .eye-icon{
+    width: 20px;
+    height: 20px;
+  }
+}
+ion-modal#password-modal h1 {
+  margin: 20px 20px 10px 20px;
+}
+ion-modal::part(backdrop) {
+  background: var(--color-muted);
+  opacity: 1;
+}
+
+ion-modal ion-toolbar {
+  --color: var(--color-dark);
+}
+ion-modal#password-modal ion-icon {
+  margin-right: 6px;
+  width: 28px;
+  height: 29px;
+  padding: 4px 0;
+  color: #aaaaaa;
+}
+
+ion-modal#password-modal .wrapper {
+  margin-bottom: 10px;
+}

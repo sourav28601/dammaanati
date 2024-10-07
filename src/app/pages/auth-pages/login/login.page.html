@@ -1,0 +1,70 @@
+<ion-content class="ion-padding">
+  <ion-grid class="ion-margin-bottom" class="signin-grid">
+    <ion-row>
+      <ion-col size="4">
+        <ion-button fill="clear" routerLink="/select-language" class="back-button">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col size="8">
+        <h1>{{ 'SIGN_IN' | translate }}</h1>
+      </ion-col>
+    </ion-row>
+  </ion-grid>  
+  <form [formGroup]="loginForm">
+    <ion-label>{{ 'REGISTERED_EMAIL' | translate }}</ion-label>
+    <ion-item lines="full" class="ion-margin-top">
+      <ion-input type="email" formControlName="email" name="email" required placeholder="Enter Registered Email"></ion-input>
+    </ion-item>
+    <ion-text class="ion-text-left" color="danger"            
+      *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched">
+      <p class="error">{{ 'ENTER_PROPER_EMAIL' | translate }}</p>
+    </ion-text>
+    <ion-label>{{ 'PASSWORD' | translate }}</ion-label>      
+    <ion-item lines="full" class="ion-margin-top">
+      <ion-icon (click)="onChange()" [name]="isTypePassword ? 'eye-outline' : 'eye-off-outline'" slot="end"
+        [color]="isTypePassword ? 'medium' : 'primary'"></ion-icon>
+      <ion-input formControlName="password" [type]="isTypePassword ? 'password' : 'text'"
+        placeholder="Enter Password"></ion-input>
+    </ion-item>
+    <ion-text class="ion-text-left" color="danger"
+      *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">
+      <p class="error" *ngIf="loginForm.get('password').invalid && loginForm.get('password').errors?.['required']">{{
+        'ENTER_PASSWORD' | translate }}</p>
+    </ion-text>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-button fill="clear" style="float: right;" size="small" class="forgot-password-button"
+        routerLink="/forgot-password"> {{ 'FORGOT_PASSWORD' | translate }}</ion-button>
+    </ion-row>
+    <ion-grid class="signin-button-grid">
+      <ion-row class="ion-margin-top">
+        <ion-col>
+          <div class="button-container">
+            <ion-button class="get-started-button" (click)="onSubmit()">
+              <span>{{ 'SIGN_IN_BUTTON' | translate }}</span>
+              <ion-img alt="" src="assets/arrow-1.svg" slot="end" class="arrow-img"></ion-img>
+              <ion-img alt="" src="assets/spacer.svg" slot="end" class="circle_image"></ion-img>
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="2"></ion-col>
+        <ion-col class="ion-text-center">
+          <ion-text class="account-text">{{ 'DONT_HAVE_ACCOUNT' | translate }}</ion-text>
+          <ion-row>
+            <ion-col size="2"></ion-col>
+            <ion-col class="ion-text-center" routerLink="/sign-up">
+              <ion-text class="signup-text">{{ 'SIGN_UP' | translate }}</ion-text>
+              <hr class="signup-hr"/>
+            </ion-col><ion-col size="2">
+            </ion-col>
+          </ion-row>
+        </ion-col><ion-col size="2">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

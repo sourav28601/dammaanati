@@ -1,0 +1,345 @@
+ion-header {
+  ion-toolbar {
+    ion-title {
+      color: var(--ion-color-title);
+      font-size: 1.5625rem;
+      font-weight: 400;
+    }
+  }
+}
+
+ion-content {
+  --background: var(--ion-color-content-background);
+
+  ion-label {
+    color: var(--ion-color-accent);
+  }
+
+  ion-item-divider {
+    --background: transparent;
+    --padding-start: 0;
+    font-weight: bold;
+    font-size: 1.125rem;
+    color: var(--ion-color-light-text);
+    border-bottom: 0.0625rem solid var(--ion-color-divider);
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-weight: 500;
+    color: var(--ion-color-heading);
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+    border-bottom: 0.125rem solid var(--ion-color-border);
+    width: fit-content;
+  }
+
+  .optional-1 {
+    position: absolute;
+    left: 12.25%;
+    color: var(--ion-color-accent);
+    font-size: 0.6875rem;
+  }
+
+  .optional-2 {
+    font-size: 0.875rem;
+  }
+
+  ion-item {
+    // --inner-padding-end: 0;
+    ion-label {
+      color: var(--ion-color-accent);
+      font-size: 1.25rem;
+      padding-bottom: 0.75rem;
+    }
+    ion-select {
+      padding-right: 1.25rem;
+      max-width: 100%;
+      position: relative;
+    }
+  }
+
+  ion-select::part(icon) {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    margin: 0;
+    padding-right: 1rem;
+    color: var(--ion-color-muted);
+  }
+
+  .Invoice-image {
+    width: 25%;
+    height: 25vh;
+    border-radius: 0.625rem;
+    margin-left: 9.25%;
+  }
+
+  ion-input,
+  ion-select,
+  ion-datetime,
+  ion-textarea {
+    --padding-start: 1rem;
+    --padding-end: 1rem;
+    --padding-top: 0.75rem;
+    --padding-bottom: 0.75rem;
+    border: 0.0625rem solid var(--ion-color-input-border);
+    border-radius: 0.75rem;
+    margin-top: 0.5rem;
+    ion-icon {
+      margin-left: 11rem;
+    }
+  }
+
+  .image-upload-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+  }
+
+  .image-placeholder {
+    width: 6.25rem;
+    height: 6.25rem;
+    background-color: #f0f0f0;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2.1875rem;
+
+    ion-icon {
+      font-size: 2.5rem;
+      color: var(--ion-color-placeholder);
+    }
+  }
+
+  .product-display {
+    display: flex;
+  }
+
+  .camera-icon {
+    font-size: 1.5625rem;
+    color: var(--ion-color-icon);
+  }
+
+  .calender-main-div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .image-actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+    padding-left: 1.25rem;
+
+    ion-button {
+      --color: #666;
+      font-size: 0.75rem;
+
+      ion-icon {
+        margin-right: 0.25rem;
+        color: var(--ion-color-icon);
+      }
+    }
+  }
+
+  ion-button[expand="block"] {
+    margin-top: 1.5rem;
+  }
+
+  .submit-button-container {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+  }
+  ion-text {
+    font-size: 0.75rem;
+  }
+  .shop_details {
+    display: flex;
+
+    // .image-shop {
+    //   width: 100px;
+    //   height: 80px;
+    //   background-color: #f0f0f0;
+    //   border-radius: 8px;
+    //   display: flex;
+    //   justify-content: center;
+    //   align-items: center;
+    //   margin-right: 20px;
+    //   margin-top: 20px;
+
+    //   ion-icon {
+    //     font-size: 2.5rem;
+    //     color: var(--ion-color-shop-icon);
+    //   }
+    .image-shop {
+      width: 100px;
+      height: 80px;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 20px;
+      margin-left: 8px;
+      margin-top: 20px;
+      overflow: hidden; 
+  
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center; 
+      }
+  
+      ion-icon {
+        font-size: 2.5rem;
+        color: var(--ion-color-shop-icon);
+      }
+    }
+
+    .product_image {
+      ion-label {
+        text-align: center;
+        align-items: center;
+        font-size: 1rem;
+        color: var(--ion-color-accent);
+      }
+
+      ion-button {
+        ion-icon {
+          font-size: 1.4375rem;
+          color: var(--ion-color-icon);
+        }
+      }
+    }
+
+    .input_box {
+      width: 95%;
+
+      ion-label {
+        color: var(--ion-color-accent);
+        font-size: 1.125rem;
+        padding-bottom: 0.75rem;
+      }
+    }
+  }
+
+  .submit-button {
+    --background: var(--ion-color-button-background);
+    --border-radius: 0.625rem;
+  }
+
+  .cancel-button {
+    border: 0.0625rem solid var(--ion-color-button-border);
+    color: var(--ion-color-button-border);
+    border-radius: 0.75rem;
+  }
+  .location-icon {
+    cursor: pointer;
+  }
+  
+  ion-item {
+    pointer-events: none; 
+  }
+  
+  ion-input,
+  .location-icon {
+    pointer-events: auto; 
+  }
+  
+  ion-item.shop-location {
+    ion-input {
+      --padding-end: 2.5rem;
+    }
+
+    &::after {
+      content: "\f3a5";
+      font-family: "Ionicons";
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      color: #666;
+    }
+
+  }
+
+  @media (max-width: 576px) {
+    ion-content {
+      --padding-start: 0.75rem;
+      --padding-end: 0.75rem;
+    }
+
+    ion-button[expand="block"] {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  .date_input {
+    width: 100%;
+    // height: 6.75vh;
+    border-radius: 0.75rem;
+    padding: 0.8rem;
+    margin-top: 0.5rem;
+    border: 0.0625rem solid var(--ion-color-date-border);
+  }
+
+  .input_warranty_start_date {
+    width: 30%;
+    height: 7.0625vh;
+    border: 0.125rem solid var(--ion-color-date-border);
+    border-radius: 1.125rem;
+    padding: 0.8125rem;
+  }
+
+  .input_warranty_end_date {
+    width: 30%;
+    height: 7.0625vh;
+    border: 0.125rem solid var(--ion-color-date-border);
+    border-radius: 1.125rem;
+    padding: 0.8125rem;
+  }
+
+  input[type="date"]::before {
+    color: var(--ion-color-placeholder);
+    content: attr(placeholder);
+  }
+
+  input[type="date"]:focus::before,
+  input[type="date"]:valid::before {
+    content: "" !important;
+  }
+
+  .date_style {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3125rem;
+  }
+
+  .input-container {
+    position: relative;
+  }
+
+  .location-icon {
+    position: absolute;
+    right: 0.625rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+  }
+
+  capacitor-google-map {
+    display: block;
+    width: 100%;
+    height: 75vh;
+  }
+}

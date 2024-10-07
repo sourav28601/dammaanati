@@ -1,0 +1,256 @@
+ion-content {
+  ion-item {
+    ion-title {
+      font-size: 1.5625rem;
+      font-weight: 400;
+      line-height: 1.875rem;
+    }
+    ion-buttons {
+      ion-button {
+        ion-icon {
+          font-size: 1.4375rem;
+        }
+      }
+    }
+  }
+  ion-item {
+    ion-note {
+      font-weight: 500;
+      font-size: 0.875rem;
+      color: var(--ion-color-note);
+      margin-right: 0.5rem;
+    }
+  }
+  .delete-icon {
+    font-size: 1.5625rem;
+  }
+
+  .card-headings {
+    display: flex;
+    justify-content: space-around;
+    font-size: 0.875rem;
+  }
+  .category-div {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    // line-height: 0.625rem;
+    line-height: 0.5rem;
+    height: 8vh;
+    // margin-left: 1rem;
+    margin-left: 17px;
+    color: var(--Wild-Blue-Yonder-700);
+    .invoice-item {
+      margin-left: 3rem;
+    }
+    .view-invoice {
+      margin-top: 0.5rem;
+    }
+    .invoice-icon {
+      margin-top: 1.3rem;
+      margin-left: 0px;
+    }
+  }
+  .warranty-div {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    line-height: 0.5rem;
+    height: 8vh;
+    color: var(--Wild-Blue-Yonder-700);
+    margin-left: 17px;
+    margin-right: 17px;
+  }
+  .contact-div {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    line-height: 0.5rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    color: var(--Wild-Blue-Yonder-700);
+  }
+  ion-card.product-card {
+    margin: 0;
+    box-shadow: none;
+    background: #ffffff;
+    width: 100%;
+
+    .image-container {
+      padding: 0;
+      aspect-ratio: 2 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    ion-img.product-image {
+      width: 100%;
+      height: 100%;
+      max-height: 25vh;
+      object-fit: contain;
+      display: flex;
+    }
+
+    ion-text {
+      display: block;
+      font-size: 0.875rem;
+      color: var(--ion-color-medium);
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+  }
+
+  ion-item {
+    --padding-start: 1rem;
+    --padding-end: 1rem;
+    --min-height: 3rem;
+    --background: #ffffff;
+
+    ion-label {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--ion-color-dark);
+    }
+
+    ion-text {
+      font-size: 0.875rem;
+      color: var(--ion-color-medium);
+      text-align: right;
+    }
+
+    ion-icon[slot="end"] {
+      color: var(--ion-color-medium);
+      font-size: 1.25rem;
+    }
+
+    &[button] {
+      --detail-icon-color: var(--ion-color-medium);
+      --detail-icon-opacity: 1;
+    }
+  }
+
+  ion-item-divider {
+    min-height: 1px;
+    --padding-start: 1rem;
+    --padding-end: 1rem;
+    --background: var(--ion-color-divider);
+  }
+
+  .shop-location {
+    --inner-padding-end: 0;
+
+    ion-icon {
+      font-size: 1.5rem;
+      margin-right: 1rem;
+    }
+  }
+  .reminder_data {
+    margin-left: 1.25rem;
+    height: 45vh;
+    line-height: 0;
+    padding-top: 1rem;
+    span {
+      color: var(--Wild-Blue-Yonder-700);
+      font-size: 0.8125rem;
+      line-height: 0.625rem;
+    }
+    p {
+      color: var(--ion-color-title);
+      font-size: 1rem;
+    }
+    .Manage-Reminder {
+      color: var(--ion-color-note2);
+      font-size: 1rem;
+
+      ion-icon {
+        align-items: center;
+        text-align: center;
+        font-size: 1rem;
+        padding-top: 0.3125rem;
+      }
+    }
+  }
+  .notes {
+    margin-left: 5%;
+    margin-right: 10%;
+    span {
+      color: var(--Wild-Blue-Yonder-700);
+      font-size: 0.8125rem;
+      line-height: 0.625rem;
+    }
+    p {
+      color:#9B40CD;
+      font-size: 1rem;
+    }
+  }
+  .shope_location {
+    margin-bottom: 4.375rem;
+    font-size: 1rem;
+    line-height: 1.214rem;
+    color: var(--ion-color-note3);
+    margin-top: 1rem;
+    margin-left: 1.25rem;
+    ion-icon {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+ion-modal {
+  --height: 50vh;
+  --border-radius: 1rem;
+  --box-shadow: 0 0.625rem 0.9375rem -0.1875rem rgba(0, 0, 0, 0.1),
+    0 0.25rem 0.375rem -0.25rem rgba(0, 0, 0, 0.1);
+  padding: 1.125rem;
+}
+
+ion-modal::part(backdrop) {
+  background: rgba(209, 213, 219);
+  opacity: 1;
+}
+
+ion-modal ion-toolbar {
+  --color: var(--ion-color-dark);
+}
+.auto-height-modal {
+  --height: auto;
+  --width: auto;
+}
+
+.auto-height-modal::part(content) {
+  max-height: 90vh;
+  max-width: 90vw;
+}
+
+.auto-height-modal ion-content {
+  --overflow: hidden;
+}
+.no-invoice-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--ion-color-medium);
+}
+
+.no-invoice-message ion-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.no-invoice-message p {
+  font-size: 1.125rem;
+}
+.share_icon {
+  color: var(--ion-color-share);
+  font-size: 1.5625rem;
+}
+.p{
+   color: var(--ion-color-note);
+}
