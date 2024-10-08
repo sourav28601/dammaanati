@@ -19,6 +19,7 @@ import { MessageService } from 'src/app/core/services/message/message.service';
 import { LanguageService } from 'src/app/core/services/language/language.service';
 import { ProductUpdateService } from 'src/app/core/services/product-update/product-update.service';
 import { UtilService } from 'src/app/core/services/utils/utils.service';
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 
 register();
 interface ApiResponse {
@@ -60,6 +61,8 @@ export class HomePage implements OnInit {
   ads: any;
   profilePicture: any;
   scannedResult: string = '';
+  qrCodeString = 'This is a secret qr code message';
+  content_visibility = '';
   constructor(
     private apiService: ApiService,
     private router: Router,
@@ -69,7 +72,7 @@ export class HomePage implements OnInit {
     private formBuilder: FormBuilder,
     private languageService:LanguageService,
     private productUpdateService: ProductUpdateService,
-    private utilService:UtilService
+    private utilService:UtilService,
   ) {
     this.languageService.initLanguage();
     this.categoryForm = this.formBuilder.group({
@@ -83,7 +86,67 @@ export class HomePage implements OnInit {
     // console.log("get home page localstorage data-----",localStorage.getItem('user_data'));
 
   }
- 
+  async checkPermission(): Promise<boolean> {
+    try {
+      // check or request permission
+      const status = await BarcodeScanner.checkPermission({ force: true });
+      if (status.granted) {
+        // the user granted permission
+        return true;
+      }
+      return false;
+    } catch(e) {
+      console.log(e);
+      return false; // Return false in case of an error
+    }
+  }
+
+  async startScan() {
+    try {
+      const permission = await this.checkPermission();
+      if(!permission) {
+        return;
+      }
+      await BarcodeScanner.hideBackground();
+      document.querySelector('body').classList.add('scanner-active');
+      this.content_visibility = 'hidden';
+      const result = await BarcodeScanner.startScan();
+      console.log(result);
+      BarcodeScanner.showBackground();
+      document.querySelector('body').classList.remove('scanner-active');
+      this.content_visibility = '';
+      if(result?.hasContent) {
+        this.scannedResult = result.content;
+        // Navigate to the scanner-data page with state data
+        this.router.navigate(['/scanner-data'], { state: { data: this.scannedResult } });
+        console.log(this.scannedResult);
+      }      
+    } catch(e) {
+      console.log(e);
+      this.stopScan();
+    }
+  }
+  // async openModal() {
+  //   const modal = await this.modalCtrl.getTop(); // Get the current top modal if any
+  //   if (!modal) {
+  //     const modalElement = await this.modalCtrl.create({
+  //       component: 'ion-modal', // Reference the modal
+  //       componentProps: { scannedResult: this.scannedResult } // Pass scanned data
+  //     });
+  //     await modalElement.present();
+  //   }
+  // }
+  stopScan() {
+    BarcodeScanner.showBackground();
+    BarcodeScanner.stopScan();
+    document.querySelector('body').classList.remove('scanner-active');
+    this.content_visibility = '';
+  }
+
+  ngOnDestroy(): void {
+      this.stopScan();
+  }
+
   ngOnInit(): void {
     console.log("get home page localstorage data-----",localStorage.getItem('user_data'));
   }
@@ -117,21 +180,52 @@ export class HomePage implements OnInit {
     Object.assign(swiperEl, params);
     swiperEl.initialize();
   }
+//  async startScanning() {
+//     console.log('startScanning method called');
+//     try {
+//       console.log('Checking camera permission...');
+//       const allowed = await this.utilService.checkPermission();
+//       console.log('Camera permission:', allowed);
+      
+//       if (allowed) {
+//         console.log('Starting scan...');
+//         const result = await this.utilService.startScan();
+//         console.log('Scan result:', result);
+        
+//         if (result) {
+//           this.scannedResult = result;
+//           console.log('Scanned result:', this.scannedResult);
+//           this.router.navigate(['/scanner-data'], { state: { data: this.scannedResult } });
+//           this.stopScanning();
+//         } else {
+//           console.log('No QR code detected');
+//         }
+//       } else {
+//         console.error('Camera permission not granted');
+//       }
+//     } catch (error) {
+//       console.error('Scanning failed', error);
+//     }
+//   }
 
-  async startScanning() {
-    try {
-      const result = await this.utilService.startScan();
-      if (result) {
-        this.scannedResult = result;
-        this.stopScanning();
-      }
-    } catch (error) {
-      console.error('Scanning failed', error);
-    }
-  }
-  stopScanning() {
-    this.utilService.stopScan();
-  }
+//   stopScanning() {
+//     console.log('Stopping scan...');
+//     this.utilService.stopScan();
+//   }
+  // async startScanning() {
+  //   try {
+  //     const result = await this.utilService.startScan();
+  //     if (result) {
+  //       this.scannedResult = result;
+  //       this.stopScanning();
+  //     }
+  //   } catch (error) {
+  //     console.error('Scanning failed', error);
+  //   }
+  // }
+  // stopScanning() {
+  //   this.utilService.stopScan();
+  // }
   addCategory() {
     if (this.categoryForm.valid) {
       if (this.categoryForm.valid) {

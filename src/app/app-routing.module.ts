@@ -103,7 +103,16 @@ const routes: Routes = [
   {
     path: 'notification',
     loadChildren: () => import('./pages/notification/notification.module').then( m => m.NotificationPageModule)
+  },  {
+    path: 'scanner-data',
+    loadChildren: () => import('./pages/scanner-data/scanner-data.module').then( m => m.ScannerDataPageModule)
+  },
+  {
+    path: 'qr-scanner',
+    loadChildren: () => import('./pages/qr-scanner/qr-scanner.module').then( m => m.QrScannerPageModule)
   }
+
+
 ];
 
 @NgModule({

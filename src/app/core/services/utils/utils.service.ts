@@ -58,41 +58,62 @@ export class UtilService {
     });
   }
   async checkPermission(): Promise<boolean> {
-    // return true;
-    return new Promise(async (resolve) => {
+    console.log('Checking permission...');
+    try {
       const status = await BarcodeScanner.checkPermission({ force: true });
+      console.log('Permission status:', status);
       if (status.granted) {
-        resolve(true);
+        return true;
       } else if (status.denied) {
+        console.log('Permission denied, opening app settings...');
         BarcodeScanner.openAppSettings();
-        resolve(false);
+        return false;
+      } else {
+        // Handle 'neverAsked' or any other status
+        console.log('Permission status is neither granted nor denied:', status);
+        return false;
       }
-    });
+    } catch (error) {
+      console.error('Error checking permission:', error);
+      return false;
+    }
   }
 
   async startScan(): Promise<string> {
-    // return "ram";
-    return new Promise(async (resolve) => {
+    console.log('Starting scan in UtilService...');
+    try {
       const allowed = await this.checkPermission();
       if (allowed) {
+        console.log('Permission granted, preparing scanner...');
+        
+        // Ensure full-screen scanner
         await BarcodeScanner.hideBackground();
         document.querySelector('body').classList.add('scanner-active');
+        
+        // Start the scanner
         const result = await BarcodeScanner.startScan();
+        console.log('Scan result:', result);
         if (result.hasContent) {
-          resolve(result.content);
+          return result.content;
         } else {
-          resolve(null);
+          console.log('No content in scan result');
+          return null;
         }
       } else {
-        resolve(null);
+        console.log('Permission not allowed');
+        return null;
       }
+    } catch (error) {
+      console.error('Error in startScan:', error);
+      return null;
     }
-  );
   }
-
+  
   stopScan() {
+    console.log('Stopping scan...');
     BarcodeScanner.showBackground();
     BarcodeScanner.stopScan();
     document.querySelector('body').classList.remove('scanner-active');
   }
+  
 }
