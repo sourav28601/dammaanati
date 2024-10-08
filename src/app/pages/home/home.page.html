@@ -1,4 +1,4 @@
-<ion-content class="ion-padding ion-no-border" [style.visibility]="content_visibility">
+<ion-content class="ion-padding ion-no-border" *ngIf="!isScannerActive">
   <ion-item lines="none" class="title-item">
     <ion-label>
       <ion-img src="../../../assets/damaanati-logo.svg" class="dammanati-logo"></ion-img>

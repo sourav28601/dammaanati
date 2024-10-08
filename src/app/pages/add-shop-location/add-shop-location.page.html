@@ -1,0 +1,15 @@
+<ion-content [fullscreen]="true">
+  <capacitor-google-map #map></capacitor-google-map>
+  <ion-footer class="ion-padding">
+    <div>
+      <ion-label>Add Shop Location</ion-label>
+      <ion-item>
+        <ion-label>
+          <ion-icon name="location" slot="start"></ion-icon>
+          {{address}}
+        </ion-label>
+      </ion-item>
+    </div>
+    <ion-button class="set_location" expand="block" shape="round" (click)="setLocation()">Set Location</ion-button>
+  </ion-footer>
+</ion-content>

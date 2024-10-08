@@ -3,21 +3,26 @@ import { Subject } from 'rxjs';
 import { Share } from '@capacitor/share';
 import { AlertController } from '@ionic/angular';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilService {
-  
+  contentVisibility: string = '';
   private isMenuEnabled = new Subject<boolean>();
   passwordValidator="/^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9]).{8,}$/";
   constructor(private alertController: AlertController) { }
+  private contentVisibilitySubject = new BehaviorSubject<string>('');
+  contentVisibility$ = this.contentVisibilitySubject.asObservable();
 
+  setVisibility(state: string) {
+    this.contentVisibilitySubject.next(state);
+  }
   setMenuState(enabled) {
     this.isMenuEnabled.next(enabled);
   }
 
-  
   getMenuState(): Subject<boolean> {
     return this.isMenuEnabled;
   }
@@ -78,7 +83,7 @@ export class UtilService {
       return false;
     }
   }
-
+  
   async startScan(): Promise<string> {
     console.log('Starting scan in UtilService...');
     try {

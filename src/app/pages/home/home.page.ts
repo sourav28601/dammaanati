@@ -63,6 +63,7 @@ export class HomePage implements OnInit {
   scannedResult: string = '';
   qrCodeString = 'This is a secret qr code message';
   content_visibility = '';
+  isScannerActive = false;
   constructor(
     private apiService: ApiService,
     private router: Router,
@@ -100,22 +101,20 @@ export class HomePage implements OnInit {
       return false; // Return false in case of an error
     }
   }
-
   async startScan() {
     try {
       const permission = await this.checkPermission();
-      if(!permission) {
+      if (!permission) {
         return;
       }
       await BarcodeScanner.hideBackground();
-      document.querySelector('body').classList.add('scanner-active');
-      this.content_visibility = 'hidden';
+      this.utilService.setVisibility('hidden');
+      this.isScannerActive = true; // Set to true when scanning starts
       const result = await BarcodeScanner.startScan();
       console.log(result);
       BarcodeScanner.showBackground();
-      document.querySelector('body').classList.remove('scanner-active');
-      this.content_visibility = '';
-      if(result?.hasContent) {
+      this.isScannerActive = false; // Reset to false after scanning
+      if (result?.hasContent) {
         this.scannedResult = result.content;
         // Navigate to the scanner-data page with state data
         this.router.navigate(['/scanner-data'], { state: { data: this.scannedResult } });
@@ -126,21 +125,12 @@ export class HomePage implements OnInit {
       this.stopScan();
     }
   }
-  // async openModal() {
-  //   const modal = await this.modalCtrl.getTop(); // Get the current top modal if any
-  //   if (!modal) {
-  //     const modalElement = await this.modalCtrl.create({
-  //       component: 'ion-modal', // Reference the modal
-  //       componentProps: { scannedResult: this.scannedResult } // Pass scanned data
-  //     });
-  //     await modalElement.present();
-  //   }
-  // }
+
   stopScan() {
     BarcodeScanner.showBackground();
     BarcodeScanner.stopScan();
-    document.querySelector('body').classList.remove('scanner-active');
-    this.content_visibility = '';
+    this.utilService.setVisibility('');
+    this.isScannerActive = false;
   }
 
   ngOnDestroy(): void {
