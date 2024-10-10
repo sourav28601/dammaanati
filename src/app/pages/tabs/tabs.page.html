@@ -1,4 +1,5 @@
-<ion-tabs (ionTabsDidChange)="setCurrentTab()">  
+<!-- <ng-container *ngIf="!(isScannerActive$ | async)"> -->
+<ion-tabs (ionTabsDidChange)="setCurrentTab()" [class.scanner-active]="isScannerActive$ | async">  
   <ion-fab vertical="bottom" horizontal="center" translucent="true">
     <div class="fab-wrapper">
       <ion-fab-button (click)="navigate()">
@@ -27,3 +28,4 @@
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
+<!-- </ng-container> -->

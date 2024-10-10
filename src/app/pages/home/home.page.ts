@@ -89,16 +89,14 @@ export class HomePage implements OnInit {
   }
   async checkPermission(): Promise<boolean> {
     try {
-      // check or request permission
       const status = await BarcodeScanner.checkPermission({ force: true });
       if (status.granted) {
-        // the user granted permission
         return true;
       }
       return false;
     } catch(e) {
       console.log(e);
-      return false; // Return false in case of an error
+      return false; 
     }
   }
   async startScan() {
@@ -108,20 +106,17 @@ export class HomePage implements OnInit {
         return;
       }
       await BarcodeScanner.hideBackground();
-      this.utilService.setVisibility('hidden');
-      this.isScannerActive = true; // Set to true when scanning starts
+      this.utilService.setScannerActive(true);
       const result = await BarcodeScanner.startScan();
       console.log(result);
-      BarcodeScanner.showBackground();
-      this.isScannerActive = false; // Reset to false after scanning
       if (result?.hasContent) {
         this.scannedResult = result.content;
-        // Navigate to the scanner-data page with state data
         this.router.navigate(['/scanner-data'], { state: { data: this.scannedResult } });
         console.log(this.scannedResult);
-      }      
+      }
     } catch(e) {
       console.log(e);
+    } finally {
       this.stopScan();
     }
   }
@@ -129,20 +124,59 @@ export class HomePage implements OnInit {
   stopScan() {
     BarcodeScanner.showBackground();
     BarcodeScanner.stopScan();
-    this.utilService.setVisibility('');
-    this.isScannerActive = false;
+    this.utilService.setScannerActive(false);
   }
+
+  // async startScan(){
+  //   // Check camera permission
+  //   await BarcodeScanner.checkPermission({ force: true });
+  
+  //   // Make background of WebView transparent
+  //   BarcodeScanner.hideBackground();
+  // // alert("jaswinder singh")
+  //   // Add event listener for the back button
+  //   const backButton = document.getElementById('backButton');
+  //   // alert("jaswinder singh 1`")
+  //   backButton.addEventListener('click', this.stopScan);
+  //   alert("jaswinder singh 2")
+  //   // Show the back button
+  //   backButton.style.display = 'block';
+  //   alert("jaswinder singh 3")
+  //   const result = await BarcodeScanner.startScan(); // start scanning and wait for a result
+  
+  //   // Hide the back button after scan is complete
+  //   backButton.style.display = 'none';
+  
+  //   // If the result has content
+  //   if (result.hasContent) {
+  //     console.log(result.content); // log the raw scanned content
+  //   }
+  // };
+  
+  // stopScan(){
+  //   BarcodeScanner.showBackground();
+  //   BarcodeScanner.stopScan();
+  
+  //   // Hide the back button
+  //   const backButton = document.getElementById('backButton');
+  //   backButton.style.display = 'none';
+  
+  //   // Navigate back or perform any other desired action
+  //   // For example, if you're using a framework with routing:
+  //   // router.back();
+  // };
+  
+  // Call startScan when you want to begin scanning
+  // startScan();
 
   ngOnDestroy(): void {
       this.stopScan();
   }
 
   ngOnInit(): void {
-    console.log("get home page localstorage data-----",localStorage.getItem('user_data'));
   }
   getLocalStorageData() {
     const data = localStorage.getItem('user_data');
-    console.log("get home page localstorage data-----",data);
   }
   ionViewWillEnter(){
     this.activeroute.url.subscribe((url) => {

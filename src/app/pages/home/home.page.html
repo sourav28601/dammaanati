@@ -1,4 +1,6 @@
 <ion-content class="ion-padding ion-no-border" *ngIf="!isScannerActive">
+  
+
   <ion-item lines="none" class="title-item">
     <ion-label>
       <ion-img src="../../../assets/damaanati-logo.svg" class="dammanati-logo"></ion-img>
@@ -20,9 +22,9 @@
       [debounce]="300"></ion-searchbar>
     <ion-item>
       <ion-label>{{ 'PRODUCT_VIEW' | translate }}</ion-label>
-      <!-- <ion-button expand="block" (click)="startScanning()"> -->
-        <ion-icon name="qr-code-outline" (click)="startScan()"></ion-icon>
-      <!-- </ion-button> -->
+      <ion-button fill="clear" (click)="startScan()">
+        <ion-icon name="qr-code-outline"></ion-icon>
+      </ion-button>
       <ion-icon name="list-outline" slot="end" (click)="ChangeUi('productsView')"></ion-icon>
     </ion-item> 
     <ion-grid>
@@ -153,7 +155,13 @@
   </ng-template>
 </ion-modal>
 </ion-content>
-<!-- <ion-button (click)="startScanning()">Start Scanning</ion-button>
-<ion-button (click)="stopScanning()">Stop Scanning</ion-button> -->
-<!-- <p *ngIf="scannedResult">Scanned Result: {{ scannedResult }}</p> -->
+<!-- 
+<ion-icon name="close-circle" class="cancel-icon" (click)="stopScan()" style="background: red; display: none !important;
+position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  color: #fff;
+  font-size: 24px;"></ion-icon> -->
+
 <ion-footer style="height: 50px;"></ion-footer>

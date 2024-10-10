@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  NgZone,
-} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { GoogleMap } from '@capacitor/google-maps';
 import { Geolocation } from '@capacitor/geolocation';
 import { environment } from 'src/environments/environment';
@@ -23,7 +17,7 @@ export class AddShopLocationPage implements OnInit {
     lat: 28.6468935,
     lng: 76.9531791,
   };
-  markerId: string = '';
+  markerId: string = ''; // To store the current marker's ID
   address: string = 'Select a location';
 
   constructor(
@@ -65,8 +59,8 @@ export class AddShopLocationPage implements OnInit {
       await this.newMap.enableTrafficLayer(true);
 
       // Add marker at the center
-      this.addMarker(this.center.lat, this.center.lng);
-      this.addListeners();
+      await this.addMarker(this.center.lat, this.center.lng); // Add initial marker
+      await this.addListeners();
     } catch (e) {
       console.error(e);
     }
@@ -74,10 +68,17 @@ export class AddShopLocationPage implements OnInit {
 
   async addMarker(lat: number, lng: number) {
     try {
+      // Remove the previous marker if it exists
+      if (this.markerId) {
+        await this.removeMarker(); // Remove any existing marker
+      }
+
+      // Add the new marker
       this.markerId = await this.newMap.addMarker({
         coordinate: { lat, lng },
         draggable: true,
       });
+      console.log('New marker added at:', lat, lng);
     } catch (e) {
       console.error('Error adding marker:', e);
     }
@@ -86,8 +87,9 @@ export class AddShopLocationPage implements OnInit {
   async removeMarker() {
     try {
       if (this.markerId) {
-        await this.newMap.removeMarker(this.markerId);
-        this.markerId = '';
+        await this.newMap.removeMarker(this.markerId); // Remove the marker using its ID
+        console.log('Previous marker removed');
+        this.markerId = ''; // Clear marker ID after removing
       }
     } catch (e) {
       console.error('Error removing marker:', e);
@@ -96,19 +98,33 @@ export class AddShopLocationPage implements OnInit {
 
   async addListeners() {
     // Marker click listener
-    this.newMap.setOnMarkerClickListener((event) => {
+    this.newMap.setOnMarkerClickListener(async (event) => {
       console.log('Marker clicked at:', event.latitude, event.longitude);
+      const address = await this.getAddress(event.latitude, event.longitude);
       this.ngZone.run(() => {
-        this.address = `Marker at lat: ${event.latitude}, lng: ${event.longitude}`;
+        this.address = address;
+        console.log('Address:', this.address);
       });
     });
 
-    // Map click listener - Adds a new marker
+    // Map click listener - Adds a new marker and removes the old one
     this.newMap.setOnMapClickListener(async (event) => {
       console.log('Map clicked at:', event.latitude, event.longitude);
-      await this.addMarker(event.latitude, event.longitude);
+      await this.addMarker(event.latitude, event.longitude); // Automatically removes the previous marker
+      const address = await this.getAddress(event.latitude, event.longitude);
       this.ngZone.run(() => {
-        this.address = `New marker at lat: ${event.latitude}, lng: ${event.longitude}`;
+        this.address = address;
+        console.log('Address:', this.address);
+      });
+    });
+
+    // Marker drag end listener
+    this.newMap.setOnMarkerDragEndListener(async (event) => {
+      console.log('Marker dragged to:', event.latitude, event.longitude);
+      const address = await this.getAddress(event.latitude, event.longitude);
+      this.ngZone.run(() => {
+        this.address = address;
+        console.log('Address:', this.address);
       });
     });
 
@@ -123,18 +139,30 @@ export class AddShopLocationPage implements OnInit {
           },
           zoom: 15,
         });
-        await this.addMarker(location.latitude, location.longitude);
-        console.log('My location:', location.latitude, location.longitude);
+        await this.addMarker(location.latitude, location.longitude); // Adds marker at current location
+        const address = await this.getAddress(location.latitude, location.longitude);
+        console.log('My location address:', address);
       }
     });
+  }
 
-    // Marker drag end listener
-    this.newMap.setOnMarkerDragEndListener((event) => {
-      console.log('Marker dragged to:', event.latitude, event.longitude);
-      this.ngZone.run(() => {
-        this.address = `Marker dragged to lat: ${event.latitude}, lng: ${event.longitude}`;
-      });
-    });
+  async getAddress(lat: number, lng: number): Promise<string> {
+    try {
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${environment.mapsKey}`
+      );
+      const data = await response.json();
+      if (data.status === 'OK') {
+        const result = data.results[0];
+        return result.formatted_address;
+      } else {
+        console.error('Geocoding error:', data.status);
+        return 'Address not found';
+      }
+    } catch (error) {
+      console.error('Error fetching address:', error);
+      return 'Error retrieving address';
+    }
   }
 
   async getCurrentLocation() {

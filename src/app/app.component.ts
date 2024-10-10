@@ -6,13 +6,24 @@ import { Keyboard } from '@capacitor/keyboard';
 import { Location } from "@angular/common";
 import { FcmService } from './core/services/fcm/fcm.service';
 import { LanguageService } from './core/services/language/language.service';
+import { UtilService } from './core/services/utils/utils.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private location: Location,private fcm:FcmService, private router: Router, public platform: Platform,private languageService: LanguageService) {
+isScannerActive$:any;
+ 
+  constructor(private location: Location,private fcm:FcmService, private router: Router, public platform: Platform,private languageService: LanguageService,private utilsService:UtilService) {
+    this.isScannerActive$ = this.utilsService.isScannerActive$;
+    this.utilsService.isScannerActive$.subscribe(isActive => {
+      if (isActive) {
+        document.body.classList.add('scanner-active');
+      } else {
+        document.body.classList.remove('scanner-active');
+      }
+    });
   this.platform.backButton.subscribeWithPriority(10, () => {
       console.log('Handler back button was called!');
       this.location.back();

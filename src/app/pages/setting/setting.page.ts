@@ -9,6 +9,8 @@ import { UtilService } from 'src/app/core/services/utils/utils.service';
   styleUrls: ['./setting.page.scss'],
 })
 export class SettingPage implements OnInit {
+  darkMode: boolean = false;
+
   constructor(
     private router: Router,
     private utilService: UtilService,
@@ -17,7 +19,9 @@ export class SettingPage implements OnInit {
     this.languageService.initLanguage();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.checkAppMode();
+  }
 
   async referApp() {
     const data = {
@@ -46,6 +50,28 @@ export class SettingPage implements OnInit {
       setTimeout(() => {
         this.router.navigate(['/login']);
       }, 500);
+    }
+  }
+  async checkAppMode() {
+    const checkIsDarkMode = localStorage.getItem('darkModeActivated');
+    // const checkIsDarkMode = await Preferences.get({key: 'darkModeActivated'});
+    console.log(checkIsDarkMode);
+      checkIsDarkMode == 'true'
+    // checkIsDarkMode?.value == 'true'
+      ? (this.darkMode = true)
+      : (this.darkMode = false);
+    document.body.classList.toggle('dark', this.darkMode);
+  }
+
+  toggleDarkMode() {
+    this.darkMode= !this.darkMode;
+    document.body.classList.toggle('dark', this.darkMode);
+    if(this.darkMode) {
+      // Preferences.set({key: 'darkModeActivated', value: 'true'}); 
+      localStorage.setItem('darkModeActivated', 'true');
+    } else {
+      localStorage.setItem('darkModeActivated', 'false');
+      // Preferences.set({key: 'darkModeActivated', value: 'false'});
     }
   }
 }

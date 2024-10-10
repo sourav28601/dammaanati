@@ -212,5 +212,6 @@
   "DELETE_ACCOUNT":"Delete Account",
   "DELETE_ACCOUNT_CONFIRMATION":"Are you sure you want to delete account?",
   "VIEW_SHOP_PICTURE":"View Shop Picture",
-  "NO_SHOP_PICTURE_AVAILABLE":"No Shop Picture Available"
+  "NO_SHOP_PICTURE_AVAILABLE":"No Shop Picture Available",
+  "DARK_MODE":"Dark Mode"
 }

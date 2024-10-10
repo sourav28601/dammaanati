@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-list class="ion-margin-bottom">
+  <ion-list>
     <ion-item lines="none" class="ion-margin-bottom" routerLink="/account-settings">
       <ion-img src="../../../assets/setting-icons/setting.svg" slot="start" class="setting-icons"></ion-img>
       <ion-label>{{ 'SETTINGS_ACCOUNT_SETTINGS' | translate }}</ion-label>
@@ -43,6 +43,11 @@
       <ion-img src="../../../assets/setting-icons/share.svg" slot="start" class="setting-icons"></ion-img>
       <ion-label>{{ 'SETTINGS_REFER' | translate }}</ion-label>
       <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-img src="../../../assets/setting-icons/dark-icon.svg" slot="start" class="setting-icons"></ion-img>
+     <ion-label>{{ 'DARK_MODE' | translate }}</ion-label>
+      <ion-toggle slot="end" [checked]="darkMode" (ionChange)="toggleDarkMode()"></ion-toggle>
     </ion-item>
   </ion-list>
   <ion-item lines="none" (click)="signOut()">

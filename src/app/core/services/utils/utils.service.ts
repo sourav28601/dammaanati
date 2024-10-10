@@ -19,6 +19,17 @@ export class UtilService {
   setVisibility(state: string) {
     this.contentVisibilitySubject.next(state);
   }
+  private isScannerActiveSubject = new BehaviorSubject<boolean>(false);
+  isScannerActive$ = this.isScannerActiveSubject.asObservable();9
+
+  setScannerActive(isActive: boolean) {
+    this.isScannerActiveSubject.next(isActive);
+    if (isActive) {
+      document.body.classList.add('scanner-active');
+    } else {
+      document.body.classList.remove('scanner-active');
+    }
+  }
   setMenuState(enabled) {
     this.isMenuEnabled.next(enabled);
   }
