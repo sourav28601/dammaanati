@@ -5,7 +5,6 @@ ion-content {
     height: 45px;
   }
   
-  
   .title-item {
     --background: transparent;
     ion-title {
@@ -393,27 +392,3 @@ ion-item-divider {
   color: white;
   background: linear-gradient(167.98deg, #9B40CD 0%, #4453CE 100%);
 }
-
-
-
-
-
-.scanner-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px; /* Adjust as necessary */
-
-  ion-button {
-    margin-bottom: 10px; /* Back button spacing */
-  }
-
-  .scanner-view {
-    width: 200px;
-    height: 200px;
-    border: 1px solid #ccc; /* Optional border to visualize the area */
-    position: relative;
-  }
-}
-

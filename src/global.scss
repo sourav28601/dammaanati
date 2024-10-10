@@ -134,31 +134,31 @@ ion-content {
   --background: transparent;
 }
 
-body {
-  background: transparent;
-}
+// body {
+//   background: transparent;
+// }
 
-body.scanner-active {
-  --background: transparent;
-  --ion-background-color: transparent;
-}
+// body.scanner-active {
+//   --background: transparent;
+//   --ion-background-color: transparent;
+// }
 
-body.scanner-active ion-content,
-body.scanner-active ion-header,
-body.scanner-active ion-footer,
-body.scanner-active ion-tabs,
-body.scanner-active ion-tab-bar {
-  display: none !important;
-}
+// body.scanner-active ion-content,
+// body.scanner-active ion-header,
+// body.scanner-active ion-footer,
+// body.scanner-active ion-tabs,
+// body.scanner-active ion-tab-bar {
+//   display: none !important;
+// }
 
-body.scanner-active ion-fab {
-  display: block !important;
-  z-index: 999;
-}
+// body.scanner-active ion-fab {
+//   display: block !important;
+//   z-index: 999;
+// }
 
-ion-fab-button {
-  --background: rgba(255, 255, 255, 0.5);
-  --color: #000;
-}
+// ion-fab-button {
+//   --background: rgba(255, 255, 255, 0.5);
+//   --color: #000;
+// }
 
 

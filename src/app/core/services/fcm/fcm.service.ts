@@ -15,7 +15,6 @@ export class FcmService {
   get redirect() {
     return this._redirect.asObservable();
   }
-
   constructor() { }
 
   initPush() {
