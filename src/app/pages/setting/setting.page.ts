@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Share } from '@capacitor/share';
 import { LanguageService } from 'src/app/core/services/language/language.service';
 import { UtilService } from 'src/app/core/services/utils/utils.service';
+import { Preferences } from '@capacitor/preferences';
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.page.html',
@@ -53,11 +54,11 @@ export class SettingPage implements OnInit {
     }
   }
   async checkAppMode() {
-    const checkIsDarkMode = localStorage.getItem('darkModeActivated');
-    // const checkIsDarkMode = await Preferences.get({key: 'darkModeActivated'});
+    // const checkIsDarkMode = localStorage.getItem('darkModeActivated');
+    const checkIsDarkMode = await Preferences.get({key: 'darkModeActivated'});
     console.log(checkIsDarkMode);
-      checkIsDarkMode == 'true'
-    // checkIsDarkMode?.value == 'true'
+      // checkIsDarkMode == 'true'
+    checkIsDarkMode?.value == 'true'
       ? (this.darkMode = true)
       : (this.darkMode = false);
     document.body.classList.toggle('dark', this.darkMode);
@@ -67,11 +68,11 @@ export class SettingPage implements OnInit {
     this.darkMode= !this.darkMode;
     document.body.classList.toggle('dark', this.darkMode);
     if(this.darkMode) {
-      // Preferences.set({key: 'darkModeActivated', value: 'true'}); 
-      localStorage.setItem('darkModeActivated', 'true');
+      Preferences.set({key: 'darkModeActivated', value: 'true'}); 
+      // localStorage.setItem('darkModeActivated', 'true');
     } else {
-      localStorage.setItem('darkModeActivated', 'false');
-      // Preferences.set({key: 'darkModeActivated', value: 'false'});
+      // localStorage.setItem('darkModeActivated', 'false');
+      Preferences.set({key: 'darkModeActivated', value: 'false'});
     }
   }
 }

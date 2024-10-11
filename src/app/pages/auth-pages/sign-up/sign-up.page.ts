@@ -111,7 +111,7 @@ export class SignUpPage implements OnInit {
       },
       (error) => {
         console.error('Error fetching address:', error);
-        this.messageService.presentToast('Unable to determine your location. Please enter it manually.', 'warning');
+        // this.messageService.presentToast('Unable to determine your location. Please enter it manually.', 'warning');
       }
     );
   }

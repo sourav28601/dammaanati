@@ -5,11 +5,10 @@
 :root {
   --ion-color-light-text: #f4f6f9;
   --ion-color-background-start: #4453CE;
-
   --ion-color-background-end: #4453CE;
-;
+  --ion-div-background:#4453CE;
   --ion-color-accent: #4453CE;
-;
+  --ion-input-background:#ffffff;
   --ion-color-highlight: #e0e0a7;
   --ion-color-muted: #99a0aa;
   --ion-color-white: #ffffff;
@@ -115,116 +114,15 @@
 
     }
     // .md body.dark{
-    //   --ion-color-light-text: #f4f6f9;
-    //   --ion-color-background-start: #4453CE;
-    
-    //   --ion-color-background-end: #4453CE;
-    // ;
-    //   --ion-color-accent: #4453CE;
-    // ;
-    //   --ion-color-highlight: #e0e0a7;
-    //   --ion-color-muted: #99a0aa;
-    //   --ion-color-white: #ffffff;
-    //   --ion-color-title: #4453CE;
-    // ;
-    //   --ion-color-divider: #ddd;
-    //   --ion-color-heading: #86c121;
-    //   --ion-color-border: #000000;
-    //   --ion-color-placeholder: #999999;
-    //   --ion-color-shop-icon: #7c7878;
-    //   --ion-color-input-border: #cbcfd2;
-    //   --ion-color-button-border: #4453CE;
-    // ;
-    //   --ion-color-button-background: linear-gradient(167.98deg, #9B40CD 0%, #4453CE 100%);
-    //   --ion-color-icon: #4453CE;
-    // ;
-    //   --ion-color-date-border: darkgray;
-    //   --ion-color-content-background: #fffcfc;
-    //   --ion-color-footer-background: #ffffff;
-    //   --ion-background-gradient:linear-gradient(167.98deg, #696969 0%, #111111 100%);
-    //   // --ion-background-gradient:#111111;
-    
-    //   --background: #f4f4f4;
-    //   --background-transparent: transparent;
-    //   --color-dark: #4453CE;
-    // ;
-    //   --icon-color: #666666;
-    //   --border-dark: #4453CE;
-    // ;
-    //   --box-shadow-light: 0 4px 6px rgba(253, 251, 251, 0.1);
-    //   --color-light: #4453CE;
-    // ;
-    //   --text-light: #cccccc;
-    //   --text-medium-light:#4453CE;
-    // ;
-    //   --background-gradient-blue:linear-gradient(167.98deg, #9B40CD 0%, #4453CE 100%);
-    //   --box-shadow-dark: 0 4px 6px rgba(0, 0, 0, 0.1);
-    //   --background-gradient-purple:linear-gradient(167.98deg, #9B40CD 0%, #4453CE 100%);
-    //   --color-white: #ffffff;
-    //   --background-light-text: #f4f6f9;
-    //   --background-gray: #f0f0f0;
-    //   --color-medium: #666;
-    //   --background-light: #ffffff;
-    //   --border-dark-gray: 1px solid darkgrey;
-    //   --box-shadow-heavy: 0 28px 48px rgba(0, 0, 0, 0.4);
-    //   --background-dark-gray: darkgrey;
-    //   --background-expiration-red: linear-gradient(91.53deg, #ff6868 0%, #e30000 100%);
-    //   --background-gradient-blue-2: linear-gradient(91.53deg, #A2B3D7 0%, #686FA8 100%);
-    //   --background-gradient-purple-2: linear-gradient(91.53deg, #BB9BCA 0%, #686FA8 100%);
-    //   --ion-color-title: #565B7D;
-    //   --background-expiration-red: #FF6868;
-    //   --ion-color-divider: #e0e0e0;
-    //   --background-gradient-purple:linear-gradient(167.98deg, #9B40CD 0%, #4453CE 100%);
-    
-    
-    //   --ion-color-light-text: #f4f6f9;
-    //   --Wild-Blue-Yonder-700: #9B40CD ;
-    //   --Wild-Blue-Yonder-800: #9B40CD ;
-    //   --Wild-Blue-Yonder-400: #9B40CD ;
-    //   --ion-color-dark: #000000;
-    //   --ion-color-medium: #999999;
-    //   --ion-color-primary: #1B6DDF;
-    //   --ion-color-note: #1b6ddf;
-    //   --ion-color-note2: #1B6DDF;
-    //   --ion-color-share: #1B6DDF;
-    //   --ion-color-note3: #1B6DDF;
-    //   --color-black: #191c1b;
-    //   --color-primary-light: #4453CE;
-    //   --color-accent-light: #a3ba7c;
-    //   --color-app-version: #FF6868;
-    //   --color-light-text: #f4f6f9;
-    //   --color-white: #ffffff;
-    //   --color-dark-gray: darkgrey;
-    //   --color-dark: #333333;
-    //   --background-transparent: transparent;
-    //   --background-gradient-blue: linear-gradient(167.98deg, #9B40CD 0%, #4453CE 100%);
-    //   --color-black: #000000;
-    //   --color-support: #4453CE;
-    //   --color-header-title: #565b7d;
-    //   --color-label: #494d66;
-    //   --color-sign-out: #ff6868;
-    //   --color-header-title: #565b7d;
-    //   --color-label: #494d66;
-    //   --color-sign-out: #ff6868;
-    //   --color-placeholder: #999999;
-    //   --color-icon: #666666;
-    //   --color-gray: #cccccc;
-    //   --color-warning: #252524;
-    //   --color-expiration-red: red;
-    //   --background-gradient-red: linear-gradient(91.53deg, #FF6868 0%, #E30000 100%);
-    //   --background-gradient-green: linear-gradient(167.98deg, #9B40CD 0%, #4453CE 100%);
-    //   --background-gradient-category: linear-gradient(167.98deg, #9B40CD 0%, #4453CE 100%);
-    //   --background-gradient-category-name: linear-gradient(167.98deg, #9B40CD 0%, #4453CE 100%);
-      
     // }
   // }
 }
 body.dark {
   // 1. Label text color remains the same, input background in dark
   --ion-input-background: #333333;
-
   // 2. All label text and placeholder color in white
-  --ion-color-text-label: #ffffff;
+  --ion-color-accent: #ffffff;
+  --ion-div-background:#333333;
   --ion-color-placeholder: #ffffff;
 
   // 3. Background color for all pages in black
@@ -233,7 +131,7 @@ body.dark {
 
   // 4. Image boxes or icons in light gray, black image box in dark gray
   --image-box-color: #d3d3d3;
-  --image-box-background: #333333;
+  --image-box-background: #33333
 
   // 5. Button text in white, background dark gray for active button
   --ion-button-text-color-active: #ffffff;
