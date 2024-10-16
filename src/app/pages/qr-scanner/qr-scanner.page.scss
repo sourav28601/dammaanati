@@ -1,0 +1,17 @@
+ion-header {
+    --background: var(--ion-dark-background);
+    ion-toolbar {
+      ion-buttons{
+        color: var(--color-header-title);
+      }
+      --background: transparent;
+      --background: var(--ion-dark-background);
+      ion-title {
+        color: var(--color-header-title);
+        font-size: 1.56rem;
+        font-weight: 400;
+        text-align: center;
+        margin-right: 1.88rem;
+      }
+    }
+  }

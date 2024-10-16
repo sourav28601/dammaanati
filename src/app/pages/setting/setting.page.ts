@@ -4,6 +4,7 @@ import { Share } from '@capacitor/share';
 import { LanguageService } from 'src/app/core/services/language/language.service';
 import { UtilService } from 'src/app/core/services/utils/utils.service';
 import { Preferences } from '@capacitor/preferences';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.page.html',
@@ -15,13 +16,18 @@ export class SettingPage implements OnInit {
   constructor(
     private router: Router,
     private utilService: UtilService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private activatedRoute:ActivatedRoute
   ) {
     this.languageService.initLanguage();
   }
 
   ngOnInit() {
-    this.checkAppMode();
+    this.activatedRoute.params.subscribe(params => {
+      // Logic to refresh the settings page
+      this.checkAppMode();
+    });
+    // this.checkAppMode();
   }
 
   async referApp() {

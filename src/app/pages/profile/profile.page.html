@@ -47,13 +47,10 @@
       </ion-label>
     </ion-item>
   </ion-list>
-
   <ion-item lines="none" class="ion-margin-top signout" (click)="signOut()">
     <ion-img src="../../../assets/setting-icons/sign-out.svg" slot="start" class="setting-icons"></ion-img>
     <ion-label class="sign-out-label">{{ 'SIGN_OUT' | translate }}</ion-label>
   </ion-item>
-
- 
 </ion-content>
 
 <ion-modal id="example-modal" #profileModal>
@@ -83,7 +80,6 @@
           <ion-input formControlName="name" placeholder="{{ 'ENTER_YOUR_NAME' | translate }}" 
                      (input)="validateNameCityCountry($event, 'name')"></ion-input>
         </ion-item>
-        
         <ion-text color="danger"
           *ngIf="profileForm.get('name')?.hasError('required') && profileForm.get('name')?.touched">
           {{ 'NAME_REQUIRED' | translate }}

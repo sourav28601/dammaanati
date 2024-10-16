@@ -130,21 +130,21 @@ ion-button{
 .toast{
   color: white;
 }
-ion-content {
-  --background: transparent;
-}
+// ion-content {
+//   --background: transparent;
+// }
 
 // body {
 //   background: transparent;
 // }
 
-body.scanner-active {
-  --background: transparent;
-  --ion-background-color: transparent;
-}
+// body.scanner-active {
+//   --background: transparent;
+//   --ion-background-color: transparent;
+// }
 
 body.scanner-active ion-content,
-body.scanner-active ion-header,
+// body.scanner-active ion-header,
 body.scanner-active ion-footer,
 body.scanner-active ion-tabs,
 body.scanner-active ion-tab-bar {

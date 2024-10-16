@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "75178612649",
-    "project_id": "damaanati-d9f39",
-    "storage_bucket": "damaanati-d9f39.appspot.com"
+    "project_number": "706333112302",
+    "project_id": "damaanati-app",
+    "storage_bucket": "damaanati-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:75178612649:android:943fb74c7d5740d3a896b8",
+        "mobilesdk_app_id": "1:706333112302:android:bcf897e80aa00d023ac0ff",
         "android_client_info": {
           "package_name": "com.damaanati.app"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCxH046zCMoSZT6fcy8OtsoAYI9rgQZNAI"
+          "current_key": "AIzaSyCr7g78LwXz4gh8r0qgve-0Cp5CeX13ugw"
         }
       ],
       "services": {

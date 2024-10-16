@@ -4,9 +4,8 @@ ion-tabs {
     margin-bottom: env(safe-area-inset-bottom);
 
     ion-fab-button {
-      --background: white;
+      --background:var(--ion-fab-background);
       --box-shadow: none;
-
       .add_icon {
         width: 3.75rem;
       }
@@ -15,7 +14,7 @@ ion-tabs {
 
   ion-tab-bar {
     --border: 0;
-    --background: white;
+    --background:var(--ion-tab-background);
     position: absolute;
     bottom: 0;
     left: 0;
@@ -35,7 +34,7 @@ ion-tabs {
     }
 
     ion-tab-button {
-      --background: white;
+      --background:var(--ion-tab-background);
     }
 
     svg {

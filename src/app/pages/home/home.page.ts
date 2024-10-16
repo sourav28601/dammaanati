@@ -99,26 +99,27 @@ export class HomePage implements OnInit {
       return false; 
     }
   }
-  async startScan() {
-    try {
-      const permission = await this.checkPermission();
-      if (!permission) {
-        return;
-      }
-      await BarcodeScanner.hideBackground();
-      this.utilService.setScannerActive(true);
-      const result = await BarcodeScanner.startScan();
-      console.log(result);
-      if (result?.hasContent) {
-        this.scannedResult = result.content;
-        this.router.navigate(['/scanner-data'], { state: { data: this.scannedResult } });
-        console.log(this.scannedResult);
-      }
-    } catch(e) {
-      console.log(e);
-    } finally {
-      this.stopScan();
-    }
+  startScan() {
+    this.router.navigate(['/qr-scanner']);
+    // try {
+    //   const permission = await this.checkPermission();
+    //   if (!permission) {
+    //     return;
+    //   }
+    //   await BarcodeScanner.hideBackground();
+    //   this.utilService.setScannerActive(true);
+    //   const result = await BarcodeScanner.startScan();
+    //   console.log(result);
+    //   if (result?.hasContent) {
+    //     this.scannedResult = result.content;
+    //     this.router.navigate(['/scanner-data'], { state: { data: this.scannedResult } });
+    //     console.log(this.scannedResult);
+    //   }
+    // } catch(e) {
+    //   console.log(e);
+    // } finally {
+    //   this.stopScan();
+    // }
   }
 
   stopScan() {

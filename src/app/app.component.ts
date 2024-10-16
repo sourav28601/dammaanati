@@ -34,7 +34,7 @@ isScannerActive$:any;
       }
     })
     this.platform.ready().then(() => {
-      // this.fcm.initPush();
+      this.fcm.initPush();
       this.languageService.initLanguage();
       console.log('hello brother',this.fcm)
    }).catch(e => {

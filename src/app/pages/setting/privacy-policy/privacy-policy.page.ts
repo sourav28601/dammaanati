@@ -6,12 +6,19 @@ import { LanguageService } from 'src/app/core/services/language/language.service
   styleUrls: ['./privacy-policy.page.scss'],
 })
 export class PrivacyPolicyPage implements OnInit {
-
+  dataLoaded = false;
   constructor(
     private languageService:LanguageService
   ) {
     this.languageService.initLanguage();
    }
+  ionViewWillEnter() {
+    this.loadData();
+  }
+  loadData() {
+    // Fetch or prepare the data here
+    this.dataLoaded = true;
+  }
 
   ngOnInit() {
   }

@@ -1,4 +1,5 @@
 ion-content {
+  --background: var(--ion-dark-background);
   h1 {
     color: var(--Wild-Blue-Yonder-800);
   }
@@ -77,6 +78,7 @@ ion-content {
   }
 
   .signout {
+    --background: var(--ion-dark-background);
     margin-top: 5rem;
   }
 
@@ -93,6 +95,7 @@ ion-content {
     background: var(--background-transparent);
 
     ion-item {
+      --background: var(--ion-dark-background);
       ion-label {
         h2 {
           color: var(--Wild-Blue-Yonder-700);
@@ -114,7 +117,8 @@ ion-content {
 }
 
 ion-modal {
-  --height: 80vh;
+  height: auto;
+  --max-height: 80vh;
   --border-radius: 1rem;
   --box-shadow: var(--box-shadow-light);
   padding: 1.125rem;

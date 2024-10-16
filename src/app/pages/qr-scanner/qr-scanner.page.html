@@ -1,10 +1,24 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>qr-scanner</ion-title>
+<!-- <ion-header class="ion-no-border" >
+  <ion-toolbar >
+    <ion-buttons slot="start" (click)="stopScan()">
+      <ion-icon name="arrow-back-outline" slot="icon-only"></ion-icon>
+    </ion-buttons>
+    <ion-title>
+      Stop Scanning
+    </ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-header class="ion-no-border" *ngIf="!isScannerActive">
+  <ion-toolbar >
+    <ion-buttons slot="start" (click)="stop()">
+      <ion-icon name="arrow-back-outline" slot="icon-only"></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Scanning</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true"  *ngIf="!isScannerActive">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">qr-scanner</ion-title>

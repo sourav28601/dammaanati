@@ -104,6 +104,7 @@ export class AccountSettingsPage implements OnInit {
 
   onSubmit() {
     const email = this.changeEmailForm.get('email')?.value;
+    const oldEmail = this.userData.email; 
     const page = 'account-settings';
     if (this.changeEmailForm.valid) {
       const data = {
@@ -125,25 +126,12 @@ export class AccountSettingsPage implements OnInit {
           error: (error: any) => {
             console.log("error-----", error);
             const errorMessage = error.error?.message || 'Email Change failed';
+            this.changeEmailForm.patchValue({ email: oldEmail });
             this.messageService.presentToast(errorMessage, 'danger');
             this.modalCtrl.dismiss(error);
           },
         }
-        // (response) => {
-        //   this.messageService.presentToast(
-        //     'Email Changed Successfully',
-        //     'success'
-        //   );
-        //   console.log('response changeEmailForm', response);
-        //   this.userData.email = data.newEmail;
-        //   this.changeEmailForm.reset();
-        //   this.changeEmailForm.patchValue({ email: data.newEmail });
-        //   this.modalCtrl.dismiss(response);
-        // },
-        // (error) => {
-        //   console.error('Error changing email:', error);
-        //   this.messageService.presentToast('Email Change failed', 'success');
-        // }
+
       );
     }
   }

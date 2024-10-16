@@ -1,4 +1,26 @@
+ion-header {
+  --background: var(--ion-dark-background);
+  ion-toolbar {
+    ion-buttons{
+      color: var(--color-header-title);
+    }
+    --background: transparent;
+    --background: var(--ion-dark-background);
+    ion-title {
+      color: var(--color-header-title);
+      font-size: 1.56rem;
+      font-weight: 400;
+      text-align: center;
+      margin-right: 1.88rem;
+    }
+  }
+}
+
 ion-content {
+  --background: var(--ion-dark-background);
+  ion-label {
+    color: var(--ion-label-color);
+  }
   h1 {
     margin-top: 0.375rem;
     color: var(--ion-color-light-text);
@@ -19,6 +41,7 @@ ion-content {
       border-radius: 1rem;
       --background: var(--ion-color-white);
       border: 0.063rem solid var(--background-dark-gray);
+      color: var(--ion-color-border);
     }
 
     ion-button {
@@ -26,9 +49,12 @@ ion-content {
     display: flex;
     float: right;
     }
-
+    // ion-label {
+    //   color: var(--ion-label-color);
+    // }
     ion-icon {
       margin-right: 0.625rem;
+      color: var(--ion-color-border);
     }
   }
 
@@ -42,16 +68,13 @@ ion-content {
       --background: var(--ion-color-light-text);
       --padding-start: 0;
       --inner-padding-end: 0;
-      margin-bottom: 0.5rem;
+        margin-bottom: 0.5rem;
     }
 
     ion-radio {
       margin-right: 0.625rem;
     }
 
-    ion-label {
-      color: var(--color-dark);
-    }
   }
 
   ion-row {
@@ -59,12 +82,12 @@ ion-content {
   }
 
   .custom-radio-group {
-    --ion-color-primary: var(--background-gradient-purple);
+    // color: var(--background-gradient-purple);
   }
 
   .custom-radio-group ion-radio {
-    --color-checked: var(--background-gradient-purple);
-    --color: var(--background-gradient-purple);
+    // --color-checked: var(--background-gradient-purple);
+    // --color: var(--background-gradient-purple);
   }
 
   ion-toggle {
@@ -74,6 +97,9 @@ ion-content {
     --ion-color-primary-contrast-rgb: var(--background-gradient-purple);
     --ion-color-primary-shade: var(--background-gradient-purple);
     --ion-color-primary-tint: var(--background-gradient-purple);
+  }
+  ion-item{
+    --background: var(--ion-dark-background);
   }
   .sign-out-label {
     color: var(--color-sign-out);
@@ -144,6 +170,17 @@ font-weight: bold;
   height: 30px;
 }
 form{
+  color: var(--ion-color-border);
+  // ion-grid{
+  //   ion-row{
+  //     ion-col{
+  //       ion-label{
+         
+  //       }
+  //     }
+  //   }
+  // }
+     
   .email-input{
     display: flex;
     position: relative;
@@ -155,9 +192,11 @@ form{
     border: 2px solid #aaaaaa;;
     border-radius: 10px;
     padding-left: 10px !important;
+    color: var(--ion-color-border);
   }
   .email-label{
     margin-top: 0.6rem;
+    color: var(--ion-color-border);
   }
   .error{
     color: red;
@@ -213,14 +252,17 @@ form{
     // padding-left: 10px !important;
     height: 7vh;
     // margin: 0.2rem;
+    color: var(--ion-color-border);
 
   }
   .password-label{
     margin-top: 0.6rem;
+    color: var(--ion-color-border);
   }
   .eye-icon{
     width: 20px;
     height: 20px;
+    color: var(--ion-color-border);
   }
 }
 ion-modal#password-modal h1 {
@@ -240,6 +282,7 @@ ion-modal#password-modal ion-icon {
   height: 29px;
   padding: 4px 0;
   color: #aaaaaa;
+  // color: var(--ion-color-border);
 }
 
 ion-modal#password-modal .wrapper {

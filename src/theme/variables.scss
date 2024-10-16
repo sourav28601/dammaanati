@@ -3,12 +3,32 @@
 // src/theme/variables.scss
 
 :root {
-  --ion-color-light-text: #f4f6f9;
+  --ion-date-input-color:#000000;
+  // --ion-color-black:#000000;
+  --ion-dark-background: #ffffff;
+  --color-label: #4a4a4a;
+  --color-sign-out: #ff3b3b;
+  --ion-text-color:#ffffff;
+  --ion-fab-background:#ffffff;
+  --ion-tab-background:#ffffff;
+  --ion-icon-color:#333;
+  --ion-label-color:#2b2d3b;
+  --ion-card-title:#ffffff
+  --page-background:#f4f4f4
+  --ion-color-light-text: #474747;
   --ion-color-background-start: #4453CE;
   --ion-color-background-end: #4453CE;
   --ion-div-background:#4453CE;
   --ion-color-accent: #4453CE;
   --ion-input-background:#ffffff;
+  --ion-home-grid-background:#EAEFF5;
+  --ion-card-background: #FFFFFF;
+  --ion-heading-color:#333;
+  --ion-title-background:#333;
+  --ion-searchbar-background-color:#ffffff;
+  --ion-placeholder-color:#999999 ;
+  --ion-icon-color:#666666
+
   --ion-color-highlight: #e0e0a7;
   --ion-color-muted: #99a0aa;
   --ion-color-white: #ffffff;
@@ -62,9 +82,6 @@
   --background-expiration-red: #FF6868;
   --ion-color-divider: #e0e0e0;
   --background-gradient-purple:linear-gradient(167.98deg, #9B40CD 0%, #4453CE 100%);
-
-
-  --ion-color-light-text: #f4f6f9;
   --Wild-Blue-Yonder-700: #9B40CD ;
   --Wild-Blue-Yonder-800: #9B40CD ;
   --Wild-Blue-Yonder-400: #9B40CD ;
@@ -75,7 +92,6 @@
   --ion-color-note2: #1B6DDF;
   --ion-color-share: #1B6DDF;
   --ion-color-note3: #1B6DDF;
-  --color-black: #191c1b;
   --color-primary-light: #4453CE;
   --color-accent-light: #a3ba7c;
   --color-app-version: #FF6868;
@@ -88,10 +104,7 @@
   --color-black: #000000;
   --color-support: #4453CE;
   --color-header-title: #565b7d;
-  --color-label: #494d66;
   --color-sign-out: #ff6868;
-  --color-header-title: #565b7d;
-  --color-label: #494d66;
   --color-sign-out: #ff6868;
   --color-placeholder: #999999;
   --color-icon: #666666;
@@ -106,7 +119,6 @@
   // @media(prefers-color-scheme:dark){
     // dark colors
 
-    
     .ios body.dark{
 
     }
@@ -118,13 +130,35 @@
   // }
 }
 body.dark {
+  --ion-date-input-color:#000000;
+  --background-gray:#474747;
+  --ion-color-border: #ffffff;
+  --color-black: #ffffff;
+  --color-header-title: #ffffff;
+  --ion-text-color:#474747;
+  --ion-dark-background: #121212 !important;
+  --color-label: #e0e0e0;
+  --color-sign-out: #ff5252;
   // 1. Label text color remains the same, input background in dark
+  --ion-fab-background:#474747;
+  --ion-tab-background:#474747;
+  --ion-color-light-text: #474747;
+  // --ion-tab-background:#000000;
+  --ion-label-color:#ffffff;
+  --ion-heading-color:#ffffff;
+  --ion-card-background: #474747;
+  --page-background:linear-gradient(167.98deg, #696969 0%, #111111 100%);
   --ion-input-background: #333333;
   // 2. All label text and placeholder color in white
   --ion-color-accent: #ffffff;
   --ion-div-background:#333333;
   --ion-color-placeholder: #ffffff;
-
+  --ion-home-grid-background:#1D1D1D;
+  --ion-card-title:#ffffff;
+  --ion-title-background:#ffffff;
+  --ion-searchbar-background-color:#474747;
+  --ion-placeholder-color:#ffffff;
+  --ion-icon-color:#ffffff;
   // 3. Background color for all pages in black
   --ion-background-gradient: linear-gradient(167.98deg, #696969 0%, #111111 100%);
   --ion-color-background: #000000;

@@ -23,4 +23,7 @@ export class ScannerDataPage implements OnInit {
       console.log("No scanned data found");
     }
   }
+  navigateToHome(){
+    this.router.navigate(['/apptabs/tabs/home']);
+  }
 }

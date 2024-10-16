@@ -9,20 +9,17 @@
 
 <ion-content class="ion-padding">
   <ion-text class="ion-margin-start">{{ 'GET_NOTIFICATION_BEFORE_WARRANTY_ENDS' | translate }}</ion-text>
-  <!-- <p>Selected Preference: {{ selectedNotificationPreference }}</p>
-<p>Custom Days: {{ customDays }}</p> -->
-
 <ion-radio-group [(ngModel)]="selectedNotificationPreference" (ionChange)="onNotificationPreferenceChange($event)">
-  <ion-list class="ion-margin-bottom ion-margin-top custom-radio-group">
-    <ion-item lines="none" class="ion-margin-bottom">
+  <ion-list class="custom-radio-group"> 
+    <ion-item lines="none">
       <ion-label>{{ '14_DAYS' | translate }}</ion-label>
       <ion-radio slot="end" value="14"></ion-radio>
     </ion-item>
-    <ion-item lines="none" class="ion-margin-bottom">
+    <ion-item lines="none">
       <ion-label>{{ '30_DAYS' | translate }}</ion-label>
       <ion-radio slot="end" value="30"></ion-radio>
     </ion-item>
-    <ion-item lines="none" class="ion-margin-bottom">
+    <ion-item lines="none">
       <ion-label>{{ '60_DAYS' | translate }}</ion-label>
       <ion-radio slot="end" value="60"></ion-radio>
     </ion-item>

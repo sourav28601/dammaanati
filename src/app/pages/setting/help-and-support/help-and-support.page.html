@@ -11,7 +11,7 @@
   <h3 class="faq">{{ 'FAQ_TITLE' | translate }}</h3>
   <ion-accordion-group *ngIf="faqs; else noDataTemplate">
     <ion-accordion *ngFor="let faq of faqs; let i = index" [value]="'accordion' + i">
-      <ion-item slot="header" color="light">
+      <ion-item slot="header">
         <ion-label>{{ faq?.question }}</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">{{ faq?.answer }}</div>
@@ -24,7 +24,6 @@
       </ion-col>
     </ion-row>
   </ng-template>
-
   <h3 class="contact">{{ 'CONTACT_US_TITLE' | translate }}</h3>
   <strong>{{ 'EMAIL_LABEL' | translate }}</strong>
   <p>{{ email }}</p>

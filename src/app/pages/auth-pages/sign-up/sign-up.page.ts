@@ -18,8 +18,9 @@ export class SignUpPage implements OnInit {
   isTypePassword: boolean = true;
   isTypeConfirmPassword: boolean = true;
   countries: ICountry[] = [];
-  cities: ICity[] = [];
+  citiesByCountry: { [key: string]: ICity[] } = {};
   fcmToken: string;
+
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
@@ -28,17 +29,29 @@ export class SignUpPage implements OnInit {
     private languageService: LanguageService,
     private http: HttpClient,
     private activeroute: ActivatedRoute,
-  ){
+  ) {
     this.languageService.initLanguage();
+    this.initCountriesAndCities();
+  }
+
+  ngOnInit() {
+    this.activeroute.url.subscribe(() => {
+      this.initForm();
+      this.getCurrentLocation();
+    });
+  }
+
+  initCountriesAndCities() {
     const desiredCountries = ['SA', 'AE', 'QA', 'KW', 'BH', 'OM', 'IN'];
     this.countries = Country.getAllCountries().filter(country => 
       desiredCountries.includes(country.isoCode)
     );
-  }
-  ngOnInit() {
-    this.activeroute.url.subscribe((url) => {
-      this.initForm();
-      this.getCurrentLocation();
+
+    this.countries.forEach(country => {
+      const cities = City.getCitiesOfCountry(country.isoCode) || [];
+      const uniqueCities = Array.from(new Set(cities.map(city => city.name)))
+        .map(name => cities.find(city => city.name === name));
+      this.citiesByCountry[country.isoCode] = uniqueCities;
     });
   }
 
@@ -66,7 +79,12 @@ export class SignUpPage implements OnInit {
 
   onCountryChange(event: any) {
     const countryCode = event.detail.value;
-    this.cities = City.getCitiesOfCountry(countryCode) || [];
+    this.signupForm.patchValue({ city: '' });
+  }
+
+  get cities(): ICity[] {
+    const countryCode = this.signupForm.get('country')?.value;
+    return this.citiesByCountry[countryCode] || [];
   }
 
   togglePasswordVisibility() {
@@ -104,20 +122,18 @@ export class SignUpPage implements OnInit {
                 city: city,
                 country: country.isoCode
               });
-              this.onCountryChange({ detail: { value: country.isoCode } });
             }
           }
         }
       },
       (error) => {
         console.error('Error fetching address:', error);
-        // this.messageService.presentToast('Unable to determine your location. Please enter it manually.', 'warning');
       }
     );
   }
 
   onSubmit() {
-    console.log("localStorage.getItem fcm-token---------",localStorage.getItem("fcm_token"));
+    console.log("localStorage.getItem fcm-token---------", localStorage.getItem("fcm_token"));
     const email = this.signupForm.get('email')?.value;
     const page = 'sign-up';
     if (this.signupForm.valid) {
@@ -128,12 +144,11 @@ export class SignUpPage implements OnInit {
         name: this.signupForm.value.name,
         password: this.signupForm.value.password,
         city: this.signupForm.value.city,
-        fcm_token:localStorage.getItem("fcm_token")
+        fcm_token: localStorage.getItem("fcm_token")
       }
       this.apiService.signup(data).subscribe({
         next: (response: any) => {
-          this.messageService.presentToast( response.message || 'Signup successful','success');
-          // localStorage.setItem('user_data', JSON.stringify(response.data));
+          this.messageService.presentToast(response.message || 'Signup successful', 'success');
           this.router.navigate([`/verify-email/${email}/${page}`]);
           this.signupForm.reset();
         },
@@ -146,8 +161,8 @@ export class SignUpPage implements OnInit {
       this.messageService.presentToast('Please fill all required fields correctly', 'warning');
     }
   }
+
   ionViewWillLeave() {
-    this.messageService.clearToast(); // Clear any lingering toasts before navigating away
+    this.messageService.clearToast();
   }
-  
 }

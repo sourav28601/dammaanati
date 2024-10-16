@@ -1,15 +1,24 @@
 ion-header {
+  --background: var(--ion-dark-background);
   ion-toolbar {
+    ion-buttons{
+      color: var(--color-header-title);
+    }
+    --background: transparent;
+    --background: var(--ion-dark-background);
     ion-title {
-      color: var(--ion-color-title);
-      font-size: 1.5625rem;
+      color: var(--color-header-title);
+      font-size: 1.56rem;
       font-weight: 400;
+      text-align: center;
+      margin-right: 1.88rem;
     }
   }
 }
 
 ion-content {
-  --background: var(--ion-color-content-background);
+  --background: var(--ion-dark-background);
+  // --background: var(--ion-color-content-background);
 
   ion-label {
     color: var(--ion-color-accent);
@@ -88,6 +97,7 @@ ion-content {
     border: 0.0625rem solid var(--ion-color-input-border);
     border-radius: 0.75rem;
     margin-top: 0.5rem;
+    color: var(--ion-color-border);
   }
 
   .image-upload-container {
@@ -99,7 +109,8 @@ ion-content {
   .image-placeholder {
     width: 6.25rem;
     height: 6.25rem;
-    background-color: #f0f0f0;
+    --background: var(--ion-dark-background);
+    // background-color: #f0f0f0;
     border-radius: 0.5rem;
     display: flex;
     justify-content: center;
@@ -124,6 +135,7 @@ ion-content {
   .calender-main-div {
     display: flex;
     justify-content: space-between;
+    --background: var(--ion-dark-background);
   }
 
   .image-actions {
@@ -176,7 +188,7 @@ ion-content {
     .image-shop {
       width: 100px;
       height: 80px;
-      background-color: #f0f0f0;
+      background-color:var(--background-gray);
       border-radius: 8px;
       display: flex;
       justify-content: center;
@@ -286,6 +298,8 @@ ion-content {
     padding: 0.8rem;
     margin-top: 0.5rem;
     border: 0.0625rem solid var(--ion-color-date-border);
+    color: var(--ion-color-border);
+    background:var(--ion-dark-background);
   }
 
   .input_warranty_start_date {
@@ -294,6 +308,9 @@ ion-content {
     border: 0.125rem solid var(--ion-color-date-border);
     border-radius: 1.125rem;
     padding: 0.8125rem;
+    color: var(--ion-color-border);
+    background:var(--ion-dark-background);
+    
   }
 
   .input_warranty_end_date {
@@ -302,6 +319,8 @@ ion-content {
     border: 0.125rem solid var(--ion-color-date-border);
     border-radius: 1.125rem;
     padding: 0.8125rem;
+    color: var(--ion-color-border);
+    background:var(--ion-dark-background);
   }
 
   input[type="date"]::before {
@@ -331,7 +350,7 @@ ion-content {
     right: 0.625rem;
     top: 50%;
     transform: translateY(-50%);
-    color: #888;
+    color: var(--ion-color-border);
   }
 
   capacitor-google-map {

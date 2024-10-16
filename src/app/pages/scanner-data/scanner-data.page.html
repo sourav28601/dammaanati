@@ -1,7 +1,7 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+  <ion-toolbar >
+    <ion-buttons slot="start" (click)="navigateToHome()">
+      <ion-icon name="arrow-back-outline" slot="icon-only"></ion-icon>
     </ion-buttons>
     <ion-title class="ion-text-center">QR Scanned Data</ion-title>
   </ion-toolbar>

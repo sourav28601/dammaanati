@@ -1,4 +1,23 @@
+ion-header {
+  --background: var(--ion-dark-background);
+  ion-toolbar {
+    ion-buttons{
+      color: var(--color-header-title);
+    }
+    --background: transparent;
+    --background: var(--ion-dark-background);
+    ion-title {
+      color: var(--color-header-title);
+      font-size: 1.56rem;
+      font-weight: 400;
+      text-align: center;
+      margin-right: 1.88rem;
+    }
+  }
+}
+
 ion-content {
+  --background: var(--ion-dark-background);
   ion-item {
     ion-title {
       font-size: 1.5625rem;
@@ -14,6 +33,7 @@ ion-content {
     }
   }
   ion-item {
+    --background: var(--ion-dark-background);
     ion-note {
       font-weight: 500;
       font-size: 0.875rem;
@@ -29,6 +49,7 @@ ion-content {
     display: flex;
     justify-content: space-around;
     font-size: 0.875rem;
+    color: var(--color-black);
   }
   .category-div {
     display: flex;
@@ -44,6 +65,7 @@ ion-content {
       margin-left: 3rem;
     }
     .view-invoice {
+      
       margin-top: 0.5rem;
     }
     .invoice-icon {
@@ -66,6 +88,14 @@ ion-content {
     justify-content: space-between;
     font-size: 0.875rem;
     line-height: 0.5rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    color: var(--Wild-Blue-Yonder-700);
+  }
+  .shop-div {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
     margin-left: 1rem;
     margin-bottom: 1rem;
     color: var(--Wild-Blue-Yonder-700);
@@ -109,8 +139,7 @@ ion-content {
     --padding-start: 1rem;
     --padding-end: 1rem;
     --min-height: 3rem;
-    --background: #ffffff;
-
+    --background: var(--ion-dark-background);
     ion-label {
       font-size: 1rem;
       font-weight: 400;
@@ -210,7 +239,7 @@ ion-modal {
 }
 
 ion-modal::part(backdrop) {
-  background: rgba(209, 213, 219);
+  background: rgb(105, 114, 127);
   opacity: 1;
 }
 

@@ -52,7 +52,9 @@ export class FcmService {
       'registration',
       async (token: Token) => {
         console.log('My token: ', token);
+       
         const fcm_token = token?.value;
+        // alert(fcm_token)
         console.log('fcm_token==>abhi', fcm_token);
         localStorage.setItem("fcm_token", fcm_token);
         let go = 1;

@@ -1,9 +1,40 @@
+ion-header {
+  --background: var(--ion-dark-background);
+  ion-toolbar {
+    ion-buttons{
+      color: var(--color-header-title);
+    }
+    --background: transparent;
+    --background: var(--ion-dark-background);
+    ion-title {
+      color: var(--color-header-title);
+      font-size: 1.56rem;
+      font-weight: 400;
+      text-align: center;
+      margin-right: 1.88rem;
+    }
+  }
+}
+
 ion-content {
+  --background: var(--ion-dark-background);
+  ion-text{
+    color: var(--ion-label-color);
+  }
   ion-label {
     font-size: 1.1rem;
-    color: var(--ion-color-title);
+    color: var(--ion-label-color);
   }
-
+  ion-radio-group{
+    ion-list{
+      ion-item{
+        --background: var(--ion-dark-background);
+        ion-radio{
+          color: var(--ion-label-color);
+        }
+      }
+    }
+ }
   .sign-out-label {
     color: var(--background-expiration-red);
   }
@@ -20,10 +51,11 @@ ion-content {
     --border-style: solid;
     --border-color: transparent;
     --background: var(--background-gradient-purple);
-    color: var(--ion-color-light-text);
+    color: var(--ion-label-color);
   }
 
   .custom-radio-group {
+    padding-top: 0px;padding-bottom: 0px;
     --ion-color-primary: var(--background-gradient-purple);
   }
 

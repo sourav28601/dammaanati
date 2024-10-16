@@ -8,38 +8,38 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-list>
-    <ion-item lines="none" class="ion-margin-bottom" routerLink="/account-settings">
+  <ion-list lines="none">
+    <ion-item lines="none" routerLink="/account-settings">
       <ion-img src="../../../assets/setting-icons/setting.svg" slot="start" class="setting-icons"></ion-img>
       <ion-label>{{ 'SETTINGS_ACCOUNT_SETTINGS' | translate }}</ion-label>
       <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
     </ion-item>
-    <ion-item lines="none" class="ion-margin-bottom" routerLink="/notification">
+    <ion-item lines="none" routerLink="/notification">
       <ion-img src="../../../assets/setting-icons/notification.svg" slot="start" class="setting-icons"></ion-img>
       <ion-label>{{ 'SETTINGS_NOTIFICATIONS' | translate }}</ion-label>
       <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
     </ion-item>
-    <ion-item lines="none" class="ion-margin-bottom" routerLink="/about">
+    <ion-item lines="none"  routerLink="/about">
       <ion-img src="../../../assets/setting-icons/about.svg" slot="start" class="setting-icons"></ion-img>
       <ion-label>{{ 'SETTINGS_ABOUT' | translate }}</ion-label>
       <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
     </ion-item>
-    <ion-item lines="none" class="ion-margin-bottom" routerLink="/term-conditions">
+    <ion-item lines="none" routerLink="/term-conditions">
       <ion-img src="../../../assets/setting-icons/terms.svg" slot="start" class="setting-icons"></ion-img>
       <ion-label>{{ 'SETTINGS_TERMS_CONDITIONS' | translate }}</ion-label>
       <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
     </ion-item>
-    <ion-item lines="none" class="ion-margin-bottom" routerLink="/feedbacks">
+    <ion-item lines="none" routerLink="/feedbacks">
       <ion-img src="../../../assets/setting-icons/feedback.svg" slot="start" class="setting-icons"></ion-img>
       <ion-label>{{ 'SETTINGS_FEEDBACK' | translate }}</ion-label>
       <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
     </ion-item>
-    <ion-item lines="none" class="ion-margin-bottom" routerLink="/help-and-support">
+    <ion-item lines="none" routerLink="/help-and-support">
       <ion-img src="../../../assets/setting-icons/help.svg" slot="start" class="setting-icons"></ion-img>
       <ion-label>{{ 'SETTINGS_HELP_SUPPORT' | translate }}</ion-label>
       <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
     </ion-item>
-    <ion-item lines="none" class="ion-margin-bottom" (click)="referApp()">
+    <ion-item lines="none"  (click)="referApp()">
       <ion-img src="../../../assets/setting-icons/share.svg" slot="start" class="setting-icons"></ion-img>
       <ion-label>{{ 'SETTINGS_REFER' | translate }}</ion-label>
       <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
@@ -50,7 +50,7 @@
       <ion-toggle slot="end" [checked]="darkMode" (ionChange)="toggleDarkMode()"></ion-toggle>
     </ion-item>
   </ion-list>
-  <ion-item lines="none" (click)="signOut()">
+  <ion-item lines="none" (click)="signOut()" class="ion-margin-top">
     <ion-img src="../../../assets/setting-icons/sign-out.svg" slot="start" class="setting-icons"></ion-img>
     <ion-label class="sign-out-label">{{ 'SETTINGS_SIGN_OUT' | translate }}</ion-label>
   </ion-item>

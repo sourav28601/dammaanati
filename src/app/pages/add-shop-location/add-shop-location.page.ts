@@ -4,7 +4,7 @@ import { Geolocation } from '@capacitor/geolocation';
 import { environment } from 'src/environments/environment';
 import { NavController } from '@ionic/angular';
 import { LanguageService } from 'src/app/core/services/language/language.service';
-
+import { LoaderService } from 'src/app/core/services/loader/loader.service';
 @Component({
   selector: 'app-add-shop-location',
   templateUrl: './add-shop-location.page.html',
@@ -23,7 +23,8 @@ export class AddShopLocationPage implements OnInit {
   constructor(
     private ngZone: NgZone,
     private navCtrl: NavController,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private loaderService:LoaderService
   ) {}
 
   ngOnInit() {
@@ -31,12 +32,17 @@ export class AddShopLocationPage implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.createMap();
+    setTimeout(() => {
+      this.createMap();
+    }, 5000);
+    
   }
 
   async createMap() {
     try {
-      // Initialize the map
+      // Show the loading spinner before creating the map
+      await this.loaderService.showLoading('Creating map...');
+
       this.newMap = await GoogleMap.create({
         id: 'capacitor-google-maps',
         element: this.mapRef.nativeElement,
@@ -47,7 +53,6 @@ export class AddShopLocationPage implements OnInit {
         },
       });
 
-      // Set the initial camera position
       await this.newMap.setCamera({
         coordinate: {
           lat: this.center.lat,
@@ -55,14 +60,15 @@ export class AddShopLocationPage implements OnInit {
         },
       });
 
-      // Enable traffic layer
       await this.newMap.enableTrafficLayer(true);
 
-      // Add marker at the center
       await this.addMarker(this.center.lat, this.center.lng); // Add initial marker
       await this.addListeners();
     } catch (e) {
       console.error(e);
+    } finally {
+      // Hide the loading spinner after the map has been created
+      await this.loaderService.hideLoading();
     }
   }
 
