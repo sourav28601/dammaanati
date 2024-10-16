@@ -117,7 +117,8 @@ ion-content {
 }
 
 ion-modal {
-  height: auto;
+  // --height: 80vh;
+   height: auto;
   --max-height: 80vh;
   --border-radius: 1rem;
   --box-shadow: var(--box-shadow-light);
