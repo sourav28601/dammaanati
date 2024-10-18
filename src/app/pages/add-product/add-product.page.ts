@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api/api.service';
 import { MessageService } from 'src/app/core/services/message/message.service';
 import { LanguageService } from 'src/app/core/services/language/language.service';
+import { LoaderService } from 'src/app/core/services/loader/loader.service';
+
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.page.html',
@@ -29,6 +31,7 @@ export class AddProductPage implements OnInit {
     private messageService: MessageService,
     private activeroute: ActivatedRoute,
     private router: Router,
+    private loader:LoaderService,
     private languageService: LanguageService
   ) {
     this.languageService.initLanguage();
@@ -221,6 +224,7 @@ export class AddProductPage implements OnInit {
 
   onSubmit() {
     if (this.productForm.valid && !this.isSubmitting) {
+      this.loader.showLoading();
       this.isSubmitting = true;
       const formData = new FormData();
       Object.keys(this.productForm.controls).forEach(key => {
@@ -238,6 +242,7 @@ export class AddProductPage implements OnInit {
   
       this.apiService.addProduct(formData).subscribe({
         next: (response: any) => {
+          this.loader.hideLoading();
           this.router.navigate(['/apptabs/tabs/home']);
           this.messageService.presentToast(response.message || 'Product saved successfully', 'success');
           this.shopPictureUrl = null;
@@ -248,21 +253,24 @@ export class AddProductPage implements OnInit {
         },
         error: (error: any) => {
           this.isSubmitting = false;
-  
+          this.loader.hideLoading();
+
           // Handle validation errors
           if (error.error && error.error.validationErrors) {
+            this.loader.hideLoading();
             this.handleValidationErrors(error.error.validationErrors);
           }
   
           const errorMessage = error.error?.message || 'Error saving product';
           this.messageService.presentToast(errorMessage, 'danger');
           console.error('API Error:', error);
+          this.loader.hideLoading();
         }
       });
     } else {
       // Mark all controls as touched to display validation errors
       this.markFormGroupTouched(this.productForm);
-  
+      this.loader.hideLoading();
       // Display the first validation error sequentially
       const firstErrorMessage = this.getFirstErrorMessage();
       this.messageService.presentToast(firstErrorMessage, 'danger');

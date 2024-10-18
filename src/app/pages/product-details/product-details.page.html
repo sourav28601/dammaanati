@@ -6,7 +6,6 @@
     <ion-title class="ion-text-center">{{ 'PRODUCT_DETAILS' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content class="ion-padding" fullscreen="true" mode="md">
   <div class="card-headings">
     <ion-title>{{ product?.product_name }}</ion-title>
@@ -106,9 +105,9 @@
           <ion-icon name="close-circle-outline" (click)="modal.dismiss()" size="large"></ion-icon>
         </ion-buttons>
       </ion-toolbar>
-      <div class="image-container">
+      <div class="imagecontainer">
         <ng-container *ngIf="product?.invoice; else noInvoice">
-          <img [src]="product?.invoice" (error)="handleImageError()">
+          <img [src]="product?.invoice" (error)="handleImageError()" class="scrollable-image">
         </ng-container>
         <ng-template #noInvoice>
           <div class="no-invoice-message">
@@ -120,6 +119,7 @@
     </ion-content>
   </ng-template>
 </ion-modal>
+
 <ion-modal #shopPictureModal trigger="view-shop-picture-modal" [cssClass]="'auto-size-modal'">
   <ng-template>
     <ion-content class="ion-padding">
@@ -130,7 +130,7 @@
         </ion-buttons>
       </ion-toolbar>
 
-      <div class="image-container">
+      <div class="imagecontainer">
         <!-- Preloaded image with condition -->
         <ng-container *ngIf="isImageLoaded; else noShopPicture">
           <img [src]="shopPictureUrl" (error)="handleShopPictureError()">

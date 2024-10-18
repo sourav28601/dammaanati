@@ -8,7 +8,7 @@ import { MessageService } from 'src/app/core/services/message/message.service';
 import { LanguageService } from 'src/app/core/services/language/language.service';
 import { UtilService } from 'src/app/core/services/utils/utils.service';
 import { IonModal } from '@ionic/angular';
-
+import { LoaderService } from 'src/app/core/services/loader/loader.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -26,6 +26,7 @@ export class ProfilePage implements OnInit {
     private formBuilder: FormBuilder,
     private activeroute: ActivatedRoute,
     private router: Router,
+    private loader:LoaderService,
     private apiService: ApiService,
     private messageService: MessageService,
     private modalCtrl: ModalController,
@@ -128,6 +129,7 @@ export class ProfilePage implements OnInit {
 
   onSubmit() {
     if (this.profileForm.valid) {
+
       const formData = new FormData();
       formData.append('name', this.profileForm.get('name')?.value);
       formData.append('gender', this.profileForm.get('gender')?.value);
@@ -136,18 +138,22 @@ export class ProfilePage implements OnInit {
       if (this.profileForm.get('profile_picture')?.value) {
         formData.append('profile_picture', this.profileForm.get('profile_picture')?.value);
       }
+      this.loader.showLoading()
       this.apiService.updateUserProfile(formData).subscribe({
         next: (response: any) => {
+          this.loader.hideLoading()
           this.messageService.presentToast(response.message || 'Profile updated successfully', 'success');
           this.getUserData();
           this.modalCtrl.dismiss(response);
         },
         error: (error: any) => {
+          this.loader.hideLoading()
           const errorMessage = error.error?.error || 'Profile update failed';
           this.messageService.presentToast(errorMessage, 'danger');
         }
       });
     } else {
+      this.loader.hideLoading()
       Object.values(this.profileForm.controls).forEach(control => {
         control.markAsTouched();
       });

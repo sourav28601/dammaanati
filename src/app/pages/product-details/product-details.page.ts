@@ -9,7 +9,7 @@ import { MessageService } from 'src/app/core/services/message/message.service';
 import { LanguageService } from 'src/app/core/services/language/language.service';
 import { UtilService } from 'src/app/core/services/utils/utils.service';
 import { ProductUpdateService } from 'src/app/core/services/product-update/product-update.service';
-
+import { LoaderService } from 'src/app/core/services/loader/loader.service';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.page.html',
@@ -40,7 +40,8 @@ export class ProductDetailsPage implements OnInit {
     private route: ActivatedRoute,
     private utilsService: UtilService,
     private languageService: LanguageService,
-    private productUpdateService: ProductUpdateService
+    private productUpdateService: ProductUpdateService,
+    private loader:LoaderService
   ) {
     this.languageService.initLanguage();
   }
@@ -84,15 +85,18 @@ export class ProductDetailsPage implements OnInit {
   }
 
   getProductDetail(productId: string) {
+    this.loader.showLoading();
     console.log('getProductDetail call hua productId------ 2121', productId);
     this.apiService.getProductDetails(productId).subscribe({
       next: (response: any) => {
+        this.loader.hideLoading();
         console.log('productId------123', productId);
         this.product = response.data;
         console.log('response--------123', response);
         console.log('this.products-------', this.product);
       },
       error: (error) => {
+        this.loader.hideLoading();
         console.error('Error loading product detail:', error);
       },
     });
@@ -185,13 +189,15 @@ export class ProductDetailsPage implements OnInit {
         'success'
       );
       this.router.navigate(['/apptabs/tabs/home']);
-
+      this.loader.showLoading();
       this.apiService.deleteProduct(productId).subscribe({
         next: (response: any) => {
+          this.loader.hideLoading();
           console.log('Product deleted successfully');
           this.productUpdateService.notifyProductDeleted(productId);
         },
         error: (error) => {
+          this.loader.hideLoading();
           console.error('Failed to delete product:', error);
           this.messageService.presentToast(
             'Failed to Delete Product. Please try again later.',

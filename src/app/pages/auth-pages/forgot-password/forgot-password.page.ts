@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api/api.service';
 import { MessageService } from 'src/app/core/services/message/message.service';
 import { LanguageService } from 'src/app/core/services/language/language.service';
-
+import { LoaderService } from 'src/app/core/services/loader/loader.service';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.page.html',
@@ -20,7 +20,8 @@ export class ForgotPasswordPage implements OnInit {
     private router: Router,
     private messageService: MessageService,
     private formBuilder: FormBuilder,
-    private languageService:LanguageService
+    private languageService:LanguageService,
+    private loader:LoaderService
   ) {
     this.initForm();
   }
@@ -44,14 +45,17 @@ export class ForgotPasswordPage implements OnInit {
       return;
     }
     const email = this.forgotPasswordForm.get('email')?.value;
+    this.loader.showLoading();
     this.apiService.forgotPassword({ email }).subscribe({
       next: (response: any) => {
+        this.loader.hideLoading();
         this.messageService.presentToast(response.message || 'Login Successful', 'success');
         // this.router.navigate(['/verify-email', email]);
         this.router.navigate([`/verify-email/${email}/forgot-password`]);
         this.forgotPasswordForm.reset();
       },
       error: (error: any) => {
+        this.loader.hideLoading();
         const errorMessage = error.error?.error || 'Invalid Email';
         this.messageService.presentToast(errorMessage, 'danger');
       },

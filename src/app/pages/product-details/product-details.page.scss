@@ -116,6 +116,20 @@ ion-content {
       border-radius: 0.5rem;
       margin-top: 1rem;
       margin-bottom: 1rem;
+     
+    }
+    .imagecontainer {
+      padding: 0;
+      aspect-ratio: 2 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      height: 78vw;
+      width: 80vw;
     }
 
     ion-img.product-image {
@@ -231,11 +245,24 @@ ion-content {
 }
 
 ion-modal {
-  --height: 50vh;
+  --height: 54vh;
   --border-radius: 1rem;
   --box-shadow: 0 0.625rem 0.9375rem -0.1875rem rgba(0, 0, 0, 0.1),
     0 0.25rem 0.375rem -0.25rem rgba(0, 0, 0, 0.1);
   padding: 1.125rem;
+}
+.imagecontainer {
+  padding: 0;
+  aspect-ratio: 2 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  height: 78vw;
+  width: 80vw;
 }
 
 ion-modal::part(backdrop) {

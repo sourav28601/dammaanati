@@ -7,6 +7,7 @@ import { MessageService } from 'src/app/core/services/message/message.service';
 import { LanguageService } from 'src/app/core/services/language/language.service';
  import { Geolocation } from '@capacitor/geolocation';
 import { HttpClient } from '@angular/common/http';
+import { LoaderService } from 'src/app/core/services/loader/loader.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -28,6 +29,7 @@ export class SignUpPage implements OnInit {
     private messageService: MessageService,
     private languageService: LanguageService,
     private http: HttpClient,
+    private loader:LoaderService,
     private activeroute: ActivatedRoute,
   ) {
     this.languageService.initLanguage();
@@ -132,9 +134,11 @@ export class SignUpPage implements OnInit {
   }
 
   onSubmit() {
+    
     console.log("localStorage.getItem fcm-token---------", localStorage.getItem("fcm_token"));
     const email = this.signupForm.get('email')?.value;
     const page = 'sign-up';
+    this.loader.showLoading()
     if (this.signupForm.valid) {
       const data = {
         country: this.signupForm.value.country,
@@ -147,21 +151,25 @@ export class SignUpPage implements OnInit {
       }
       this.apiService.signup(data).subscribe({
         next: (response: any) => {
+          this.loader.hideLoading()
           this.messageService.presentToast(response.message || 'Signup successful', 'success');
           this.router.navigate([`/verify-email/${email}/${page}`]);
           this.signupForm.reset();
         },
         error: (error) => {
+          this.loader.hideLoading()
           let errorMessage = error.error?.error || error.message || 'An unexpected error occurred';
           this.messageService.presentToast(errorMessage, 'danger');
         },
       });
     } else {
+      this.loader.hideLoading()
       this.messageService.presentToast('Please fill all required fields correctly', 'warning');
     }
   }
 
   ionViewWillLeave() {
+    this.loader.hideLoading()
     this.messageService.clearToast();
   }
 }

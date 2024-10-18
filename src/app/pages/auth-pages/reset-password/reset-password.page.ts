@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api/api.service';
 import { MessageService } from 'src/app/core/services/message/message.service';
 import { LanguageService } from 'src/app/core/services/language/language.service';
+import { LoaderService } from 'src/app/core/services/loader/loader.service';
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.page.html',
@@ -22,6 +23,7 @@ export class ResetPasswordPage implements OnInit {
     private messageService: MessageService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
+    private loader:LoaderService,
     private LanguageService: LanguageService,
   ) {}
 
@@ -77,13 +79,16 @@ export class ResetPasswordPage implements OnInit {
       otp: this.otp,
       email: this.email
     };
+    this.loader.showLoading()
     this.apiService.resetPassword(data).subscribe({
       next: (response: any) => {
+        this.loader.hideLoading()
         this.messageService.presentToast(response.message || 'Password updated successfully', 'success');
         this.router.navigate(['/login']);
         this.resetForm.reset();
       },
       error: (error: any) => {
+        this.loader.hideLoading()
         const errorMessage = error.error?.error || 'Invalid Password';
         this.messageService.presentToast(errorMessage, 'danger');
       },
