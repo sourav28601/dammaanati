@@ -56,6 +56,7 @@ export class SettingPage implements OnInit {
       localStorage.removeItem('user_data');
       setTimeout(() => {
         this.router.navigate(['/login']);
+        localStorage.clear();
       }, 500);
     }
   }

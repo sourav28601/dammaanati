@@ -57,7 +57,9 @@ ion-content {
       padding-right: 0.625rem; 
       color: var(--ion-color-light-text);
     }
-  
+    .ng_otp_input{
+      color: var(--ion-date-input-color);
+    }
     ion-text {
       font-size: 0.75rem; 
     }

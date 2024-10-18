@@ -1,4 +1,4 @@
-<ion-content class="ion-padding ion-no-border">
+<ion-content class="ion-padding ion-no-border ion-margin">
   <ion-item lines="none" class="title-item">
     <ion-label>
       <ion-img src="../../../assets/damaanati-logo.svg" class="dammanati-logo"></ion-img>
@@ -16,8 +16,7 @@
     </swiper-slide>
   </swiper-container>
   <div *ngIf="productsView" class="ion-margin-top">
-    <ion-searchbar placeholder="{{ 'SEARCH_PRODUCT' | translate }}" (ionInput)="onSearch($event, 'products')"
-      [debounce]="300"></ion-searchbar>
+      <ion-searchbar  placeholder="{{ 'SEARCH_PRODUCT' | translate }}" [(ngModel)]="searchTerm" (ionInput)="onSearch($event, 'products')" [debounce]="300"></ion-searchbar>
     <ion-item>
       <ion-label>{{ 'PRODUCT_VIEW' | translate }}</ion-label>
       <ion-button fill="clear" (click)="startScan()">
@@ -66,8 +65,7 @@
     </ng-template>
   </div>
   <div *ngIf="categoryView">
-    <ion-searchbar placeholder="{{ 'SEARCH_CATEGORY' | translate }}" (ionInput)="onSearch($event, 'categories')"
-      [debounce]="300"></ion-searchbar>
+      <ion-searchbar  placeholder="{{ 'SEARCH_CATEGORY' | translate }}" [(ngModel)]="searchTerm" (ionInput)="onSearch($event, 'categories')" [debounce]="300"></ion-searchbar>
     <ion-item>
       <ion-label>{{ 'CATEGORY_VIEW' | translate }}</ion-label>
       <ion-icon name="grid-outline" slot="end" (click)="ChangeUi('categoryView')"></ion-icon>

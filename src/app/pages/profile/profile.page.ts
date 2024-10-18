@@ -20,6 +20,7 @@ export class ProfilePage implements OnInit {
   userData: any;
   profileForm: FormGroup;
   profileImage: string | ArrayBuffer | null = 'assets/frame-1000009983.svg';
+  originalProfileImage: string | null = 'assets/frame-1000009983.svg';;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -83,6 +84,9 @@ export class ProfilePage implements OnInit {
       next: (response: any) => {
         console.log('this.userData==>', response);
         this.userData = response?.data;
+        this.profileForm.patchValue(response.data);
+        this.profileImage = response.data.profile_picture;  // Set the current image
+        this.originalProfileImage = response.data.profile_picture;  // Store the original image
         this.populateForm();
       },
       error: (error) => {
@@ -132,18 +136,17 @@ export class ProfilePage implements OnInit {
       if (this.profileForm.get('profile_picture')?.value) {
         formData.append('profile_picture', this.profileForm.get('profile_picture')?.value);
       }
-      this.apiService.updateUserProfile(formData).subscribe(
-        (response) => {
-         
-          this.messageService.presentToast('Profile updated successfully', 'success');
+      this.apiService.updateUserProfile(formData).subscribe({
+        next: (response: any) => {
+          this.messageService.presentToast(response.message || 'Profile updated successfully', 'success');
           this.getUserData();
           this.modalCtrl.dismiss(response);
         },
-        (error) => {
-     
-          this.messageService.presentToast('Profile update failed', 'danger');
+        error: (error: any) => {
+          const errorMessage = error.error?.error || 'Profile update failed';
+          this.messageService.presentToast(errorMessage, 'danger');
         }
-      );
+      });
     } else {
       Object.values(this.profileForm.controls).forEach(control => {
         control.markAsTouched();
@@ -153,6 +156,12 @@ export class ProfilePage implements OnInit {
   uploadImage() {
     const fileInput = document.getElementById('image-input') as HTMLElement;
     fileInput.click();
+  }
+  cancelUpdate() {
+    this.profileImage = this.originalProfileImage;
+    this.profileForm.reset();
+    this.getUserData();
+    this.profileModal.dismiss();
   }
   async signOut() {
     const shouldSignOut = await this.utilService.showConfirmation({

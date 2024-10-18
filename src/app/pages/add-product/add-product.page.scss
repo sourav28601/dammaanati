@@ -97,7 +97,7 @@ ion-content {
     border: 0.0625rem solid var(--ion-color-input-border);
     border-radius: 0.75rem;
     margin-top: 0.5rem;
-    color: var(--ion-color-border);
+    color: var(--ion-label-color);
   }
 
   .image-upload-container {
@@ -298,7 +298,7 @@ ion-content {
     padding: 0.8rem;
     margin-top: 0.5rem;
     border: 0.0625rem solid var(--ion-color-date-border);
-    color: var(--ion-color-border);
+    color: var(--ion-label-color);
     background:var(--ion-dark-background);
   }
 

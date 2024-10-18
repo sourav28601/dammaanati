@@ -133,30 +133,35 @@ export class ProductDetailsPage implements OnInit {
     const formatDate = (date: string) => {
       return date ? new Date(date).toLocaleDateString() : 'Not available';
     };
+  
     const getValueOrNA = (value: any) => value || 'Not available';
+  
+    const getImageUrl = (url: string, fallback: string = 'Not available') => {
+      return url ? url : fallback;
+    };
+  
     const productDetails = `
   Product: ${getValueOrNA(this.product?.product_name)}
-  Product Image: ${
-    this.product?.product_picture ? 'Available' : 'Not available'
-  }
+  Product Image: ${getImageUrl(this.product?.product_picture, 'Product image not available')}
   Category: ${getValueOrNA(this.product?.Category?.name)}
   Warranty Start Date: ${formatDate(this.product?.warranty_start_date)}
   Warranty End Date: ${formatDate(this.product?.warranty_end_date)}
   Purchase Date: ${formatDate(this.product?.purchase_date)}
-  Invoice Image: ${this.product?.invoice ? 'Available' : 'Not available'}
+  Invoice Image: ${getImageUrl(this.product?.invoice, 'Invoice image not available')}
+  Shop Image: ${getImageUrl(this.product?.shop_picture, 'Shop image not available')}
   Shop Location: ${getValueOrNA(this.product?.shop_location)}
-  Contact Person Name: ${getValueOrNA(this.product?.contact_person_name)}
-  Contact Person Number: ${getValueOrNA(this.product?.contact_person_number)}
+  Contact Person Name: ${getValueOrNA(this.product?.warranty_contact_person_name)}
+  Contact Person Number: ${getValueOrNA(this.product?.warranty_contact_person_number)}
   Notes: ${getValueOrNA(this.product?.notes)}
   `;
-
+  
     const data = {
       title: 'Dammanti - Your Warranty Management App',
       text: `I've been using Dammanti to manage all my product warranties and it's been a game-changer! Here's a product I'm tracking:\n\n${productDetails}\n\nNever miss a warranty claim again. It's easy to use, sends timely reminders, and keeps all your warranty information in one place. Give it a try!`,
       url: 'https://www.damaanati.com/',
       dialogTitle: 'Share Product Warranty Details',
     };
-
+  
     try {
       await Share.share(data);
       console.log('Successfully shared product details');
@@ -164,6 +169,7 @@ export class ProductDetailsPage implements OnInit {
       console.error('Error sharing product details:', error);
     }
   }
+  
 
   async deleteProductDetail(productId: string) {
     const shouldDelete = await this.utilsService.showConfirmation({

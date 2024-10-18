@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { GoogleMap } from '@capacitor/google-maps';
+// import { GoogleMap } from '@capacitor/google-maps';
 import { Geolocation } from '@capacitor/geolocation';
 import { environment } from 'src/environments/environment';
 import { NavController } from '@ionic/angular';
@@ -11,179 +11,150 @@ import { LoaderService } from 'src/app/core/services/loader/loader.service';
   styleUrls: ['./add-shop-location.page.scss'],
 })
 export class AddShopLocationPage implements OnInit {
-  @ViewChild('map') mapRef!: ElementRef<HTMLElement>;
-  newMap!: GoogleMap;
-  center: any = {
-    lat: 28.6468935,
-    lng: 76.9531791,
-  };
-  markerId: string = ''; // To store the current marker's ID
+  @ViewChild('map', { static: true }) mapElementRef: ElementRef;
+  map: any;
+  marker: any; // Store the marker object
+  currLatitude: number;
+  currLongitude: number;
+  googleMaps: any;
   address: string = 'Select a location';
 
   constructor(
     private ngZone: NgZone,
     private navCtrl: NavController,
     private languageService: LanguageService,
-    private loaderService:LoaderService
+    private loaderService: LoaderService
   ) {}
 
   ngOnInit() {
+    this.loadMap();
     this.languageService.initLanguage();
   }
 
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.createMap();
-    }, 5000);
-    
-  }
-
-  async createMap() {
+  async loadMap() {
     try {
-      // Show the loading spinner before creating the map
-      await this.loaderService.showLoading('Creating map...');
+      await this.getCurrentPosition(); // Get current location
+      await this.loadGoogleMaps(); // Load Google Maps SDK
 
-      this.newMap = await GoogleMap.create({
-        id: 'capacitor-google-maps',
-        element: this.mapRef.nativeElement,
-        apiKey: environment.mapsKey,
-        config: {
-          center: this.center,
-          zoom: 13,
-        },
+      const mapEl = this.mapElementRef.nativeElement;
+
+      // Initialize map
+      this.map = new this.googleMaps.Map(mapEl, {
+        center: { lat: this.currLatitude, lng: this.currLongitude },
+        zoom: 15,
       });
 
-      await this.newMap.setCamera({
-        coordinate: {
-          lat: this.center.lat,
-          lng: this.center.lng,
-        },
-      });
-
-      await this.newMap.enableTrafficLayer(true);
-
-      await this.addMarker(this.center.lat, this.center.lng); // Add initial marker
-      await this.addListeners();
-    } catch (e) {
-      console.error(e);
-    } finally {
-      // Hide the loading spinner after the map has been created
-      await this.loaderService.hideLoading();
-    }
-  }
-
-  async addMarker(lat: number, lng: number) {
-    try {
-      // Remove the previous marker if it exists
-      if (this.markerId) {
-        await this.removeMarker(); // Remove any existing marker
-      }
-
-      // Add the new marker
-      this.markerId = await this.newMap.addMarker({
-        coordinate: { lat, lng },
+      // Add a marker for current location
+      this.marker = new this.googleMaps.Marker({
+        position: { lat: this.currLatitude, lng: this.currLongitude },
+        map: this.map,
+        title: 'Current Location',
         draggable: true,
       });
-      console.log('New marker added at:', lat, lng);
+
+      // Add map click listener to add/update marker
+      this.googleMaps.event.addListener(this.map, 'click', (event) => {
+        const clickedLat = event.latLng.lat();
+        const clickedLng = event.latLng.lng();
+
+        // Update marker position
+        this.updateMarkerPosition(clickedLat, clickedLng);
+        // Get and display address
+        this.fetchAddress(clickedLat, clickedLng);
+      });
+
+      // Add marker dragend listener to get new position and update address
+      this.googleMaps.event.addListener(this.marker, 'dragend', (event) => {
+        const draggedLat = event.latLng.lat();
+        const draggedLng = event.latLng.lng();
+
+        this.fetchAddress(draggedLat, draggedLng);
+      });
+
     } catch (e) {
-      console.error('Error adding marker:', e);
+      console.error('Error loading map', e);
     }
   }
 
-  async removeMarker() {
-    try {
-      if (this.markerId) {
-        await this.newMap.removeMarker(this.markerId); // Remove the marker using its ID
-        console.log('Previous marker removed');
-        this.markerId = ''; // Clear marker ID after removing
-      }
-    } catch (e) {
-      console.error('Error removing marker:', e);
+  // Method to update marker's position
+  updateMarkerPosition(lat: number, lng: number) {
+    if (this.marker) {
+      this.marker.setPosition({ lat, lng });
+    } else {
+      this.marker = new this.googleMaps.Marker({
+        position: { lat, lng },
+        map: this.map,
+        draggable: true,
+      });
     }
   }
 
-  async addListeners() {
-    // Marker click listener
-    this.newMap.setOnMarkerClickListener(async (event) => {
-      console.log('Marker clicked at:', event.latitude, event.longitude);
-      const address = await this.getAddress(event.latitude, event.longitude);
-      this.ngZone.run(() => {
-        this.address = address;
-        console.log('Address:', this.address);
-      });
-    });
-
-    // Map click listener - Adds a new marker and removes the old one
-    this.newMap.setOnMapClickListener(async (event) => {
-      console.log('Map clicked at:', event.latitude, event.longitude);
-      await this.addMarker(event.latitude, event.longitude); // Automatically removes the previous marker
-      const address = await this.getAddress(event.latitude, event.longitude);
-      this.ngZone.run(() => {
-        this.address = address;
-        console.log('Address:', this.address);
-      });
-    });
-
-    // Marker drag end listener
-    this.newMap.setOnMarkerDragEndListener(async (event) => {
-      console.log('Marker dragged to:', event.latitude, event.longitude);
-      const address = await this.getAddress(event.latitude, event.longitude);
-      this.ngZone.run(() => {
-        this.address = address;
-        console.log('Address:', this.address);
-      });
-    });
-
-    // Location button click listener
-    this.newMap.setOnMyLocationButtonClickListener(async () => {
-      const location = await this.getCurrentLocation();
-      if (location) {
-        await this.newMap.setCamera({
-          coordinate: {
-            lat: location.latitude,
-            lng: location.longitude,
-          },
-          zoom: 15,
-        });
-        await this.addMarker(location.latitude, location.longitude); // Adds marker at current location
-        const address = await this.getAddress(location.latitude, location.longitude);
-        console.log('My location address:', address);
-      }
-    });
-  }
-
-  async getAddress(lat: number, lng: number): Promise<string> {
+  // Fetch address using reverse geocoding
+  async fetchAddress(lat: number, lng: number) {
     try {
       const response = await fetch(
         `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${environment.mapsKey}`
       );
       const data = await response.json();
       if (data.status === 'OK') {
-        const result = data.results[0];
-        return result.formatted_address;
+        const address = data.results[0].formatted_address;
+        this.ngZone.run(() => {
+          this.address = address;
+          console.log('Selected Address:', this.address);
+        });
       } else {
-        console.error('Geocoding error:', data.status);
-        return 'Address not found';
+        console.error('Error fetching address:', data.status);
       }
     } catch (error) {
       console.error('Error fetching address:', error);
-      return 'Error retrieving address';
     }
   }
 
-  async getCurrentLocation() {
+  // Get current location (Geolocation)
+  async getCurrentPosition() {
     try {
       const position = await Geolocation.getCurrentPosition();
-      return {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      };
+      this.currLatitude = position.coords.latitude;
+      this.currLongitude = position.coords.longitude;
     } catch (error) {
-      console.error('Error getting current location:', error);
-      return null;
+      console.error('Error getting current position', error);
     }
   }
 
+  // Load Google Maps SDK dynamically
+  loadGoogleMaps(): Promise<any> {
+    const win = window as any;
+    const googleModule = win.google;
+
+    if (googleModule && googleModule.maps) {
+      this.googleMaps = googleModule.maps;
+      return Promise.resolve(googleModule.maps);
+    }
+
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${environment.mapsKey}`;
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
+
+      script.onload = () => {
+        const loadedGoogleModule = win.google;
+        if (loadedGoogleModule && loadedGoogleModule.maps) {
+          this.googleMaps = loadedGoogleModule.maps;
+          resolve(loadedGoogleModule.maps);
+        } else {
+          reject('Google Maps SDK not available.');
+        }
+      };
+
+      script.onerror = () => {
+        reject('Failed to load Google Maps SDK.');
+      };
+    });
+  }
+
+  // Navigate back and pass the selected address
   setLocation() {
     this.navCtrl.navigateBack('/add-product', {
       state: { address: this.address },
@@ -191,3 +162,4 @@ export class AddShopLocationPage implements OnInit {
     console.log('Setting location:', this.address);
   }
 }
+

@@ -58,7 +58,7 @@
     <ion-content class="ion-padding">
       <ion-toolbar>
         <ion-title>{{ 'EDIT_PROFILE' | translate }}</ion-title>
-        <ion-buttons slot="end">
+        <ion-buttons slot="end" (click)="cancelUpdate()">
           <ion-icon name="close-circle-outline" (click)="profileModal.dismiss()" size="large"
             class="close-icon"></ion-icon>
         </ion-buttons>
@@ -124,13 +124,14 @@
           *ngIf="profileForm.get('country')?.hasError('required') && profileForm.get('country')?.touched">
           {{ 'COUNTRY_REQUIRED' | translate }}
         </ion-text>
+        
         <ion-text color="danger"
           *ngIf="profileForm.get('country')?.hasError('forbiddenChars') && profileForm.get('country')?.touched">
           {{ 'COUNTRY_FORBIDDEN_CHARS' | translate }}
         </ion-text>
         <div class="ion-text-end ion-margin-top button-margin">
           <ion-button fill="clear" class="cancel-button" size="small"
-            (click)="profileModal.dismiss()">{{ 'CANCEL' | translate }}</ion-button>
+            (click)="profileModal.dismiss()" (click)="cancelUpdate()">{{ 'CANCEL' | translate }}</ion-button>
           <ion-button size="small" fill="clear" class="save-changes-button" type="submit">{{ 'SAVE_CHANGES' | translate }}</ion-button>
         </div>
       </form>

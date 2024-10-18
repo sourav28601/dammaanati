@@ -5,7 +5,6 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { tap, map } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
@@ -20,6 +19,8 @@ import { LanguageService } from 'src/app/core/services/language/language.service
 import { ProductUpdateService } from 'src/app/core/services/product-update/product-update.service';
 import { UtilService } from 'src/app/core/services/utils/utils.service';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { Router, NavigationEnd,ActivatedRoute } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 register();
 interface ApiResponse {
@@ -64,6 +65,7 @@ export class HomePage implements OnInit {
   qrCodeString = 'This is a secret qr code message';
   content_visibility = '';
   isScannerActive = false;
+  navigationSubscription: any;
   constructor(
     private apiService: ApiService,
     private router: Router,
@@ -75,6 +77,11 @@ export class HomePage implements OnInit {
     private productUpdateService: ProductUpdateService,
     private utilService:UtilService,
   ) {
+    this.navigationSubscription = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.clearSearch();
+    });
     this.languageService.initLanguage();
     this.categoryForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -87,6 +94,7 @@ export class HomePage implements OnInit {
     // console.log("get home page localstorage data-----",localStorage.getItem('user_data'));
 
   }
+
   async checkPermission(): Promise<boolean> {
     try {
       const status = await BarcodeScanner.checkPermission({ force: true });
@@ -172,6 +180,9 @@ export class HomePage implements OnInit {
 
   ngOnDestroy(): void {
       this.stopScan();
+      if (this.navigationSubscription) {
+        this.navigationSubscription.unsubscribe();
+      }
   }
 
   ngOnInit(): void {
@@ -362,7 +373,9 @@ export class HomePage implements OnInit {
       },
     });
   }
-
+  clearSearch() {
+    this.searchTerm = '';
+  }
   getAds() {
     this.apiService.getAllAds().subscribe({
       next: (response: any) => {

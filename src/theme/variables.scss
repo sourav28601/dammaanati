@@ -13,9 +13,9 @@
   --ion-tab-background:#ffffff;
   --ion-icon-color:#333;
   --ion-label-color:#2b2d3b;
-  --ion-card-title:#ffffff
-  --page-background:#f4f4f4
-  --ion-color-light-text: #474747;
+  --ion-card-title:#ffffff;
+  --page-background:#f4f4f4;
+  --ion-color-light-text: #ffffff;
   --ion-color-background-start: #4453CE;
   --ion-color-background-end: #4453CE;
   --ion-div-background:#4453CE;
@@ -53,7 +53,7 @@
 
   --background: #f4f4f4;
   --background-transparent: transparent;
-  --color-dark: #4453CE;
+  // --color-dark: #4453CE;
 ;
   --icon-color: #666666;
   --border-dark: #4453CE;
@@ -130,19 +130,21 @@
   // }
 }
 body.dark {
+  --ion-color-medium: #ffffff;
+  --color-dark: #ffffff;
   --ion-date-input-color:#000000;
   --background-gray:#474747;
-  --ion-color-border: #ffffff;
+  --ion-color-border: #000000;
   --color-black: #ffffff;
   --color-header-title: #ffffff;
-  --ion-text-color:#474747;
+  --ion-text-color:#ffffff;
   --ion-dark-background: #121212 !important;
   --color-label: #e0e0e0;
   --color-sign-out: #ff5252;
   // 1. Label text color remains the same, input background in dark
   --ion-fab-background:#474747;
   --ion-tab-background:#474747;
-  --ion-color-light-text: #474747;
+  --ion-color-light-text: #ffffff;
   // --ion-tab-background:#000000;
   --ion-label-color:#ffffff;
   --ion-heading-color:#ffffff;
@@ -170,7 +172,6 @@ body.dark {
   // 5. Button text in white, background dark gray for active button
   --ion-button-text-color-active: #ffffff;
   --ion-button-background-active: #444444;
-
   // 6. Inactive button border and text color in light gray, background unchanged
   --ion-button-text-color-inactive: #cccccc;
   --ion-button-border-inactive: #cccccc;
@@ -181,6 +182,9 @@ body.dark {
   // 8. Item background light gray, all text in white
   --item-background: #d3d3d3;
   --ion-color-item-text: #ffffff;
+  --Wild-Blue-Yonder-700: #9B40CD;
+  --Wild-Blue-Yonder-800: #ffffff;
+  --Wild-Blue-Yonder-400: #ffffff;
 
   // 9. Don't change the item label color in item section
   --ion-color-item-label: inherit;
