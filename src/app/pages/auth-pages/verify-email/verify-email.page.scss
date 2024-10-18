@@ -29,11 +29,11 @@ ion-content {
   }
 
   h2 {
-    color: var(--ion-color-light-text);
+    color: var(--ion-text-color);
   }
 
   ion-text {
-    color: var(--ion-color-light-text);
+    color: var(--ion-text-color);
   }
 
   form {
@@ -45,17 +45,17 @@ ion-content {
     }
   
     ion-label {
-      color: var(--ion-color-light-text);
+      color: var(--ion-text-color);
     }
   
     ion-button {
       margin-top: 1rem; 
-      color: var(--ion-color-light-text);
+      color: var(--ion-text-color);
     }
   
     ion-icon {
       padding-right: 0.625rem; 
-      color: var(--ion-color-light-text);
+      color: var(--ion-text-color);
     }
     .ng_otp_input{
       color: var(--ion-date-input-color);
@@ -67,7 +67,7 @@ ion-content {
     .signup-hr {
       width: 74%;
       border: none;
-      border-top: 1px solid var(--ion-color-light-text);
+      border-top: 1px solid var(--ion-text-color);
       margin-bottom: 4rem;
     }
   
@@ -83,7 +83,7 @@ ion-content {
   
     .signup-text {
       font-size: 0.75rem; 
-      color: var(--ion-color-light-text);
+      color: var(--ion-text-color);
     }
   }
 }
