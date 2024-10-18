@@ -31,7 +31,7 @@ ion-content {
 
       /* Styling the answer background (content) */
       div[slot="content"] {
-        background-color: var(--ion-background-color); /* Customize answer background */
+        --background: var(--ion-dark-background); /* Customize answer background */
         padding: 1rem; /* Adjust padding for content */
         border-radius: 0.5rem; /* Add some border-radius for a smooth look */
       }

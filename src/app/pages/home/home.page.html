@@ -108,7 +108,7 @@
           </ion-row>
           <ion-row class="button-row">
             <ion-col size="6">
-              <ion-button expand="block" fill="clear" class="cancel-button" (click)="cancel()" style="color: black;">
+              <ion-button expand="block" fill="clear" class="cancel-button" (click)="cancel()">
                 {{ 'CANCEL' | translate }}
               </ion-button>
             </ion-col>
@@ -122,48 +122,5 @@
       </ng-template>
     </ion-modal>
   </div>
-  <!-- <ion-button 
-  expand="block" 
-  class="ion-margin" 
-  (click)="startScan()">
-  Scan QR Code
-</ion-button> -->
-
-<!-- <ion-item *ngIf="scannedResult">
-  <ion-label class="ion-text-wrap">Scanned Result: {{scannedResult}}</ion-label>
-</ion-item> -->
-
-<ion-modal id="example-modal" #modal trigger="open-custom-dialog">
-  <ng-template>
-    <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
-      <ion-row>
-        <ion-col>
-          <ion-label class="ion-margin-start">{{ 'CATEGORY' | translate }}</ion-label>
-          <ion-item lines="full" class="ion-margin-top">
-            <ion-input type="text" formControlName="name" required
-              placeholder="{{ 'CATEGORY_NAME' | translate }}"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row *ngIf="scannedResult">
-        <ion-col>
-          <ion-label class="ion-margin-start">{{ 'SCANNED_RESULT' | translate }}</ion-label>
-          <ion-item lines="full" class="ion-margin-top">
-            <ion-input type="text" [value]="scannedResult" readonly></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-    </form>
-  </ng-template>
-</ion-modal>
 </ion-content>
-<!-- 
-<ion-icon name="close-circle" class="cancel-icon" (click)="stopScan()" style="background: red; display: none !important;
-position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 1000;
-  color: #fff;
-  font-size: 24px;"></ion-icon> -->
-
 <ion-footer style="height: 50px;"></ion-footer>

@@ -130,6 +130,7 @@
   // }
 }
 body.dark {
+  --color-medium: #ffffff;
   --ion-color-medium: #ffffff;
   --color-dark: #ffffff;
   --ion-date-input-color:#000000;
@@ -144,7 +145,7 @@ body.dark {
   // 1. Label text color remains the same, input background in dark
   --ion-fab-background:#474747;
   --ion-tab-background:#474747;
-  --ion-color-light-text: #ffffff;
+  --ion-color-light-text: #474747;
   // --ion-tab-background:#000000;
   --ion-label-color:#ffffff;
   --ion-heading-color:#ffffff;

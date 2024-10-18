@@ -186,7 +186,7 @@ ion-modal::part(backdrop) {
 }
 
 ion-modal ion-toolbar {
-  --color: var(--ion-dark-background);
+  --color: var(--ion-label-color);
   --background: var(--ion-dark-background);
 }
 ion-modal#example-modal ion-icon {
@@ -253,7 +253,7 @@ ion-modal::part(backdrop) {
 }
 
 ion-modal ion-toolbar {
-  --color: var(--color-dark);
+  --color: var(--ion-label-color);
   --background: var(--ion-dark-background);
 }
 ion-modal#password-modal ion-icon {
