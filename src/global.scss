@@ -161,10 +161,10 @@ ion-button{
 //   background: transparent;
 // }
 
-// body.scanner-active {
-//   --background: transparent;
-//   --ion-background-color: transparent;
-// }
+body.scanner-active {
+  --background: transparent;
+  --ion-background-color: transparent;
+}
 
 body.scanner-active ion-content,
 // body.scanner-active ion-header,

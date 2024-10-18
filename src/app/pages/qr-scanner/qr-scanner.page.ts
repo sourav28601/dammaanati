@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilService } from 'src/app/core/services/utils/utils.service';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
   selector: 'app-qr-scanner',
   templateUrl: './qr-scanner.page.html',
@@ -10,13 +11,17 @@ import { Router } from '@angular/router';
 export class QrScannerPage implements OnInit {
   scannedResult: string;
   isScannerActive = false;
+  
 
-  constructor(private utilService:UtilService, private router: Router) {
-    this.startScan();
+  constructor(private utilService:UtilService, private router: Router, private activeroute:ActivatedRoute) {
+   
    }
    
 
   ngOnInit() {
+    this.activeroute.url.subscribe((url) => {
+      this.startScan();
+    });
   }
   async checkPermission(): Promise<boolean> {
     try {
