@@ -6,6 +6,7 @@ import { ApiService } from 'src/app/core/services/api/api.service';
 import { MessageService } from 'src/app/core/services/message/message.service';
 import { LanguageService } from 'src/app/core/services/language/language.service';
 import { UtilService } from 'src/app/core/services/utils/utils.service';
+import { LoaderService } from 'src/app/core/services/loader/loader.service';
 @Component({
   selector: 'app-account-settings',
   templateUrl: './account-settings.page.html',
@@ -29,7 +30,8 @@ export class AccountSettingsPage implements OnInit {
     private messageService: MessageService,
     private modalCtrl: ModalController,
     private languageService:LanguageService,
-    private utilService:UtilService
+    private utilService:UtilService,
+    private loader:LoaderService
   ) {
     this.languageService.initLanguage();
   }
@@ -90,13 +92,16 @@ export class AccountSettingsPage implements OnInit {
   }
 
   getUserData() {
+    this.loader.showLoading();
     this.apiService.getUserData().subscribe({
       next: (response: any) => {
+        this.loader.hideLoading();
         console.log('this.userData==>', response);
         this.userData = response?.data;
         this.changeEmailForm.patchValue({ email: this.userData.email });
       },
       error: (error) => {
+        this.loader.hideLoading();
         console.error('Error loading user data:', error);
       },
     });
@@ -111,10 +116,11 @@ export class AccountSettingsPage implements OnInit {
         newEmail: this.changeEmailForm.value.email,
       };
       console.log('email data-----', data);
-
+     this.loader.hideLoading();
       this.apiService.changeUserEmail(data).subscribe(
         {
           next: (response: any) => {
+            this.loader.hideLoading();
             this.router.navigate([`/verify-email/${email}/${page}`]);
             this.messageService.presentToast(response.message || 'Email Changed Successfully', 'success');
             this.userData.email = data.newEmail;
@@ -124,6 +130,7 @@ export class AccountSettingsPage implements OnInit {
           },
           
           error: (error: any) => {
+            this.loader.hideLoading();
             console.log("error-----", error);
             const errorMessage = error.error?.message || 'Email Change failed';
             this.changeEmailForm.patchValue({ email: oldEmail });
@@ -144,9 +151,10 @@ export class AccountSettingsPage implements OnInit {
         confirmPassword: this.changePasswordForm.value.confirmPassword
       };
       console.log('changePasswordForm data-----', data);
-
+      this.loader.showLoading();
       this.apiService.changeUserPassword(data).subscribe(
         (response) => {
+          this.loader.hideLoading();
           this.messageService.presentToast(
             'Password Changed Successfully',
             'success'
@@ -156,11 +164,13 @@ export class AccountSettingsPage implements OnInit {
           this.modalCtrl.dismiss(response);
         },
         (error) => {
+          this.loader.hideLoading();
           console.error('Error changing Password:', error);
           this.messageService.presentToast('Old and New Password must be different', 'danger');
         }
       );
     } else {
+      this.loader.hideLoading();
       Object.values(this.changePasswordForm.controls).forEach(control => {
         control.markAsTouched();
       });
@@ -179,8 +189,10 @@ export class AccountSettingsPage implements OnInit {
       cancelText: this.languageService.instant('CANCEL'),
     });
     if (shouldSignOut) {
+      this.loader.showLoading()
       this.apiService.deleteAccount().subscribe({
         next: (response: any) => {
+          this.loader.hideLoading()
           this.messageService.presentToast(response.message || 'Account Deleted Successfully', 'success');
           localStorage.removeItem('user_data');
           setTimeout(() => {
@@ -188,6 +200,7 @@ export class AccountSettingsPage implements OnInit {
           }, 500);
         },
         error: (error) => {
+          this.loader.hideLoading()
           const errorMessage = error.error?.error || 'Failed to delete account';
           this.messageService.presentToast(errorMessage, 'danger');
         },
