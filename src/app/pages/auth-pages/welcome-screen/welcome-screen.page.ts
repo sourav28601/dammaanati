@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SwiperOptions } from 'swiper/types';
 import { IonicSlides } from '@ionic/angular';
 import { register } from 'swiper/element/bundle';
+import { UtilService } from 'src/app/core/services/utils/utils.service';
 @Component({
   selector: 'app-welcome-screen',
   templateUrl: './welcome-screen.page.html',
@@ -30,7 +31,9 @@ export class WelcomeScreenPage implements OnInit {
   
   };
 
-  constructor(private router:Router) {}
+  constructor(private router:Router,private utilsService:UtilService) {
+    this.utilsService.initializeTheme();
+  }
 
   ngOnInit() {
     this.truncateText();

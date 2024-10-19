@@ -17,7 +17,7 @@ export class SettingPage implements OnInit {
    
   darkMode = new BehaviorSubject<boolean>(false);
   darkMode$ = this.darkMode.asObservable();
-
+  mode:any
   constructor(
     private router: Router,
     private utilService: UtilService,
@@ -29,37 +29,78 @@ export class SettingPage implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(() => {
+    this.activatedRoute.url.subscribe(() => {
       this.initializeTheme();
+    //  this.utilService.initializeTheme();
+     this.mode=localStorage.getItem('mode');
+     if(this.mode==='true'){
+      this.darkMode.next(true);
+     }else{
+      this.darkMode.next(false);
+     }
+    
     });
   }
 
   async initializeTheme() {
+   
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+ 
     const storedTheme = await Preferences.get({ key: 'darkModeActivated' });
-
+    // alert(storedTheme)
+   
     if (storedTheme && storedTheme.value !== null) {
+    
       this.setTheme(storedTheme.value === 'true');
     } else {
-      this.setTheme(prefersDark.matches);
-    }
+      if(this.mode==='true'){
+        this.setTheme(true);
+        this.darkMode.next(true);
+       }else if(this.mode==='false'){
+        this.setTheme(false);
+        this.darkMode.next(false);
+       }
+       else{
+        this.setTheme(true);
+        this.darkMode.next(true);
+       }
+      }
+      const prefers = window.matchMedia('(prefers-color-scheme: dark)');
 
-    prefersDark.addEventListener('change', (mediaQuery) => this.setTheme(mediaQuery.matches));
+      prefersDark.addEventListener('change', (mediaQuery) => {
+        const systemMode = mediaQuery.matches ? 'dark' : 'light';
+        if(systemMode==='dark'){
+          this.setTheme(true);  
+        }else{
+          this.setTheme(false); 
+        }
+        console.log('System mode:', systemMode);
+       
+      });
+      
+      // Initial check
+      const initialSystemMode = prefersDark.matches ? 'dark' : 'light';
+      console.log('Initial system mode:', initialSystemMode);
   }
 
   async setTheme(dark: boolean) {
     this.darkMode.next(dark);
-    document.body.classList.toggle('dark', dark);
 
+    document.body.classList.toggle('dark', dark);
+         
     if (isPlatform('capacitor')) {
       await Preferences.set({ key: 'darkModeActivated', value: dark ? 'true' : 'false' });
       await StatusBar.setStyle({ style: dark ? Style.Dark : Style.Light });
     }
+  
+    // Set localStorage based on the dark mode state
+    localStorage.setItem('mode', dark ? 'true' : 'false');
   }
 
   async toggleDarkMode() {
     const isDark = !this.darkMode.value;
-    await this.setTheme(isDark);
+    this.utilService.setTheme(isDark);
+    
   }
 
   async referApp() {
@@ -77,19 +118,33 @@ export class SettingPage implements OnInit {
     }
   }
 
+  // async signOut() {
+  //   const shouldSignOut = await this.utilService.showConfirmation({
+  //     header: this.languageService.instant('SIGN_OUT'),
+  //     message: this.languageService.instant('SIGN_OUT_CONFIRMATION'),
+  //     confirmText: this.languageService.instant('SIGN_OUT'),
+  //     cancelText: this.languageService.instant('CANCEL'),
+  //   });
+  //   if (shouldSignOut) {
+  //     await Preferences.remove({ key: 'user_data' });
+  //     setTimeout(() => {
+  //       this.router.navigate(['/login']);
+  //       Preferences.clear();
+  //     }, 500);
+  //   }
+  // }
   async signOut() {
     const shouldSignOut = await this.utilService.showConfirmation({
       header: this.languageService.instant('SIGN_OUT'),
       message: this.languageService.instant('SIGN_OUT_CONFIRMATION'),
       confirmText: this.languageService.instant('SIGN_OUT'),
-      cancelText: this.languageService.instant('CANCEL'),
+      cancelText: this.languageService.instant('STAY'),
     });
-    if (shouldSignOut) {
-      await Preferences.remove({ key: 'user_data' });
+     if (shouldSignOut) {
+      localStorage.removeItem('user_data')
       setTimeout(() => {
-        this.router.navigate(['/login']);
-        Preferences.clear();
-      }, 500);
-    }
-  }
+        this.router.navigate(['/login'])
+      }, 500)
+     }
+   }
 }

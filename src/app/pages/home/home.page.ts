@@ -77,6 +77,9 @@ export class HomePage implements OnInit {
     private productUpdateService: ProductUpdateService,
     private utilService:UtilService,
   ) {
+    this.activeroute.url.subscribe(()=>{
+      this.utilService.initializeTheme()
+    })
     this.navigationSubscription = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {

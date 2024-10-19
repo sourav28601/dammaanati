@@ -103,7 +103,6 @@ export class SignUpPage implements OnInit {
       this.fetchFormattedAddress(position.coords.latitude, position.coords.longitude);
     } catch (error) {
       console.error('Error getting current position:', error);
-      this.messageService.presentToast('Unable to get your location. Please enter it manually.', 'warning');
     }
   }
 

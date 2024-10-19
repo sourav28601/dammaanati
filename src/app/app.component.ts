@@ -16,6 +16,7 @@ export class AppComponent {
 isScannerActive$:any;
  
   constructor(private location: Location,private fcm:FcmService, private router: Router, public platform: Platform,private languageService: LanguageService,private utilsService:UtilService) {
+    this.utilsService.initializeTheme();
     this.isScannerActive$ = this.utilsService.isScannerActive$;
     this.utilsService.isScannerActive$.subscribe(isActive => {
       if (isActive) {
