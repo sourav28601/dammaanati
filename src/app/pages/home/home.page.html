@@ -59,7 +59,8 @@
     <ng-template #noDataTemplate>
       <ion-row>
         <ion-col size="12" class="ion-text-center">
-          <p>{{ 'NO_DATA_FOUND' | translate }}</p>
+          <ion-img src="../../../assets/product/no_item.jpg" class="no-item-img"></ion-img>
+          <p>{{ 'NO_ITEM' | translate }}</p>
         </ion-col>
       </ion-row>
     </ng-template>
@@ -89,7 +90,7 @@
         </ion-row>
       </ion-grid>
     </div>
-   
+
     <ion-button id="open-custom-dialog" expand="block" class="add-category-btn">
       <ion-icon name="person-add-outline"></ion-icon>
       {{ 'ADD_CATEGORY' | translate }}

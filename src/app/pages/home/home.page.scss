@@ -115,6 +115,13 @@ ion-content {
 
     ion-col {
       padding: 8px;
+    
+    }
+    .no-item-img{
+      height: 30vh;
+    }
+    p{
+      color: var(--ion-color-border);
     }
 
     .product-card {

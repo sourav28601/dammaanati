@@ -214,5 +214,6 @@
   "DELETE_ACCOUNT_CONFIRMATION":"هل أنت متأكد أنك تريد حذف الحساب؟",
    "VIEW_SHOP_PICTURE":"عرض صورة المتجر",
    "NO_SHOP_PICTURE_AVAILABLE":"لا توجد صورة للمتجر متاحة",
-   "DARK_MODE":"الوضع المظلم"
+   "DARK_MODE":"الوضع المظلم",
+   "NO_ITEM":"لا توجد عناصر حتى الآن اضغط على + لإضافة عنصر جديد"
 }

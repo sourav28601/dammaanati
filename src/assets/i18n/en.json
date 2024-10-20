@@ -213,5 +213,6 @@
   "DELETE_ACCOUNT_CONFIRMATION":"Are you sure you want to delete account?",
   "VIEW_SHOP_PICTURE":"View Shop Picture",
   "NO_SHOP_PICTURE_AVAILABLE":"No Shop Picture Available",
-  "DARK_MODE":"Dark Mode"
+  "DARK_MODE":"Dark Mode",
+  "NO_ITEM":"There are no items yet Press + to add a new item"
 }
