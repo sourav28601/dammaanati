@@ -105,11 +105,10 @@ export class AddProductPage implements OnInit {
     const value = input.value.replace(/[^a-zA-Z ]/g, '');
     this.productForm.get('warranty_contact_person_name')?.setValue(value, { emitEvent: false });
   }
-
   getMinDate(): string {
     return this.getCurrentDate();
   }
-
+  
   setDefaultDates() {
     const currentDate = this.getCurrentDate();
     this.productForm.patchValue({
@@ -118,34 +117,43 @@ export class AddProductPage implements OnInit {
     });
     this.updateWarrantyEndDate();
   }
-
+  
   getCurrentDate(): string {
     return new Date().toISOString().split('T')[0];
   }
-
+  
   formatDate(event: any, controlName: string) {
     if (!this.productForm) return;
     const value = event.target.value;
     
-    const validControllers = ['purchase_date', 'warranty_end_date', 'warranty_start_date'];
+    const validControllers = ['purchase_date', 'warranty_start_date', 'warranty_end_date'];
     if (validControllers.includes(controlName)) {
       this.productForm.get(controlName)?.setValue(value, { emitEvent: false });
-    }
-
-    if (controlName === 'warranty_start_date') {
-      this.updateWarrantyEndDate();
+      
+      // Synchronize purchase_date and warranty_start_date
+      if (controlName === 'purchase_date' || controlName === 'warranty_start_date') {
+        const otherControlName = controlName === 'purchase_date' ? 'warranty_start_date' : 'purchase_date';
+        this.productForm.get(otherControlName)?.setValue(value, { emitEvent: false });
+        this.updateWarrantyEndDate();
+      }
     }
   }
-
+  
   updateWarrantyEndDate() {
     const startDateStr = this.productForm.get('warranty_start_date')?.value;
     const timePeriod = this.productForm.get('time_period')?.value;
     
     if (startDateStr && timePeriod) {
       const startDate = new Date(startDateStr);
-      const endDate = new Date(startDate.setMonth(startDate.getMonth() + parseInt(timePeriod)));
+      const endDate = new Date(startDate.getTime()); // Create a new Date object
+      endDate.setMonth(endDate.getMonth() + parseInt(timePeriod));
       this.productForm.get('warranty_end_date')?.setValue(endDate.toISOString().split('T')[0], { emitEvent: false });
     }
+  }
+  
+  // Add this method to handle time period changes
+  onTimePeriodChange() {
+    this.updateWarrantyEndDate();
   }
 
   onFileChange(event: Event, controlName: string) {
@@ -223,6 +231,13 @@ export class AddProductPage implements OnInit {
   }
 
   onSubmit() {
+    // this.isFormSubmitted = true; // Add this line to trigger error messages in the template
+  
+    if (!this.productForm.value.category_id) {
+      this.messageService.presentToast('Please select category', 'danger');
+      return;
+    }
+  
     if (this.productForm.valid && !this.isSubmitting) {
       this.loader.showLoading();
       this.isSubmitting = true;
@@ -250,30 +265,34 @@ export class AddProductPage implements OnInit {
           this.productPictureUrl = null;
           this.productForm.reset();
           this.isSubmitting = false;
+          // this.isFormSubmitted = false; // Reset this flag
         },
         error: (error: any) => {
           this.isSubmitting = false;
           this.loader.hideLoading();
-
+  
           // Handle validation errors
           if (error.error && error.error.validationErrors) {
-            this.loader.hideLoading();
             this.handleValidationErrors(error.error.validationErrors);
           }
   
           const errorMessage = error.error?.message || 'Error saving product';
           this.messageService.presentToast(errorMessage, 'danger');
           console.error('API Error:', error);
-          this.loader.hideLoading();
         }
       });
     } else {
-      // Mark all controls as touched to display validation errors
-      this.markFormGroupTouched(this.productForm);
+      // Form is invalid
       this.loader.hideLoading();
+      
       // Display the first validation error sequentially
       const firstErrorMessage = this.getFirstErrorMessage();
-      this.messageService.presentToast(firstErrorMessage, 'danger');
+      if (firstErrorMessage) {
+        this.messageService.presentToast(firstErrorMessage, 'danger');
+      } else {
+        this.messageService.presentToast('Please fill in all required fields correctly', 'danger');
+      }
+      
       console.log('Form Errors:', this.getFormValidationErrors());
     }
   }

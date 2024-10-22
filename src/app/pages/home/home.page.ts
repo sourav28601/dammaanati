@@ -57,6 +57,7 @@ export class HomePage implements OnInit {
   searchTerm: string = '';
   categories: any;
   categoryForm: FormGroup;
+  noResultsFound:any;
   productsView = true;
   categoryView = false;
   ads: any;
@@ -87,7 +88,7 @@ export class HomePage implements OnInit {
     });
     this.languageService.initLanguage();
     this.categoryForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      name: [''],
     });
     this.productUpdateService.productDeleted$.subscribe(deletedProductId => {
       this.removeProductFromList(deletedProductId);
@@ -266,6 +267,10 @@ export class HomePage implements OnInit {
   //   this.utilService.stopScan();
   // }
   addCategory() {
+     if(this.categoryForm.value.name){
+      this.messageService.presentToast('Please Enter Catergory', 'danger');
+      return
+     }
     if (this.categoryForm.valid) {
       if (this.categoryForm.valid) {
         this.apiService.addCategory(this.categoryForm.value).subscribe({
@@ -314,13 +319,28 @@ export class HomePage implements OnInit {
         next: (newProducts) => {
           if (page === 1) {
             this.products = newProducts;
+            if(this.products.length === 0){
+              this.noResultsFound = true;
+            }else{
+              this.noResultsFound=false
+            }
           } else {
             this.products = [...this.products, ...newProducts];
+            if(this.products.length === 0){
+              this.noResultsFound =true
+            }else{
+              this.noResultsFound=false
+            }
+           
           }
           this.processProducts();
           this.loading = false;
         },
         error: (error) => {
+       
+            this.noResultsFound = true;
+          
+         
           console.error('Error loading products:', error);
           this.loading = false;
         },
