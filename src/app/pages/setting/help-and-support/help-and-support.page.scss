@@ -17,23 +17,27 @@ ion-header {
 }
 ion-content {
   --background: var(--ion-dark-background);
-  
+
   h3 {
     color: var(--ion-label-color);
   }
 
+  .form-content {
+    width: 25vw;
+    margin: 0 auto;
+  }
+
   ion-accordion-group {
     ion-accordion {
-      --background: var(--ion-dark-background); /* Accordion background */
-      --color: var(--ion-label-color); /* Accordion text color */
-      --ion-item-background: var(--ion-dark-background); /* Header item background */
-      --ion-item-color: var(--ion-label-color); /* Header item text color */
+      --background: var(--ion-dark-background); 
+      --color: var(--ion-label-color);
+      --ion-item-background: var(--ion-dark-background);
+      --ion-item-color: var(--ion-label-color);
 
-      /* Styling the answer background (content) */
       div[slot="content"] {
-        --background: var(--ion-dark-background); /* Customize answer background */
-        padding: 1rem; /* Adjust padding for content */
-        border-radius: 0.5rem; /* Add some border-radius for a smooth look */
+        --background: var(--ion-dark-background);
+        padding: 1rem;
+        border-radius: 0.5rem;
       }
     }
   }
@@ -56,4 +60,45 @@ ion-content {
   p {
     color: var(--ion-label-color);
   }
+
+  /* Responsive Design */
+
+  /* Mobile devices: 320px–480px */
+  @media screen and (min-width: 320px) and (max-width: 480px) {
+  
+
+    .form-content {
+      width: 90vw;
+    }
+  }
+
+  /* Tablets: 481px–768px */
+  @media screen and (min-width: 481px) and (max-width: 768px) {
+
+    .form-content {
+      width: 70vw;
+    }
+
+  }
+
+  /* Small screens and laptops: 769px–1024px */
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+
+
+    .form-content {
+      width: 50vw;
+    }
+
+   
+  }
+
+  /* Large screens: 1025px and up */
+  @media screen and (min-width: 1025px) {
+
+    .form-content {
+      width: 35vw;
+    }
+
+  }
 }
+

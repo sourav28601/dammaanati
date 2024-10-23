@@ -18,23 +18,32 @@ ion-header {
 
 ion-content {
   --background: var(--ion-dark-background);
-  ion-text{
+  ion-text {
     color: var(--ion-label-color);
   }
+
+  // Adjust form content width and centering based on screen size
+  .form-content {
+    width: 35vw;
+    margin: 0 auto;
+  }
+
   ion-label {
     font-size: 1.1rem;
     color: var(--ion-label-color);
   }
-  ion-radio-group{
-    ion-list{
-      ion-item{
+
+  ion-radio-group {
+    ion-list {
+      ion-item {
         --background: var(--ion-dark-background);
-        ion-radio{
+        ion-radio {
           color: var(--ion-label-color);
         }
       }
     }
- }
+  }
+
   .sign-out-label {
     color: var(--background-expiration-red);
   }
@@ -51,11 +60,12 @@ ion-content {
     --border-style: solid;
     --border-color: transparent;
     --background: var(--background-gradient-purple);
-    color: var(--ion-label-color);
+    color: var(--ion-text-color);
   }
 
   .custom-radio-group {
-    padding-top: 0px;padding-bottom: 0px;
+    padding-top: 0;
+    padding-bottom: 0;
     --ion-color-primary: var(--background-gradient-purple);
   }
 
@@ -74,4 +84,72 @@ ion-content {
   .save-button-margin {
     margin-top: 8rem;
   }
+
+  // Media query breakpoints for responsiveness
+
+  /* 320px–480px: Mobile devices (small phones) */
+  @media screen and (min-width: 320px) and (max-width: 480px) {
+    .form-content {
+      width: 90vw;
+    }
+    ion-label {
+      font-size: 0.9rem;
+    }
+    .save-button-margin {
+      margin-top: 10rem;
+    }
+  }
+
+  /* 481px–768px: iPads and tablets */
+  @media screen and (min-width: 481px) and (max-width: 768px) {
+    .form-content {
+      width: 80vw;
+    }
+    ion-label {
+      font-size: 1rem;
+    }
+    .save-button-margin {
+      margin-top: 10rem;
+    }
+  }
+
+  /* 769px–1024px: Small screens and laptops */
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    .form-content {
+      width: 60vw;
+    }
+    ion-label {
+      font-size: 1.05rem;
+    }
+    .save-button-margin {
+      margin-top: 10rem;
+    }
+  }
+
+  /* 1025px–1200px: Desktops and large screens */
+  @media screen and (min-width: 1025px) and (max-width: 1200px) {
+    .form-content {
+      width: 45vw;
+    }
+    ion-label {
+      font-size: 1.1rem;
+    }
+    .save-button-margin {
+      margin-top: 10rem;
+    }
+  }
+
+  /* 1201px and more: Extra large screens and TVs */
+  @media screen and (min-width: 1201px) {
+    .form-content {
+      width: 35vw;
+    }
+    ion-label {
+      font-size: 1.2rem;
+    }
+    .save-button-margin {
+      margin-top: 10rem;
+    }
+  }
 }
+

@@ -1,9 +1,17 @@
 ion-content {
   --background: var(--ion-background-gradient);
-  
+
   ion-back-button {
     color: var(--ion-color-white);
     margin-top: 2vw;
+  }
+  
+  .back-button {
+    padding-top: 0.4rem;
+    color: var(--ion-color-white);
+  }
+  .verify-email{
+    padding-right: 1rem;
   }
 
   .circle-container {
@@ -27,9 +35,12 @@ ion-content {
     text-transform: none;
     font-size: 0.875rem;
   }
-
+  .ng_otp_input{
+    color:var(--ion-date-input-color)
+  }
   h2 {
     color: var(--ion-text-color);
+    text-align: center;
   }
 
   ion-text {
@@ -37,53 +48,167 @@ ion-content {
   }
 
   form {
+    .button-container{
+      margin-top: 0.5rem;
+    }
     ion-item {
       --inner-padding-end: 0;
       --inner-padding-start: 0;
-      margin-bottom: 1rem; 
-      border-radius: 0.4375rem; 
+      margin-bottom: 1rem;
+      border-radius: 0.4375rem;
     }
-  
+
     ion-label {
       color: var(--ion-text-color);
     }
-  
+
     ion-button {
-      margin-top: 1rem; 
+      margin-top: 1rem;
       color: var(--ion-text-color);
     }
-  
+
     ion-icon {
-      padding-right: 0.625rem; 
+      padding-right: 0.625rem;
       color: var(--ion-text-color);
     }
-    .ng_otp_input{
-      color: var(--ion-date-input-color);
-    }
+
     ion-text {
-      font-size: 0.75rem; 
+      font-size: 0.75rem;
     }
-  
+
     .signup-hr {
       width: 74%;
       border: none;
       border-top: 1px solid var(--ion-text-color);
       margin-bottom: 4rem;
     }
-  
+
     .signin-button-grid {
       margin-top: 2rem;
       direction: ltr !important;
     }
-    
+
     .account-text {
-      font-size: 0.625rem; 
+      font-size: 0.625rem;
       color: var(--ion-color-muted);
     }
-  
+
     .signup-text {
-      font-size: 0.75rem; 
+      font-size: 0.75rem;
       color: var(--ion-text-color);
     }
   }
+
+  /* Responsive form content */
+  .form-content {
+    width: 20vw;
+    margin: 0 auto; /* Center form horizontally */
+  }
+
+/* 320px–480px: Mobile devices */
+@media (min-width: 320px) and (max-width: 480px) {
+  ion-content .signin-grid {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* Styles for mobile devices */
+  .form-content {
+    width: 80vw;
+  }
+  form{
+    .button-container{
+      margin-top: 3rem;
+    }
+  }
+  .verify-email{
+    padding-right: 1rem;
+  }
+  .back-button {
+    padding-top: 0.4rem;
+    color: var(--ion-color-white);
+  }
+  h2 {
+    font-size: 1.25rem;
+  }
+
+}
+
+/* 481px–768px: iPads and tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  /* Styles for tablets */
+  .form-content {
+    width: 50vw;
+  }
+  
+  .back-button {
+    padding-top: 0.4rem;
+    color: var(--ion-color-white);
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .button-container{
+    margin-top: 2rem;
+  }
+}
+
+/* 769px–1024px: Small screens and laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Styles for small screens and laptops */
+  .form-content {
+    width: 35vw;
+  }
+  .button-container{
+    margin-top: 2rem;
+  }
+  .back-button {
+    padding-top: 0.4rem;
+    color: var(--ion-color-white);
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+
+}
+
+/* 1025px–1200px: Desktops and large screens */
+@media (min-width: 1025px) and (max-width: 1200px) {
+  /* Styles for desktops and large screens */
+  .form-content {
+    width: 25vw;
+  }
+  .button-container{
+    margin-top: 2rem;
+  }
+  .back-button {
+    padding-top: 0.4rem;
+    color: var(--ion-color-white);
+  }
+  h2 {
+    font-size: 2rem;
+  }
+
+}
+
+/* 1201px and more: Extra large screens and TVs */
+@media (min-width: 1201px) {
+  /* Styles for extra large screens and TVs */
+  .form-content {
+    width: 20vw;
+  }
+  .button-container{
+    margin-top: 2rem;
+  }
+  .back-button {
+    padding-top: 0.4rem;
+    color: var(--ion-color-white);
+  }
+  h2 {
+    font-size: 1.8rem;
+  }
+
+}
+
 }

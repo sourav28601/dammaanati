@@ -8,45 +8,40 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-text class="ion-margin-start">{{ 'GET_NOTIFICATION_BEFORE_WARRANTY_ENDS' | translate }}</ion-text>
-<ion-radio-group [(ngModel)]="selectedNotificationPreference" (ionChange)="onNotificationPreferenceChange($event)">
-  <ion-list class="custom-radio-group"> 
-    <ion-item lines="none">
-      <ion-label>{{ '14_DAYS' | translate }}</ion-label>
-      <ion-radio slot="end" value="14"></ion-radio>
+  <div class="form-content">
+    <ion-text class="ion-margin-start">{{ 'GET_NOTIFICATION_BEFORE_WARRANTY_ENDS' | translate }}</ion-text>
+    <ion-radio-group [(ngModel)]="selectedNotificationPreference" (ionChange)="onNotificationPreferenceChange($event)">
+      <ion-list class="custom-radio-group">
+        <ion-item lines="none">
+          <ion-label>{{ '14_DAYS' | translate }}</ion-label>
+          <ion-radio slot="end" value="14"></ion-radio>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>{{ '30_DAYS' | translate }}</ion-label>
+          <ion-radio slot="end" value="30"></ion-radio>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>{{ '60_DAYS' | translate }}</ion-label>
+          <ion-radio slot="end" value="60"></ion-radio>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>{{ 'OTHER' | translate }}</ion-label>
+          <ion-radio slot="end" value="other"></ion-radio>
+        </ion-item>
+      </ion-list>
+    </ion-radio-group>
+    <ion-item *ngIf="selectedNotificationPreference === 'other'">
+      <ion-label position="floating">{{ 'ENTER_DAYS' | translate }}</ion-label>
+      <ion-input type="number" [(ngModel)]="customDays" (ionInput)="onCustomDaysInput($event)" maxlength="3" min="1"
+        max="365"></ion-input>
     </ion-item>
-    <ion-item lines="none">
-      <ion-label>{{ '30_DAYS' | translate }}</ion-label>
-      <ion-radio slot="end" value="30"></ion-radio>
-    </ion-item>
-    <ion-item lines="none">
-      <ion-label>{{ '60_DAYS' | translate }}</ion-label>
-      <ion-radio slot="end" value="60"></ion-radio>
-    </ion-item>
-    <ion-item lines="none">
-      <ion-label>{{ 'OTHER' | translate }}</ion-label>
-      <ion-radio slot="end" value="other"></ion-radio>
-    </ion-item>
-  </ion-list>
-</ion-radio-group>
-
-<ion-item *ngIf="selectedNotificationPreference === 'other'">
-  <ion-label position="floating">{{ 'ENTER_DAYS' | translate }}</ion-label>
-  <ion-input 
-    type="number" 
-    [(ngModel)]="customDays" 
-    (ionInput)="onCustomDaysInput($event)"
-    maxlength="3"
-    min="1"
-    max="365"
-  ></ion-input>
-</ion-item>
-
-<ion-text color="danger" *ngIf="showErrorMessage">
-  <p>{{ errorMessage }}</p>
-</ion-text>
-  <ion-item-divider></ion-item-divider>
-  <div class="ion-text-center save-button-margin">
-    <ion-button expand="full" class="save-button" (click)="saveNotificationPreference()">{{ 'SAVE' | translate }}</ion-button>
+    <ion-text color="danger" *ngIf="showErrorMessage">
+      <p>{{ errorMessage }}</p>
+    </ion-text>
+    <ion-item-divider></ion-item-divider>
+    <div class="ion-text-center save-button-margin">
+      <ion-button expand="full" class="save-button" (click)="saveNotificationPreference()">{{ 'SAVE' | translate
+        }}</ion-button>
+    </div>
   </div>
 </ion-content>

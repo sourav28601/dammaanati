@@ -14,7 +14,7 @@
          (click)="openModal()"></ion-img>
     </ion-item>
   </ion-list>
-
+<div class="form-content">
   <div class="profile-container">
     <div class="avatar-placeholder">
       <ion-img [src]="profileImage"></ion-img>
@@ -51,6 +51,7 @@
     <ion-img src="../../../assets/setting-icons/sign-out.svg" slot="start" class="setting-icons"></ion-img>
     <ion-label class="sign-out-label">{{ 'SIGN_OUT' | translate }}</ion-label>
   </ion-item>
+</div>
 </ion-content>
 
 <ion-modal id="example-modal" #profileModal>

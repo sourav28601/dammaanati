@@ -19,7 +19,10 @@ ion-header {
 ion-content {
   --background: var(--ion-dark-background);
   // --background: var(--ion-color-content-background);
-
+  .form-content{
+    width: 50vw;
+    margin: 0 auto;
+  }
   ion-label {
     color: var(--ion-color-accent);
   }

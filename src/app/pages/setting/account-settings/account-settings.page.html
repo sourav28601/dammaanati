@@ -8,60 +8,59 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-label class="ion-margin-start">{{ 'SECURITY_DETAILS' | translate }}</ion-label>
-  <form>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-label class="ion-margin-start">{{ 'REGISTERED_EMAIL' | translate }}</ion-label>
-          <ion-item lines="full" class="ion-margin-top" style="margin-bottom: 0px;">
-            <ion-input type="email" name="email" [value]="userData?.email" readonly></ion-input>
-          </ion-item>
-          <ion-button fill="clear" size="small" (click)="openEmailModal()">{{ 'CHANGE_EMAIL' | translate }}</ion-button>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-label class="ion-margin-start">{{ 'PASSWORD' | translate }}</ion-label>
-          <ion-item lines="full" class="ion-margin-top" style="margin-bottom: 0px;">
-            <ion-input type="password" name="password" [value]="'********'" readonly></ion-input>
-          </ion-item>
-          <!-- <div class="ion-text-end"> -->
-          <ion-button fill="clear" size="small" (click)="openPasswordModal()">{{ 'CHANGE_PASSWORD' | translate }}</ion-button>
-          <!-- </div> -->
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </form>
-  <ion-label class="ion-margin-start">{{ 'LANGUAGE' | translate }}</ion-label>
-  <ion-row>
-    <ion-col>
-      <div class="language-selection">
-        <ion-radio-group [(ngModel)]="currentLanguage" (ionChange)="switchLanguage(currentLanguage)"
-          class="custom-radio-group">
-          <ion-item lines="none" class="ion-margin-start">
-            <ion-radio slot="start" value="en"></ion-radio>
-            <ion-label [ngClass]="{'selected': currentLanguage === 'en', 'not-selected': currentLanguage !== 'en'}">
-              {{ 'ENGLISH' | translate }}
-            </ion-label>
-          </ion-item>
-          <ion-item lines="none" class="ion-margin-start">
-            <ion-radio slot="start" value="ar"></ion-radio>
-            <ion-label [ngClass]="{'selected': currentLanguage === 'ar', 'not-selected': currentLanguage !== 'ar'}">
-              {{ 'ARABIC' | translate }}
-            </ion-label>
-          </ion-item>
-        </ion-radio-group>
-      </div>
-    </ion-col>
-  </ion-row>
-  <ion-item lines="none" class="ion-margin-top" (click)="deleteAccount()">
-    <ion-img src="../../../assets/setting-icons/sign-out.svg" slot="start" class="setting-icons"></ion-img>
-    <ion-label class="sign-out-label">{{ 'DELETE_ACCOUNT' | translate }}</ion-label>
-  </ion-item>
-
-
-
+  <div class="form-content">
+    <ion-label class="ion-margin-start">{{ 'SECURITY_DETAILS' | translate }}</ion-label>
+    <form>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-label class="ion-margin-start">{{ 'REGISTERED_EMAIL' | translate }}</ion-label>
+            <ion-item lines="full" class="ion-margin-top" style="margin-bottom: 0px;">
+              <ion-input type="email" name="email" [value]="userData?.email" readonly></ion-input>
+            </ion-item>
+            <ion-button fill="clear" size="small" (click)="openEmailModal()">{{ 'CHANGE_EMAIL' | translate }}</ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label class="ion-margin-start">{{ 'PASSWORD' | translate }}</ion-label>
+            <ion-item lines="full" class="ion-margin-top" style="margin-bottom: 0px;">
+              <ion-input type="password" name="password" [value]="'********'" readonly></ion-input>
+            </ion-item>
+            <!-- <div class="ion-text-end"> -->
+            <ion-button fill="clear" size="small" (click)="openPasswordModal()">{{ 'CHANGE_PASSWORD' | translate }}</ion-button>
+            <!-- </div> -->
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+    <ion-label class="ion-margin-start">{{ 'LANGUAGE' | translate }}</ion-label>
+    <ion-row>
+      <ion-col>
+        <div class="language-selection">
+          <ion-radio-group [(ngModel)]="currentLanguage" (ionChange)="switchLanguage(currentLanguage)"
+            class="custom-radio-group">
+            <ion-item lines="none" class="ion-margin-start">
+              <ion-radio slot="start" value="en"></ion-radio>
+              <ion-label [ngClass]="{'selected': currentLanguage === 'en', 'not-selected': currentLanguage !== 'en'}">
+                {{ 'ENGLISH' | translate }}
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none" class="ion-margin-start">
+              <ion-radio slot="start" value="ar"></ion-radio>
+              <ion-label [ngClass]="{'selected': currentLanguage === 'ar', 'not-selected': currentLanguage !== 'ar'}">
+                {{ 'ARABIC' | translate }}
+              </ion-label>
+            </ion-item>
+          </ion-radio-group>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-item lines="none" class="ion-margin-top" (click)="deleteAccount()">
+      <ion-img src="../../../assets/setting-icons/sign-out.svg" slot="start" class="setting-icons"></ion-img>
+      <ion-label class="sign-out-label">{{ 'DELETE_ACCOUNT' | translate }}</ion-label>
+    </ion-item>
+  </div>
 </ion-content>
 
 <ion-modal id="example-modal" #modal #emailModal>
@@ -209,56 +208,3 @@
     </form> -->
   </ng-template>
 </ion-modal>
-<!-- <ion-modal #passwordModal id="password-modal" class="custom-modal" keyboard-attach>
-  <ng-template>
-    <ion-toolbar>
-      <ion-title class="modal-title">{{ 'CHANGE_PASSWORD' | translate }}</ion-title>
-      <ion-buttons slot="end">
-        <ion-button>
-          <ion-icon name="close-circle-outline" size="smaller"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-    <form class="email-form" style="background-color: white;" [formGroup]="changePasswordForm" (ngSubmit)="onChangePasswordFormSubmit()">
-      <ion-row>
-        <ion-col>
-          <ion-label class="ion-margin-start">{{ 'OLD_PASSWORD' | translate }}</ion-label>
-          <ion-item lines="full" class="ion-margin-top" style="margin-bottom: 0px;">
-            <ion-input [type]="showOldPassword ? 'text' : 'password'" formControlName="oldPassword" required placeholder="{{ 'OLD_PASSWORD_PLACEHOLDER' | translate }}"></ion-input>
-            <ion-icon [name]="showOldPassword ? 'eye-off' : 'eye'" slot="end" (click)="toggleOldPasswordVisibility()"></ion-icon>
-          </ion-item>
-          <ion-text class="ion-text-left" color="danger" *ngIf="changePasswordForm.get('oldPassword')?.invalid && changePasswordForm.get('oldPassword')?.touched">
-            <p class="error">{{ 'OLD_PASSWORD_REQUIRED' | translate }}</p>
-          </ion-text>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-label class="ion-margin-start">{{ 'NEW_PASSWORD' | translate }}</ion-label>
-          <ion-item lines="full" class="ion-margin-top" style="margin-bottom: 0px;">
-            <ion-input [type]="showNewPassword ? 'text' : 'password'" formControlName="newPassword" required placeholder="{{ 'NEW_PASSWORD_PLACEHOLDER' | translate }}"></ion-input>
-            <ion-icon [name]="showNewPassword ? 'eye-off' : 'eye'" slot="end" (click)="toggleNewPasswordVisibility()"></ion-icon>
-          </ion-item>
-          <ion-text class="ion-text-left" color="danger" *ngIf="changePasswordForm.get('newPassword')?.invalid && changePasswordForm.get('newPassword')?.touched">
-            <p class="error">{{ 'PASSWORD_REQUIREMENTS' | translate }}</p>
-          </ion-text>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-label class="ion-margin-start">{{ 'CONFIRM_PASSWORD' | translate }}</ion-label>
-          <ion-item lines="full" class="ion-margin-top" style="margin-bottom: 0px;">
-            <ion-input [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" required placeholder="{{ 'CONFIRM_PASSWORD_PLACEHOLDER' | translate }}"></ion-input>
-            <ion-icon [name]="showConfirmPassword ? 'eye-off' : 'eye'" slot="end" (click)="toggleConfirmPasswordVisibility()"></ion-icon>
-          </ion-item>
-          <ion-text class="ion-text-left" color="danger" *ngIf="changePasswordForm.get('confirmPassword')?.invalid && changePasswordForm.get('confirmPassword')?.touched">
-            <p class="error">{{ 'PASSWORDS_DO_NOT_MATCH' | translate }}</p>
-          </ion-text>
-        </ion-col>
-      </ion-row>
-      <div class="ion-text-end ion-margin-top">
-        <ion-button size="small" fill="clear" class="save-changes-button" type="submit" [disabled]="!changePasswordForm.valid">{{ 'SAVE_CHANGES' | translate }}</ion-button>
-      </div>
-    </form>
-  </ng-template>
-</ion-modal>  -->

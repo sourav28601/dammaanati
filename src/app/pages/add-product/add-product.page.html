@@ -8,6 +8,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <div class="form-content">
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
     <ion-item-group>
       <!-- <ion-item lines="none"> -->
@@ -211,4 +212,5 @@
       <ion-button type="submit" class="submit-button">{{ 'SAVE' | translate }}</ion-button>
     </div>
   </form>
+</div>
 </ion-content>

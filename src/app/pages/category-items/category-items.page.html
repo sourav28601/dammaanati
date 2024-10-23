@@ -8,10 +8,11 @@
 </ion-header>
 
 <ion-content class="ion-padding ion-no-border">
+  <div class="form-content">
   <div *ngIf="productsView">
     <ion-grid *ngIf="categoryItems && categoryItems.length > 0; else noItems">
       <ion-row>
-        <ion-col size="12" *ngFor="let product of categoryItems">
+        <ion-col size="12" size-md="6" size-lg="3" *ngFor="let product of categoryItems">
           <ion-card class="product-card" [routerLink]="['/product-details', product.id]">
             <div class="card-content">
               <div class="product-image">
@@ -45,4 +46,5 @@
       </div>
     </ng-template>
   </div>
+</div>
 </ion-content>

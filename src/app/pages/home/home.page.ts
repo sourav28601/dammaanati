@@ -2,6 +2,7 @@ import {
   AfterContentChecked,
   Component,
   ElementRef,
+  HostListener,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -66,6 +67,11 @@ export class HomePage implements OnInit {
   content_visibility = '';
   isScannerActive = false;
   navigationSubscription: any;
+  private swiperInitialized = false;
+  private adsLoaded = false;
+  private initializationAttempts = 0;
+  private readonly MAX_INIT_ATTEMPTS = 3;
+  private initializationTimer: any;
   constructor(
     private apiService: ApiService,
     private router: Router,
@@ -77,6 +83,7 @@ export class HomePage implements OnInit {
     private productUpdateService: ProductUpdateService,
     private utilService:UtilService,
   ) {
+    // this.initSwiper();
     this.activeroute.url.subscribe(()=>{
       this.utilService.initializeTheme()
     })
@@ -189,6 +196,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAds;
   }
   getLocalStorageData() {
     const data = localStorage.getItem('user_data');
@@ -201,23 +209,94 @@ export class HomePage implements OnInit {
       this.getAds();
     });
   }
+
   ngAfterViewInit() {
     this.initSwiper();
   }
+
   initSwiper() {
     const swiperEl = this.swiperRef.nativeElement;
     const params = {
-      slidesPerView: 1,
-      spaceBetween: 20,
-      zoom: false,
-      loop: true,
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+          height: 200, // Adjusted height for mobile
+        },
+        480: {
+          slidesPerView: 1.5,
+          spaceBetween: 15,
+          height: 220, // Adjusted height for larger phones
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+          height: 250, // Adjusted height for tablets
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 25,
+          height: 280, // Adjusted height for desktop
+        },
+        1440: {
+          slidesPerView: 4,
+          spaceBetween: 30,
+          height: 300, // Adjusted height for large desktop
+        }
+      },
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
       pagination: {
         clickable: true,
+        dynamicBullets: true,
+        dynamicMainBullets: 3,
       },
+      navigation: {
+        enabled: true,
+      },
+      loop: true,
+      grabCursor: true,
+      keyboard: {
+        enabled: true,
+        onlyInViewport: true,
+      },
+      effect: 'slide',
+      speed: 800,
+      // Added for better image handling
+      watchOverflow: true,
+      centerInsufficientSlides: true,
     };
 
+    // Assign parameters to swiper element
     Object.assign(swiperEl, params);
+
+    // Initialize swiper
     swiperEl.initialize();
+
+    // Add resize observer to handle responsive updates
+    const resizeObserver = new ResizeObserver(() => {
+      if (swiperEl.swiper) {
+        swiperEl.swiper.update();
+      }
+    });
+
+    resizeObserver.observe(swiperEl);
+  }
+
+  // Optional: Method to manually update swiper
+  updateSwiper() {
+    if (this.swiperRef?.nativeElement?.swiper) {
+      this.swiperRef.nativeElement.swiper.update();
+    }
+  }
+
+  // Optional: Method to handle orientation change
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.updateSwiper();
   }
 //  async startScanning() {
 //     console.log('startScanning method called');
@@ -484,5 +563,5 @@ export class HomePage implements OnInit {
   getProductImageSrc(product: any): string {
     return product && product.product_picture ? product.product_picture : '../../../assets/product-image.svg';
   }
+  
 }
-

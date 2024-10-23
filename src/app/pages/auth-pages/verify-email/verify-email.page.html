@@ -1,58 +1,59 @@
 <ion-content class="ion-padding">
-  <ion-grid>
-    <ion-row>
-      <ion-col size="2" class="ion-text-center">
-        <ion-back-button defaultHref="/"></ion-back-button>
-      </ion-col>
-      <ion-col class="ion-text-center" size="10">
-        <h2>{{ 'VERIFY_EMAIL' | translate }}</h2>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <ion-row class="ion-margin-top ion-margin-bottom">
-    <ion-col>
-      <div class="circle-container">
-        <ion-img src="assets/group.svg" class="center-icon"></ion-img>
-      </div>
-    </ion-col>
-  </ion-row>
-
-  <ion-row>
-    <ion-col class="ion-text-center ion-margin-top">
-      <ion-text>
-        {{ 'ENTER_4_DIGIT_CODE' | translate }} {{email}}
-      </ion-text>
-    </ion-col>
-  </ion-row>
-
-  <form [formGroup]="otpForm" (ngSubmit)="verifyOTP()">
-    <ion-grid class="signin-button-grid">
-      <ion-row class="ion-justify-content-center ion-margin-top">
-        <ng-otp-input class="ng_otp_input" type="number" [(ngModel)]="otp" (onInputChange)="onOtpChange($event)" [ngModelOptions]="{standalone: true}" [config]="{length:4}" ngDefaultControl></ng-otp-input>
-      </ion-row>
-    </ion-grid>
-  
-    <ion-row class="ion-justify-content-center ion-margin-top">
-      <ion-col size="auto">
-        <ion-button fill="clear" class="resend-button" (click)="resendOTP()">
-          {{ 'RESEND_CODE' | translate }}
-        </ion-button>
-        <hr class="signup-hr" />
-      </ion-col>
-    </ion-row>
-  
-    <ion-row class="ion-margin-bottom">
-      <ion-col>
-        <div class="button-container">
-          <ion-button class="get-started-button" type="submit" [disabled]="!otpForm.valid">
-            <span>{{ 'VERIFY' | translate }}</span>
-            <ion-img alt="arrow-image" src="assets/arrow-1.svg" slot="end" class="arrow-img"></ion-img>
-            <ion-img alt="circle-image" src="assets/spacer.svg" slot="end" class="circle_image"></ion-img>
+  <div class="form-content">
+    <ion-grid class="ion-margin-bottom" class="signin-grid">
+      <ion-row>
+        <ion-col size="4">
+          <ion-button fill="clear" routerLink="/forgot-password" class="back-button">
+            <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
           </ion-button>
+        </ion-col>
+        <ion-col size="8" class="verify-email">
+          <h2>{{ 'VERIFY_EMAIL' | translate }}</h2>
+        </ion-col>
+      </ion-row>
+    </ion-grid>  
+    
+    <ion-row class="ion-margin-top ion-margin-bottom">
+    <ion-col>
+        <div class="circle-container">
+          <ion-img src="assets/group.svg" class="center-icon"></ion-img>
         </div>
+    </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-center ion-margin-top">
+        <ion-text>
+          {{ 'ENTER_4_DIGIT_CODE' | translate }} {{email}}
+        </ion-text>
       </ion-col>
     </ion-row>
-  </form>
-  
+    <form [formGroup]="otpForm" (ngSubmit)="verifyOTP()">
+      <ion-grid class="signin-button-grid">
+        <ion-row class="ion-justify-content-center ion-margin-top">
+          <ng-otp-input class="ng_otp_input" type="number" [(ngModel)]="otp" (onInputChange)="onOtpChange($event)" [ngModelOptions]="{standalone: true}" [config]="{length:4}" ngDefaultControl></ng-otp-input>
+        </ion-row>
+      </ion-grid>
+    
+      <ion-row class="ion-justify-content-center ion-margin-top">
+        <ion-col size="auto">
+          <ion-button fill="clear" class="resend-button" (click)="resendOTP()">
+            {{ 'RESEND_CODE' | translate }}
+          </ion-button>
+          <hr class="signup-hr" />
+        </ion-col>
+      </ion-row>
+    
+      <ion-row class="ion-margin-bottom">
+        <ion-col>
+          <div class="button-container">
+            <ion-button class="get-started-button" type="submit" [disabled]="!otpForm.valid">
+              <span>{{ 'VERIFY' | translate }}</span>
+              <ion-img alt="arrow-image" src="assets/arrow-1.svg" slot="end" class="arrow-img"></ion-img>
+              <ion-img alt="circle-image" src="assets/spacer.svg" slot="end" class="circle_image"></ion-img>
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
 </ion-content>

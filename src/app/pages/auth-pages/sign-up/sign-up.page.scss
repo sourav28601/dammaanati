@@ -1,18 +1,19 @@
 ion-content {
   --background: var(--ion-background-gradient);
-  // --background:linear-gradient(167.98deg, #696969 0%, #111111 100%)
   height: 100vh;
 
   .back-button {
     color: var(--ion-color-white);
   }
-
+  .form-content {
+    width: 25vw;
+    margin: 0 auto;
+  }
   h1 {
     margin-top: 0.375rem;
     color: var(--ion-text-color);
     font-size: 2.1875rem;
   }
-
   form {
     ion-item {
       --inner-padding-end: 0;
@@ -20,8 +21,12 @@ ion-content {
       margin-bottom: 0.375rem;
       border-radius: 0.4375rem;
       color: var(--ion-color-accent);
-      --background:var(--ion-input-background);
-
+      --background: var(--ion-input-background);
+      ion-icon {
+        padding-right: 0.625rem;
+        color: var(--ion-text-color);
+      }
+  
       ion-label {
         color: var(--ion-color-accent);
         font-size: 1.25rem;
@@ -32,12 +37,13 @@ ion-content {
         padding-right: 1.25rem;
         max-width: 100%;
         position: relative;
-        --background:var(--ion-dark-background);
-         color: var(--ion-color-accent);
-         ion-select-option{
-          --background:black !important;
-         color: var(--ion-color-accent);
-         }
+        --background: var(--ion-dark-background);
+        color: var(--ion-color-accent);
+
+        ion-select-option {
+          --background: black !important;
+          color: var(--ion-color-accent);
+        }
       }
     }
 
@@ -49,11 +55,10 @@ ion-content {
       pointer-events: none;
       margin: 0;
       color: var(--ion-color-medium);
-      --background:var(--ion-dark-background);
     }
-    
+
     .signin-button-grid {
-      margin-top: 1.5rem; 
+      margin-top: 1.5rem;
     }
 
     .custom-select-box {
@@ -61,71 +66,19 @@ ion-content {
       border-radius: 0.4375rem;
       padding-left: 0.625rem;
       width: 100%;
-      --background:var(--ion-dark-background);
+      --background: var(--ion-dark-background);
     }
 
-    label {
-      color: var(--ion-text-color);
+    .city-country-div, .country-select-box, .city-select-box, .gender-div {
+      --background: var(--ion-dark-background);
     }
 
-    .country-div {
-      width: 48%;
-    }
-
-    .city-select-box {
-      display: flex;
-      justify-content: center;
-      font-size: 0.875rem;
-      line-height: 0.625rem;
-      height: 3.75vh;
-      width: 100%;
-      --background:var(--ion-dark-background);
-    }
-
-    .country-select-box {
-      display: flex;
-      justify-content: center;
-      font-size: 0.875rem;
-      line-height: 0.625rem;
-      height: 3.75vh;
-      width: 100%;
-      --background:var(--ion-dark-background);
-    }
-
-    .city-country-div {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      --background:var(--ion-dark-background);
-    }
-
-    .gender-div {
-      display: flex;
-      justify-content: center;
-      font-size: 0.875rem;
-      line-height: 0.625rem;
-      height: 3.75vh;
-      width: 100%;
-      --background:var(--ion-dark-background);
-    }
-
-    ion-label {
+    ion-label, ion-button, ion-icon, ion-text {
       color: var(--ion-text-color);
     }
 
     ion-button {
       margin-top: 1rem;
-      color: var(--ion-text-color);
-    }
-
-    ion-icon {
-      padding-right: 0.625rem;
-      color: var(--ion-text-color);
-    }
-
-    ion-text {
-      font-size: 0.75rem;
-      color: var(--ion-text-color);
     }
 
     .account-text {
@@ -135,12 +88,81 @@ ion-content {
 
     .signup-text {
       font-size: 0.75rem;
-      color: var(--ion-text-color);
     }
+
     .signup-hr {
       width: 42%;
       border: none;
       border-top: 1px solid var(--ion-text-color);
     }
+  }
+  /* 320px–480px: Mobile devices */
+  @media (max-width: 480px) {
+    .form-content {
+      width: 90vw;
+    }
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+
+  /* 481px–768px: iPads and tablets */
+  @media (min-width: 481px) and (max-width: 768px) {
+    .form-content {
+      width: 70vw;
+    }
+    h1 {
+      font-size: 1.75rem;
+    }
+    ion-icon {
+      padding-right: 0.625rem;
+      color: var(--ion-text-color);
+    }
+
+  }
+
+  /* 769px–1024px: Small screens and laptops */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .form-content {
+      width: 50vw;
+    }
+    h1 {
+      font-size: 2rem;
+    }
+    ion-icon {
+      padding-right: 0.625rem;
+      color: var(--ion-text-color);
+    }
+
+  }
+
+  /* 1025px–1200px: Desktops and large screens */
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    .form-content {
+      width: 30vw;
+    }
+    h1 {
+      font-size: 2.1875rem;
+    }
+    ion-icon {
+      padding-right: 0.625rem;
+      color: var(--ion-text-color);
+    }
+
+  }
+
+  /* 1201px and more: Extra large screens and TVs */
+  @media (min-width: 1201px) {
+    .form-content {
+      width: 25vw;
+    }
+    h1 {
+      font-size: 2.5rem;
+    }
+    ion-icon {
+      padding-right: 0.625rem;
+      color: var(--ion-text-color);
+    }
+
   }
 }

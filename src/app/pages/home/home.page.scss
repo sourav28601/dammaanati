@@ -4,7 +4,10 @@ ion-content {
     width: fit-content;
     height: 45px;
   }
-
+  .form-content {
+    width: 90vw; /* Adjust width for smaller screens */
+    margin: 0 auto; /* Center the form horizontally */
+  }
   .title-item {
     --background: transparent;
     ion-title {
@@ -37,7 +40,7 @@ ion-content {
       height: 100%;
       object-fit: cover;
     }
-
+    
     ion-buttons {
       ion-button {
         --padding-end: 5px;
@@ -51,28 +54,163 @@ ion-content {
       }
     }
   }
-  swiper-container {
-    width: 100% !important;
-    height: auto !important;
+  // swiper-container {
+  //   width: 100%;
+  //   padding: 20px 0;
+    
+  //   // Add padding for navigation arrows
+  //   padding-left: 40px;
+  //   padding-right: 40px;
+    
+  //   // Container height adjustments
+  //   @media (max-width: 767px) {
+  //     height: 200px;
+  //   }
+    
+  //   @media (min-width: 768px) {
+  //     height: 250px;
+  //   }
+    
+  //   @media (min-width: 1024px) {
+  //     height: 300px;
+  //   }
 
-    .swiper-wrapper {
-      display: flex !important;
-      flex-wrap: nowrap !important; // Ensure slides don't wrap to a new row
+  //   // Style navigation arrows
+  //   ::ng-deep .swiper-button-next,
+  //   ::ng-deep .swiper-button-prev {
+  //     color: var(--ion-color-primary);
+      
+  //     &:after {
+  //       font-size: 24px;
+  //       font-weight: bold;
+  //     }
+      
+  //     @media (max-width: 767px) {
+  //       &:after {
+  //         font-size: 20px;
+  //       }
+  //     }
+  //   }
+
+  //   // Style pagination
+  //   ::ng-deep .swiper-pagination-bullet {
+  //     background: var(--ion-color-primary);
+  //     opacity: 0.5;
+      
+  //     &-active {
+  //       opacity: 1;
+  //     }
+  //   }
+  // }
+
+  // .custom-slide {
+  //   height: 100%;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+
+  //   a {
+  //     width: 100%;
+  //     height: 100%;
+  //     display: flex;
+  //     align-items: center;
+  //     justify-content: center;
+  //   }
+
+  //   .img-size {
+  //     width: 100%;
+  //     height: 100%;
+  //     object-fit: cover;
+  //     border-radius: 10px;
+      
+  //     // Add some margin between slides
+  //     margin: 0 auto;
+      
+  //     @media (min-width: 768px) {
+  //       width: 95%; // Slight gap between slides
+  //     }
+  //   }
+  // }
+  :host ::ng-deep {
+    swiper-container {
+      width: 100%;
+      height: 100%;
+      max-height: 300px; // Adjust this value based on your needs
+      
+      swiper-slide {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        img {
+          max-width: 100%;
+          mix-blend-mode: color-burn;
+          aspect-ratio: 3 / 1;
+          object-fit: contain;
+        }
+      }
     }
-
-    .custom-slide {
-      width: 100% !important; // Each slide takes full container width
-      margin-right: 0 !important; // Remove any margin between slides
-      flex-shrink: 0 !important; // Prevent slide from shrinking unexpectedly
-      display: flex; // Centering the content inside the slide
-      justify-content: center; // Center horizontally
-      align-items: center;
+  
+    // Custom styles for navigation arrows
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #fff;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      
+      &:after {
+        font-size: 20px;
+      }
+      
+      &:hover {
+        background: rgba(0, 0, 0, 0.5);
+      }
     }
-
-    .img-size {
-      width: 100%; // Ensures the image fills the width of the slide
-      height: auto; // Maintain image aspect ratio
-      object-fit: cover; // Ensure the image scales well
+  
+    // Custom styles for pagination
+    .swiper-pagination-bullet {
+      background: #fff;
+      opacity: 0.5;
+      
+      &-active {
+        opacity: 1;
+      }
+    }
+  }
+  
+  // Responsive height adjustments
+  @media (max-width: 480px) {
+    :host ::ng-deep swiper-container {
+      max-height: 200px;
+    }
+  }
+  
+  @media (min-width: 481px) and (max-width: 768px) {
+    :host ::ng-deep swiper-container {
+      max-height: 220px;
+    }
+  }
+  
+  @media (min-width: 769px) and (max-width: 1024px) {
+    :host ::ng-deep swiper-container {
+      max-height: 250px;
+    }
+  }
+  
+  @media (min-width: 1025px) and (max-width: 1440px) {
+    :host ::ng-deep swiper-container {
+      max-height: 280px;
+    }
+  }
+  
+  @media (min-width: 1441px) {
+    :host ::ng-deep swiper-container {
+      max-height: 300px;
     }
   }
 
@@ -95,7 +233,7 @@ ion-content {
     ion-label {
       font-weight: 400;
       color: var(--ion-label-color);
-      font-size: 23px;
+      font-size: 16px;
     }
 
     ion-icon {
@@ -215,6 +353,7 @@ ion-content {
 ion-footer{
   --background:var(--ion-dark-background);
 }
+
 .title_desc {
   font-size: 12px;
   margin-top: 0;

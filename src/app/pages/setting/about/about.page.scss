@@ -1,7 +1,7 @@
 ion-header {
   --background: var(--ion-dark-background);
   ion-toolbar {
-    ion-buttons{
+    ion-buttons {
       color: var(--color-header-title);
     }
     --background: transparent;
@@ -17,43 +17,95 @@ ion-header {
 }
 
 ion-content {
-    // --background: url('../../../../assets/frame-1000010019@2x.png') no-repeat center center / cover;
-    --background: var(--ion-dark-background);
-    hr {
-      width: 40%;
-      border: none;
-      border-top: 4px solid var(--color-black);
-      margin-top: 1.3rem;
-    }
-    p{
-      color: var(--ion-label-color);
-    }
-    ol{
-      color: var(--ion-label-color);
-    }
-  
-    .dammanati1 {
-      color: var(--color-primary-light);
-      font-size: 1.56rem;
-    }
-  
-    .dammanati2 {
-      color: var(--color-primary-light);
-      font-size: 1.19rem;
-    }
-  
-    .why-choose {
-      color: var(--color-accent-light);
-      font-size: 1.19rem;
-      padding-right: 0.2rem;
-    }
-  
-    .support {
-      color: var(--color-support);
-    }
-  
-    .app-version {
-      color: var(--color-app-version);
+  --background: var(--ion-dark-background);
+  padding: 1rem;
+
+  hr {
+    width: 40%;
+    border: none;
+    border-top: 4px solid var(--color-black);
+    margin-top: 1.3rem;
+  }
+
+  p, ol {
+    color: var(--ion-label-color);
+    font-size: 1rem; // Base font size for smaller screens
+  }
+
+  .dammanati1 {
+    color: var(--color-primary-light);
+    font-size: 1.56rem;
+  }
+
+  .dammanati2 {
+    color: var(--color-primary-light);
+    font-size: 1.19rem;
+  }
+
+  .why-choose {
+    color: var(--color-accent-light);
+    font-size: 1.19rem;
+    padding-right: 0.2rem;
+  }
+
+  .support {
+    color: var(--color-support);
+  }
+
+  .app-version {
+    color: var(--color-app-version);
+  }
+
+  .center-image {
+    display: block;
+    margin: 1rem auto;
+    max-width: 80%; 
+    height: auto; // Ensure the image scales according to screen size
+  }
+}
+
+/* 320px–480px: Mobile devices (small phones) */
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  ion-content {
+    .center-image {
+      max-width: 80%;  /* Ensure images fit well on small mobile devices */
     }
   }
-  
+}
+
+/* 481px–768px: iPads and tablets */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  ion-content {
+    .center-image {
+      max-width: 30%;  /* Allow slightly larger images on tablets */
+    }
+  }
+}
+
+/* 769px–1024px: Small screens and laptops */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  ion-content {
+    .center-image {
+      max-width: 30%;  /* Increase image size for larger screens */
+    }
+  }
+}
+
+/* 1025px–1200px: Desktops and large screens */
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  ion-content {
+    .center-image {
+      max-width: 30%; /* Allow more space for images on larger screens */
+    }
+  }
+}
+
+/* 1201px and more: Extra large screens and TVs */
+@media screen and (min-width: 1201px) {
+  ion-content {
+    .center-image {
+      max-width: 20%; /* Images can be larger on wide screens */
+    }
+  }
+}
+

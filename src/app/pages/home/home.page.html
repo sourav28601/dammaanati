@@ -1,18 +1,89 @@
 <ion-content class="ion-padding ion-no-border ion-margin">
+  <ion-menu side="end" contentId="main-content" type="overlay" class="large-screen-sidebar">
+    <ion-content class="ion-padding">
+      <ion-list>
+        <ion-item lines="none" routerLink="/home">
+          <ion-icon name="home-outline" slot="start"></ion-icon>
+          <ion-label>{{ 'HOME' | translate }}</ion-label>
+        </ion-item>
+        <ion-item lines="none" routerLink="/add-product">
+          <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+          <ion-label>{{ 'ADD_PRODUCT' | translate }}</ion-label>
+        </ion-item>        
+        <ion-item lines="none" routerLink="/profile">
+          <ion-icon name="person-outline" slot="start"></ion-icon>
+          <ion-label>{{ 'PROFILE' | translate }}</ion-label>
+        </ion-item>
+        <ion-item lines="none" routerLink="/account-settings">
+          <ion-icon name="settings-outline" slot="start"></ion-icon>
+          <ion-label>{{ 'SETTINGS_ACCOUNT_SETTINGS' | translate }}</ion-label>
+        </ion-item>
+        <ion-item lines="none" routerLink="/notification">
+          <ion-icon name="notifications-outline" slot="start"></ion-icon>
+          <ion-label>{{ 'SETTINGS_NOTIFICATIONS' | translate }}</ion-label>
+        </ion-item>
+        <ion-item lines="none" routerLink="/term-conditions">
+          <ion-icon name="document-text-outline" slot="start"></ion-icon>
+          <ion-label>{{ 'SETTINGS_TERMS_CONDITIONS' | translate }}</ion-label>
+        </ion-item>
+        <ion-item lines="none" routerLink="/feedbacks">
+          <ion-icon name="chatbubbles-outline" slot="start"></ion-icon>
+          <ion-label>{{ 'SETTINGS_FEEDBACK' | translate }}</ion-label>
+        </ion-item>
+        <ion-item lines="none" routerLink="/help-and-support">
+          <ion-icon name="help-circle-outline" slot="start"></ion-icon>
+          <ion-label>{{ 'SETTINGS_HELP_SUPPORT' | translate }}
+            </ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-icon name="share-outline" slot="start"></ion-icon>
+          <ion-label>{{ 'SETTINGS_REFER' | translate }}</ion-label>
+        </ion-item>
+      </ion-list>
+  
+      <!-- Sign-out button -->
+      <ion-item lines="none" class="ion-margin-top">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        <ion-label class="sign-out-label">{{ 'SETTINGS_SIGN_OUT' | translate }}</ion-label>
+      </ion-item>
+    </ion-content>
+  </ion-menu>
+  
+  <div class="form-content">
   <ion-item lines="none" class="title-item">
     <ion-label>
       <ion-img src="../../../assets/damaanati-logo.svg" class="dammanati-logo"></ion-img>
     </ion-label>
-    <div class="profile-image-container" routerLink="/profile">
+    <!-- <div class="profile-image-container" routerLink="/profile">
       <img [src]="profilePicture ? profilePicture : '../../../assets/profile-icon.svg'" [alt]="'Profile picture'"
         class="profile-image" (error)="onProfileImgError($event)">
-    </div>
+    </div> -->
+    <div class="ion-page" id="main-content" class="profile-image-container">
+      <ion-buttons slot="end">
+        <ion-menu-button style="color: white;--background:red"></ion-menu-button>
+      </ion-buttons>
+</div>
+    
   </ion-item>
-  <swiper-container #swiper autoplay-delay="2000">
+  <!-- <swiper-container #swiper autoplay-delay="2000">
     <swiper-slide *ngFor="let ad of ads" class="custom-slide">
       <a [href]="ad.ad_link">
         <img [src]="ad.ad_image" class="img-size" />
       </a>
+    </swiper-slide>
+  </swiper-container> -->
+  <swiper-container #swiper>
+    <swiper-slide *ngFor="let ad of ads">
+      <img 
+        [src]="ad.ad_image" 
+        [alt]="ad.title"
+        (error)="onImgError($event)"
+        loading="lazy"
+        style="max-width: 100%;
+        mix-blend-mode: color-burn;
+        aspect-ratio: 3 / 1;
+        object-fit: contain;"
+      >
     </swiper-slide>
   </swiper-container>
   <div *ngIf="productsView" class="ion-margin-top">
@@ -28,7 +99,7 @@
       <ion-grid>
         <ion-row *ngIf="products.length > 0; else noDataTemplate">
           <ng-container *ngFor="let product of products">
-            <ion-col size="12">
+            <ion-col size="12" size-md="6" size-lg="3">
               <ion-card class="product-card" [routerLink]="['/product-details', product.id]">
                 <div class="card-content">
                   <div class="product-image">
@@ -74,7 +145,7 @@
     <div class="grid-background">
       <ion-grid>
         <ion-row>
-          <ion-col size="6" *ngFor="let category of categories">
+          <ion-col size="6" size-md="4" size-lg="2" *ngFor="let category of categories">
             <div class="category-card" [routerLink]="['/category-items', category.id, category.name]">
               <div class="category_name">
                 <h2>{{category?.name}}</h2>
@@ -90,7 +161,6 @@
         </ion-row>
       </ion-grid>
     </div>
-
     <ion-button id="open-custom-dialog" expand="block" class="add-category-btn">
       <ion-icon name="person-add-outline"></ion-icon>
       {{ 'ADD_CATEGORY' | translate }}
@@ -123,5 +193,6 @@
       </ng-template>
     </ion-modal>
   </div>
+</div>
 </ion-content>
 <ion-footer style="height: 50px;"></ion-footer>

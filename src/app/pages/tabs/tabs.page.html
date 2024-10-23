@@ -1,5 +1,5 @@
 <!-- <ng-container *ngIf="!(isScannerActive$ | async)"> -->
-<ion-tabs (ionTabsDidChange)="setCurrentTab()" [class.scanner-active]="isScannerActive$ | async">  
+<ion-tabs (ionTabsDidChange)="setCurrentTab()" [class.scanner-active]="isScannerActive$ | async" class="small-screen-tabs">  
   <ion-fab vertical="bottom" horizontal="center" translucent="true">
     <div class="fab-wrapper">
       <ion-fab-button (click)="navigate()">

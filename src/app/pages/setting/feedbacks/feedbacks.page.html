@@ -8,6 +8,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <div class="form-content">
   <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
     <ion-row class="ion-margin-bottom">
       <ion-col>
@@ -39,4 +40,5 @@
       <ion-button size="small" fill="clear" class="send-button" type="submit" [disabled]="!feedbackForm.valid">{{ 'SEND_BUTTON' | translate }}</ion-button>
     </div>
   </form>
+</div>
 </ion-content>
