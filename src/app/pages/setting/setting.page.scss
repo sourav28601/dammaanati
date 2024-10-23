@@ -11,7 +11,7 @@ ion-header {
       font-size: 1.56rem;
       font-weight: 400;
       text-align: center;
-      margin-right: 1.88rem;
+      margin-right: 17vw;
     }
   }
 }
@@ -71,7 +71,20 @@ ion-content {
     width: 1.667rem;
     height: 1.583rem;
   }
+  .logout-setting-icons {
+    width: 1.667rem;
+    height: 1.583rem;
+    transform: rotate(var(--logout-icon-rotation, 0deg));
+  }
+  
+  :root {
+    &[dir="rtl"] {
+      --logout-icon-rotation: 90deg;
+    }
+  }
+ 
 }
+
 
 
 

@@ -24,15 +24,16 @@
     </ion-text>
       <!-- </ion-item> -->
       <!-- <ion-item lines="none"> -->
-      <ion-label position="stacked">{{ 'CATEGORY' | translate }} <ion-text color="danger">*</ion-text></ion-label>
-      <ion-select formControlName="category_id" placeholder="{{ 'SELECT_CATEGORY' | translate }}">
-        <ion-select-option *ngFor="let category of categories" [value]="category.id.toString()">
-          {{ category.name }}
-        </ion-select-option>
-      </ion-select>
-      <ion-text color="danger" *ngIf="productForm.get('category_id').touched && productForm.get('category_id').hasError('required')">
-        {{ 'Category is required' }}
-      </ion-text>
+        <ion-label position="stacked">{{ 'CATEGORY' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+        <ion-select formControlName="category_id" placeholder="{{ 'SELECT_CATEGORY' | translate }}">
+          <ion-select-option *ngFor="let category of categories" [value]="category.id.toString()">
+            {{ category.name }}
+          </ion-select-option>
+        </ion-select>
+        <!-- <ion-text color="danger" *ngIf="productForm.get('category_id').hasError('required') && submit">
+          {{ 'Category is required' | translate }}
+        </ion-text> -->
+        
       <!-- </ion-item> -->
       <div style="display: flex;justify-content: flex-start;">
         <div class="shop_details">

@@ -11,38 +11,39 @@
       </ion-col>
     </ion-row>
   </ion-grid>  
-  <form [formGroup]="loginForm">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <ion-label>{{ 'REGISTERED_EMAIL' | translate }}</ion-label>
     <ion-item lines="full" class="ion-margin-top">
-      <ion-input type="email" formControlName="email" name="email" required placeholder="Enter Registered Email"></ion-input>
+      <ion-input type="email" formControlName="email" name="email" required placeholder="{{ 'ENTER_REGISTERED_EMAIL' | translate }}"></ion-input>
     </ion-item>
     <ion-text class="ion-text-left" color="danger"            
-      *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched">
-      <p class="error">{{ 'ENTER_PROPER_EMAIL' | translate }}</p>
+      *ngIf="(formControls.email.touched || isSubmitted) && formControls.email.errors">
+      <p class="error" *ngIf="formControls.email.errors?.['required']">{{ 'EMAIL_REQUIRED' | translate }}</p>
+      <p class="error" *ngIf="formControls.email.errors?.['email'] || formControls.email.errors?.['pattern']">{{ 'ENTER_PROPER_EMAIL' | translate }}</p>
     </ion-text>
     <ion-label>{{ 'PASSWORD' | translate }}</ion-label>      
     <ion-item lines="full" class="ion-margin-top">
+      <ion-input formControlName="password" [type]="isTypePassword ? 'password' : 'text'"
+        placeholder="{{ 'ENTER_PASSWORD' | translate }}"></ion-input>
       <ion-icon (click)="onChange()" [name]="isTypePassword ? 'eye-outline' : 'eye-off-outline'" slot="end"
         [color]="isTypePassword ? 'medium' : 'primary'"></ion-icon>
-      <ion-input formControlName="password" [type]="isTypePassword ? 'password' : 'text'"
-        placeholder="Enter Password"></ion-input>
     </ion-item>
     <ion-text class="ion-text-left" color="danger"
-      *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">
-      <p class="error" *ngIf="loginForm.get('password').invalid && loginForm.get('password').errors?.['required']">{{
-        'ENTER_PASSWORD' | translate }}</p>
+      *ngIf="(formControls.password.touched || isSubmitted) && formControls.password.errors">
+      <p class="error" *ngIf="formControls.password.errors?.['required']">{{ 'PASSWORD_REQUIRED' | translate }}</p>
+      <p class="error" *ngIf="formControls.password.errors?.['minlength']">{{ 'PASSWORD_MIN_LENGTH' | translate }}</p>
     </ion-text>
     <ion-row>
       <ion-col>
+        <ion-button fill="clear" style="float: right;" size="small" class="forgot-password-button"
+          routerLink="/forgot-password">{{ 'FORGOT_PASSWORD' | translate }}</ion-button>
       </ion-col>
-      <ion-button fill="clear" style="float: right;" size="small" class="forgot-password-button"
-        routerLink="/forgot-password"> {{ 'FORGOT_PASSWORD' | translate }}</ion-button>
     </ion-row>
     <ion-grid class="signin-button-grid">
       <ion-row class="ion-margin-top">
         <ion-col>
           <div class="button-container">
-            <ion-button class="get-started-button" (click)="onSubmit()">
+            <ion-button class="get-started-button" type="submit">
               <span>{{ 'SIGN_IN_BUTTON' | translate }}</span>
               <ion-img alt="" src="assets/arrow-1.svg" slot="end" class="arrow-img"></ion-img>
               <ion-img alt="" src="assets/spacer.svg" slot="end" class="circle_image"></ion-img>
@@ -59,11 +60,11 @@
             <ion-col class="ion-text-center" routerLink="/sign-up">
               <ion-text class="signup-text">{{ 'SIGN_UP' | translate }}</ion-text>
               <hr class="signup-hr"/>
-            </ion-col><ion-col size="2">
             </ion-col>
+            <ion-col size="2"></ion-col>
           </ion-row>
-        </ion-col><ion-col size="2">
         </ion-col>
+        <ion-col size="2"></ion-col>
       </ion-row>
     </ion-grid>
   </form>
