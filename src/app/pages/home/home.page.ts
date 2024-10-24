@@ -267,10 +267,6 @@ export class HomePage implements OnInit {
   //   this.utilService.stopScan();
   // }
   addCategory() {
-     if(this.categoryForm.value.name){
-      this.messageService.presentToast('Please Enter Catergory', 'danger');
-      return
-     }
     if (this.categoryForm.valid) {
       if (this.categoryForm.valid) {
         this.apiService.addCategory(this.categoryForm.value).subscribe({

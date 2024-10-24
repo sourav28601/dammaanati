@@ -11,11 +11,14 @@ capacitor-google-map {
     left: 0;
     right: 0;
     background:var(--ion-dark-background);
-    color: var(--ion-label-border);
+    color: var(--ion-label-color);
     ion-icon{
-      color: var(--ion-label-border);
+      color: var(--ion-label-color);
+    }
+    ion-item{
+      --background:var(--ion-dark-background);
     }
     ion-label{
-      color: var(--ion-label-border);
+      color: var(--ion-label-color);
     }
   }

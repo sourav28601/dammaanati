@@ -221,3 +221,4 @@ export class ProductDetailsPage implements OnInit {
       : '../../../assets/product-image.svg';
   }
 }
+

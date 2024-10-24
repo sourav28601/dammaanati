@@ -333,10 +333,9 @@ ion-modal#example-modal {
       --color:var(--ion-label-color);
     }
     ion-label{
-      --color:var(--ion-label-color);
+      --color:var(--ion-color-border);
     }
   }
-  
 }
 
 ion-modal#example-modal h1 {

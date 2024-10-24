@@ -269,9 +269,11 @@ ion-modal::part(backdrop) {
   background: rgb(105, 114, 127);
   opacity: 1;
 }
-
-ion-modal ion-toolbar {
-  --color: var(--ion-color-dark);
+.modal-title{
+  --color: var(--ion-label-color);
+}
+ion-modal ion-toolbar ion-title{
+  --color: var(--ion-label-color);
 }
 .auto-height-modal {
   --height: auto;

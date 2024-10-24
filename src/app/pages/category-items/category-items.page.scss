@@ -49,7 +49,12 @@ ion-content {
     --border-radius: 0.8125rem;
     margin-bottom: 1rem;
   }
-
+  .grid-background {
+    background: var(--ion-home-grid-background);
+    border-radius: 22px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
   ion-item {
     --background: transparent;
     --padding-start: 1rem;

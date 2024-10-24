@@ -100,9 +100,9 @@
   <ng-template>
     <ion-content class="ion-padding">
       <ion-toolbar>
-        <ion-title>{{ 'INVOICE_IMAGE' | translate }}</ion-title>
+        <ion-title class="modal-title" style="color:var(--ion-label-color)">{{ 'INVOICE_IMAGE' | translate }}</ion-title>
         <ion-buttons slot="end">
-          <ion-icon name="close-circle-outline" (click)="modal.dismiss()" size="large"></ion-icon>
+          <ion-icon name="close-circle-outline" (click)="modal.dismiss()" size="large" style="color:var(--ion-label-color)"></ion-icon>
         </ion-buttons>
       </ion-toolbar>
       <div class="imagecontainer">
@@ -124,9 +124,9 @@
   <ng-template>
     <ion-content class="ion-padding">
       <ion-toolbar>
-        <ion-title>{{ 'SHOP_PICTURE' | translate }}</ion-title>
+        <ion-title style="color:var(--ion-label-color)">{{ 'SHOP_PICTURE' | translate }}</ion-title>
         <ion-buttons slot="end">
-          <ion-icon name="close-circle-outline" (click)="shopPictureModal.dismiss()" size="large"></ion-icon>
+          <ion-icon name="close-circle-outline" (click)="shopPictureModal.dismiss()" size="large" style="color:var(--ion-label-color)"></ion-icon>
         </ion-buttons>
       </ion-toolbar>
 
