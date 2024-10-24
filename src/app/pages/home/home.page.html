@@ -170,7 +170,7 @@
         <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
           <ion-row>
             <ion-col>
-              <ion-label class="ion-margin-start">{{ 'CATEGORY' | translate }}</ion-label>
+              <ion-label class="ion-margin-start" style="color:var(--ion-label-color)">{{ 'CATEGORY' | translate }}</ion-label>
               <ion-item lines="full" class="ion-margin-top">
                 <ion-input type="text" formControlName="name" required
                   placeholder="{{ 'CATEGORY_NAME' | translate }}"></ion-input>
