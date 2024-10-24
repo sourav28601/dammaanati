@@ -18,6 +18,10 @@ ion-header {
 
 ion-content {
   --background: var(--ion-dark-background);
+  .form-content {
+    width: 50vw;
+    margin: 0 auto;
+  }
   ion-item {
     ion-title {
       font-size: 1.5625rem;

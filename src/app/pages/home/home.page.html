@@ -2,7 +2,7 @@
   <ion-menu side="end" contentId="main-content" type="overlay" class="large-screen-sidebar">
     <ion-content class="ion-padding">
       <ion-list>
-        <ion-item lines="none" routerLink="/home">
+        <ion-item lines="none" routerLink="/apptabs/tabs/home">
           <ion-icon name="home-outline" slot="start"></ion-icon>
           <ion-label>{{ 'HOME' | translate }}</ion-label>
         </ion-item>
@@ -54,13 +54,13 @@
     <ion-label>
       <ion-img src="../../../assets/damaanati-logo.svg" class="dammanati-logo"></ion-img>
     </ion-label>
-    <!-- <div class="profile-image-container" routerLink="/profile">
+    <div class="profile-image-container" routerLink="/profile">
       <img [src]="profilePicture ? profilePicture : '../../../assets/profile-icon.svg'" [alt]="'Profile picture'"
         class="profile-image" (error)="onProfileImgError($event)">
-    </div> -->
-    <div class="ion-page" id="main-content" class="profile-image-container">
+    </div>
+    <div class="ion-page" id="main-content" class="profile-image-container1">
       <ion-buttons slot="end">
-        <ion-menu-button style="color: white;--background:red"></ion-menu-button>
+        <ion-menu-button style="color: white;--background:linear-gradient(167.98deg, #9b40cd 0%, #4453ce 100%)"></ion-menu-button>
       </ion-buttons>
 </div>
     
@@ -90,7 +90,7 @@
       <ion-searchbar  placeholder="{{ 'SEARCH_PRODUCT' | translate }}" [(ngModel)]="searchTerm" (ionInput)="onSearch($event, 'products')" [debounce]="300"></ion-searchbar>
     <ion-item>
       <ion-label>{{ 'PRODUCT_VIEW' | translate }}</ion-label>
-      <ion-button fill="clear" (click)="startScan()">
+      <ion-button fill="clear" (click)="startScan()" class="qr-scanner">
         <ion-icon name="qr-code-outline"></ion-icon>
       </ion-button>
       <ion-icon name="list-outline" slot="end" (click)="ChangeUi('productsView')"></ion-icon>

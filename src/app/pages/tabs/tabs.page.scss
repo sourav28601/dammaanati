@@ -73,4 +73,13 @@ ion-tabs {
       }
     }
   }
+  @media (min-width: 769px) {
+    ion-fab, 
+    ion-tab-bar,
+    .fab-wrapper {
+      display: none !important;
+    }
+  }
+  
+
 }

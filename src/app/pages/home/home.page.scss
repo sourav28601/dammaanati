@@ -194,11 +194,15 @@ ion-content {
     :host ::ng-deep swiper-container {
       max-height: 220px;
     }
+
   }
   
   @media (min-width: 769px) and (max-width: 1024px) {
     :host ::ng-deep swiper-container {
       max-height: 250px;
+    }
+    ion-footer{
+      display: none !important;
     }
   }
   
@@ -549,4 +553,24 @@ ion-item-divider {
 .expiration-green {
   color: white;
   background: linear-gradient(167.98deg, #9b40cd 0%, #4453ce 100%);
+}
+
+@media (min-width: 769px) {
+  ion-footer{
+    display: none !important;
+  }
+  .profile-image-container{
+    display: none !important;
+  }
+  .qr-scanner{
+    display: none !important;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .ion-page{
+      display: none !important;
+  }
+  .profile-image-container1{
+    display: none !important;
+  }
 }

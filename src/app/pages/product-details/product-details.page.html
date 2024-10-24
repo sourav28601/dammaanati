@@ -7,6 +7,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding" fullscreen="true" mode="md">
+  <div class="form-content">
   <div class="card-headings">
     <ion-title>{{ product?.product_name }}</ion-title>
     <ion-buttons slot="end">
@@ -94,6 +95,7 @@
     </div>
   </div>
   <ion-item-divider></ion-item-divider>
+  </div>
 </ion-content>
 
 <ion-modal #modal trigger="view-invoice-modal" [cssClass]="'auto-size-modal'">
