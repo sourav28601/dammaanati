@@ -1,7 +1,11 @@
 ion-content {
   --background: var(--ion-background-gradient);
   .image_top {
-    margin-top: 15%;
+    margin-top: 10%;
+  }
+  .form-content {
+    width: 25vw;
+    margin: 0 auto;
   }
   h4 {
     margin-left: 7%;
@@ -20,7 +24,6 @@ ion-content {
     padding: 0 1.0625rem;
     margin-top: 0.625rem;
   }
-  
   .selected {
     --background: linear-gradient(90deg, #33374B 0%, #5B637B 100%);
   }

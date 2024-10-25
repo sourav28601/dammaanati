@@ -1,4 +1,5 @@
 <ion-content>
+  <div class="form-content">
   <ion-img class="image_top" src="assets/objects@2x.png" alt=""></ion-img>
   <h4>{{ 'SELECT_LANGUAGE' | translate }}</h4>
   <ion-button expand="block" class="langouge_button" (click)="switchLanguage('en')" [ngClass]="{'selected': currentLanguage === 'en', 'not-selected': currentLanguage !== 'en'}">
@@ -14,4 +15,5 @@
       <ion-img alt="" src="assets/spacer.svg" slot="end" class="circle_image"></ion-img>
     </ion-button>
   </div>
+</div>
 </ion-content>

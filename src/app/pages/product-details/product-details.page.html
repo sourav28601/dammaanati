@@ -107,7 +107,7 @@
           <ion-icon name="close-circle-outline" (click)="modal.dismiss()" size="large"></ion-icon>
         </ion-buttons>
       </ion-toolbar>
-      <div class="imagecontainer">
+      <div>
         <ng-container *ngIf="product?.invoice; else noInvoice">
           <img [src]="product?.invoice" (error)="handleImageError()" class="scrollable-image">
         </ng-container>
@@ -132,7 +132,7 @@
         </ion-buttons>
       </ion-toolbar>
 
-      <div class="imagecontainer">
+      <div>
         <!-- Preloaded image with condition -->
         <ng-container *ngIf="isImageLoaded; else noShopPicture">
           <img [src]="shopPictureUrl" (error)="handleShopPictureError()">

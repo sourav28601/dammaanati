@@ -30,21 +30,21 @@
           <ion-icon name="chatbubbles-outline" slot="start"></ion-icon>
           <ion-label>{{ 'SETTINGS_FEEDBACK' | translate }}</ion-label>
         </ion-item>
-        <ion-item lines="none" routerLink="/help-and-support">
+        <ion-item lines="none" routerLink="/help-and-support" >
           <ion-icon name="help-circle-outline" slot="start"></ion-icon>
           <ion-label>{{ 'SETTINGS_HELP_SUPPORT' | translate }}
             </ion-label>
         </ion-item>
-        <ion-item lines="none">
-          <ion-icon name="share-outline" slot="start"></ion-icon>
-          <ion-label>{{ 'SETTINGS_REFER' | translate }}</ion-label>
+        <ion-item lines="none" (click)="referApp()">
+          <ion-icon name="share-outline" slot="start" style="color: red;"></ion-icon>
+          <ion-label style="color: red;">{{ 'SETTINGS_REFER' | translate }}</ion-label>
         </ion-item>
       </ion-list>
   
       <!-- Sign-out button -->
-      <ion-item lines="none" class="ion-margin-top">
-        <ion-icon name="log-out-outline" slot="start"></ion-icon>
-        <ion-label class="sign-out-label">{{ 'SETTINGS_SIGN_OUT' | translate }}</ion-label>
+      <ion-item lines="none" class="ion-margin-top" (click)="signOut()">
+        <ion-icon name="log-out-outline" slot="start" style="color: red;"></ion-icon>
+        <ion-label class="sign-out-label" style="color: red;">{{ 'SETTINGS_SIGN_OUT' | translate }}</ion-label>
       </ion-item>
     </ion-content>
   </ion-menu>

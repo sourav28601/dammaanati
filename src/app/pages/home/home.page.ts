@@ -22,6 +22,7 @@ import { UtilService } from 'src/app/core/services/utils/utils.service';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import { Router, NavigationEnd,ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { Share } from '@capacitor/share';
 
 register();
 interface ApiResponse {
@@ -563,5 +564,49 @@ export class HomePage implements OnInit {
   getProductImageSrc(product: any): string {
     return product && product.product_picture ? product.product_picture : '../../../assets/product-image.svg';
   }
+  async referApp() {
+    const data = {
+      title: 'Dammanti - Your Warranty Management App',
+      text: 'I\'ve been using Dammanti to manage all my product warranties and it\'s been a game-changer! Never miss a warranty claim again. It\'s easy to use, sends timely reminders, and keeps all your warranty information in one place. Give it a try!',
+      url: 'https://dammanti.com',
+      dialogTitle: 'Share Dammanti with friends',
+    };
+    try {
+      await Share.share(data);
+      console.log('Successfully shared');
+    } catch (error) {
+      console.error('Error sharing:', error);
+    }
+  }
+
+  // async signOut() {
+  //   const shouldSignOut = await this.utilService.showConfirmation({
+  //     header: this.languageService.instant('SIGN_OUT'),
+  //     message: this.languageService.instant('SIGN_OUT_CONFIRMATION'),
+  //     confirmText: this.languageService.instant('SIGN_OUT'),
+  //     cancelText: this.languageService.instant('CANCEL'),
+  //   });
+  //   if (shouldSignOut) {
+  //     await Preferences.remove({ key: 'user_data' });
+  //     setTimeout(() => {
+  //       this.router.navigate(['/login']);
+  //       Preferences.clear();
+  //     }, 500);
+  //   }
+  // }
+  async signOut() {
+    const shouldSignOut = await this.utilService.showConfirmation({
+      header: this.languageService.instant('SIGN_OUT'),
+      message: this.languageService.instant('SIGN_OUT_CONFIRMATION'),
+      confirmText: this.languageService.instant('SIGN_OUT'),
+      cancelText: this.languageService.instant('STAY'),
+    });
+     if (shouldSignOut) {
+      localStorage.removeItem('user_data')
+      setTimeout(() => {
+        this.router.navigate(['/login'])
+      }, 500)
+     }
+   }
   
 }
