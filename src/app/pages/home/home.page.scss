@@ -118,7 +118,8 @@ ion-content {
     
     }
     .no-item-img{
-      height: 30vh;
+      height: 25vh;
+      mix-blend-mode: multiply;
     }
     p{
       color: var(--ion-color-border);

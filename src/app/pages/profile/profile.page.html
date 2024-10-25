@@ -17,7 +17,9 @@
 
   <div class="profile-container">
     <div class="avatar-placeholder">
-      <ion-img [src]="profileImage"></ion-img>
+      <ion-img [src]="profileImage" [src]="profileImage ? profileImage : '../../../assets/frame-1000009983.svg'" [alt]="'Profile picture'"></ion-img>
+      <!-- <img [src]="profilePicture ? profilePicture : '../../../assets/profile-icon.svg'" [alt]="'Profile picture'"
+      class="profile-image" (error)="onProfileImgError($event)"> -->
     </div>
     <div class="user_name">
       <ion-label>
