@@ -144,7 +144,7 @@ ion-content {
         display: flex;
         align-items: center;
         justify-content: center;
-        aspect-ratio: 1 / 1;
+        aspect-ratio: 2/ 1;
 
         img {
           max-width: 100%;
@@ -152,6 +152,7 @@ ion-content {
           width: auto;
           height: auto;
           object-fit: contain;
+          border-radius: 0.5rem;
         }
       }
 

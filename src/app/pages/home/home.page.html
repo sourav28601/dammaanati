@@ -26,7 +26,7 @@
   </ion-item> 
   <div class="grid-background">
     <ion-grid>
-      <ion-row *ngIf="products.length > 0; else noDataTemplate">
+      <ion-row *ngIf="!noProductsFound; else noProductsTemplate">
         <ng-container *ngFor="let product of products">
           <ion-col size="12" size-md="6" size-lg="3">
             <ion-card class="product-card" [routerLink]="['/product-details', product.id]">
@@ -55,15 +55,23 @@
       </ion-row>
     </ion-grid>
   </div>
- 
-  <ng-template #noDataTemplate>
+  <ng-template #noProductsTemplate>
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <ion-img src="../../../assets/product/no_item.jpg" class="no-item-img"></ion-img>
+        <p>{{ 'NO_PRODUCTS_FOUND' | translate }}</p>
+      </ion-col>
+    </ion-row>
+  </ng-template>
+  
+  <!-- <ng-template #noDataTemplate>
     <ion-row>
       <ion-col size="12" class="ion-text-center">
         <ion-img src="../../../assets/product/no_item.jpg" class="no-item-img"></ion-img>
         <p>{{ 'NO_ITEM' | translate }}</p>
       </ion-col>
     </ion-row>
-  </ng-template>
+  </ng-template> -->
 </div>
   <div *ngIf="categoryView">
       <ion-searchbar  placeholder="{{ 'SEARCH_CATEGORY' | translate }}" [(ngModel)]="searchTerm" (ionInput)="onSearch($event, 'categories')" [debounce]="300"></ion-searchbar>
@@ -73,7 +81,7 @@
     </ion-item>
     <div class="grid-background">
       <ion-grid>
-        <ion-row>
+        <ion-row *ngIf="!noCategoriesFound; else noCategoriesTemplate">
           <ion-col size="6" *ngFor="let category of categories">
             <div class="category-card" [routerLink]="['/category-items', category.id, category.name]">
               <div class="category_name">
@@ -123,6 +131,14 @@
       </ng-template>
     </ion-modal>
   </div>
+  <ng-template #noCategoriesTemplate>
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <ion-img src="../../../assets/product/no_item.jpg" class="no-item-img"></ion-img>
+        <p>{{ 'NO_CATEGORIES_FOUND' | translate }}</p>
+      </ion-col>
+    </ion-row>
+  </ng-template>
  
 </ion-content>
 

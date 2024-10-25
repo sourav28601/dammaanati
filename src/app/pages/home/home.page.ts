@@ -67,6 +67,9 @@ export class HomePage implements OnInit {
   content_visibility = '';
   isScannerActive = false;
   navigationSubscription: any;
+  noProductsFound = false;
+  noCategoriesFound = false;
+
   constructor(
     private apiService: ApiService,
     private router: Router,
@@ -299,6 +302,49 @@ export class HomePage implements OnInit {
     this.modalCtrl.dismiss();
   }
 
+  // loadProducts(page: number = 1) {
+  //   if (this.loading || (page > 1 && page > this.totalPages)) return;
+  //   this.loading = true;
+  //   this.apiService
+  //     .getAllProduct(page, this.searchTerm)
+  //     .pipe(
+  //       tap((response: ApiResponse) => {
+  //         this.currentPage = response.data.pagination.currentPage;
+  //         this.totalPages = response.data.pagination.totalPages;
+  //       }),
+  //       map((response: ApiResponse) => response.data.products)
+  //     )
+  //     .subscribe({
+  //       next: (newProducts) => {
+  //         if (page === 1) {
+  //           this.products = newProducts;
+  //           if(this.products.length === 0){
+  //             this.noResultsFound = true;
+  //           }else{
+  //             this.noResultsFound=false
+  //           }
+  //         } else {
+  //           this.products = [...this.products, ...newProducts];
+  //           if(this.products.length === 0){
+  //             this.noResultsFound =true
+  //           }else{
+  //             this.noResultsFound=false
+  //           }
+           
+  //         }
+  //         this.processProducts();
+  //         this.loading = false;
+  //       },
+  //       error: (error) => {
+       
+  //           this.noResultsFound = true;
+          
+         
+  //         console.error('Error loading products:', error);
+  //         this.loading = false;
+  //       },
+  //     });
+  // }
   loadProducts(page: number = 1) {
     if (this.loading || (page > 1 && page > this.totalPages)) return;
     this.loading = true;
@@ -315,33 +361,22 @@ export class HomePage implements OnInit {
         next: (newProducts) => {
           if (page === 1) {
             this.products = newProducts;
-            if(this.products.length === 0){
-              this.noResultsFound = true;
-            }else{
-              this.noResultsFound=false
-            }
+            this.noProductsFound = this.products.length === 0;
           } else {
             this.products = [...this.products, ...newProducts];
-            if(this.products.length === 0){
-              this.noResultsFound =true
-            }else{
-              this.noResultsFound=false
-            }
-           
+            this.noProductsFound = this.products.length === 0;
           }
           this.processProducts();
           this.loading = false;
         },
         error: (error) => {
-       
-            this.noResultsFound = true;
-          
-         
           console.error('Error loading products:', error);
+          this.noProductsFound = true;
           this.loading = false;
         },
       });
   }
+
   
   loadMore(event: any) {
     this.loadProducts(this.currentPage + 1);
@@ -375,26 +410,36 @@ export class HomePage implements OnInit {
     this.searchTerm = event.target.value.toLowerCase();
     if (type === 'products') {
       this.currentPage = 1;
+      this.noProductsFound = false; // Reset before new search
       this.loadProducts();
     } else if (type === 'categories') {
+      this.noCategoriesFound = false; // Reset before new search
       this.loadCategories();
     }
   }
 
+  clearSearch() {
+    this.searchTerm = '';
+    this.noProductsFound = false;
+    this.noCategoriesFound = false;
+    this.loadProducts();
+    this.loadCategories();
+  }
   loadCategories() {
     this.apiService.getAllCategory(this.searchTerm).subscribe({
       next: (response: any) => {
         this.categories = response.data;
+        this.noCategoriesFound = this.categories.length === 0;
       },
       error: (error) => {
         console.error('Error loading categories:', error);
+        this.noCategoriesFound = true;
         this.loading = false;
       },
     });
   }
-  clearSearch() {
-    this.searchTerm = '';
-  }
+
+
   getAds() {
     this.apiService.getAllAds().subscribe({
       next: (response: any) => {

@@ -214,5 +214,8 @@
   "VIEW_SHOP_PICTURE":"View Shop Picture",
   "NO_SHOP_PICTURE_AVAILABLE":"No Shop Picture Available",
   "DARK_MODE":"Dark Mode",
-  "NO_ITEM":"There are no items yet Press + to add a new item"
+  "NO_ITEM":"There are no items yet Press + to add a new item",
+    "NO_PRODUCTS_FOUND": "No products found",
+  "NO_CATEGORIES_FOUND": "No categories found",
+  "PRFER_NOT_TO_SAY": "Prefer not to say"
 }

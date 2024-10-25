@@ -44,7 +44,7 @@ export class SignUpPage implements OnInit {
   }
 
   initCountriesAndCities() {
-    const desiredCountries = ['SA', 'AE', 'QA', 'KW', 'BH', 'OM', 'IN'];
+    const desiredCountries = ['SA', 'AE', 'QA', 'KW', 'BH', 'OM'];
     this.countries = Country.getAllCountries().filter(country => 
       desiredCountries.includes(country.isoCode)
     );

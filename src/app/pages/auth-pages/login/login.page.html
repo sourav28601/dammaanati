@@ -22,8 +22,12 @@
     </ion-text>
     <ion-label>{{ 'PASSWORD' | translate }}</ion-label>      
     <ion-item lines="full" class="ion-margin-top">
-      <ion-icon (click)="onChange()" [name]="isTypePassword ? 'eye-outline' : 'eye-off-outline'" slot="end"
-        [color]="isTypePassword ? 'medium' : 'primary'"></ion-icon>
+      <ion-icon 
+        (click)="onChange()" 
+        [name]="!isTypePassword ? 'eye-outline' : 'eye-off-outline'" 
+        slot="end"
+        [color]="!isTypePassword ? 'medium' : 'primary'">
+      </ion-icon>
       <ion-input formControlName="password" [type]="isTypePassword ? 'password' : 'text'"
         placeholder="Enter Password"></ion-input>
     </ion-item>

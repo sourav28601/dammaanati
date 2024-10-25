@@ -69,8 +69,14 @@
     <ion-item lines="full">
       <ion-input [type]="isTypePassword ? 'password' : 'text'" formControlName="password" required
         placeholder="Enter Password"></ion-input>
-      <ion-icon (click)="togglePasswordVisibility()" [name]="isTypePassword ? 'eye-outline' : 'eye-off-outline'"
-        slot="end" [color]="isTypePassword ? 'medium' : 'primary'"></ion-icon>
+      <!-- <ion-icon (click)="togglePasswordVisibility()" [name]="isTypePassword ? 'eye-outline' : 'eye-off-outline'"
+        slot="end" [color]="isTypePassword ? 'medium' : 'primary'"></ion-icon> -->
+        <ion-icon 
+        (click)="togglePasswordVisibility()" 
+        [name]="!isTypePassword ? 'eye-outline' : 'eye-off-outline'" 
+        slot="end"
+        [color]="!isTypePassword ? 'medium' : 'primary'">
+      </ion-icon>
     </ion-item>
     <ion-text class="ion-text-left" color="danger"
       *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
@@ -81,9 +87,15 @@
     <ion-item lines="full">
       <ion-input [type]="isTypeConfirmPassword ? 'password' : 'text'" formControlName="confirmPassword" required
         placeholder="Confirm Password"></ion-input>
-      <ion-icon (click)="toggleConfirmPasswordVisibility()"
+      <!-- <ion-icon (click)="toggleConfirmPasswordVisibility()"
         [name]="isTypeConfirmPassword ? 'eye-outline' : 'eye-off-outline'" slot="end"
-        [color]="isTypeConfirmPassword ? 'medium' : 'primary'"></ion-icon>
+        [color]="isTypeConfirmPassword ? 'medium' : 'primary'"></ion-icon> -->
+        <ion-icon 
+        (click)="toggleConfirmPasswordVisibility()" 
+        [name]="!isTypeConfirmPassword ? 'eye-outline' : 'eye-off-outline'" 
+        slot="end"
+        [color]="!isTypeConfirmPassword ? 'medium' : 'primary'">
+      </ion-icon>
     </ion-item>
     <ion-text class="ion-text-left" color="danger"
       *ngIf="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched">

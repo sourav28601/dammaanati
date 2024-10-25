@@ -22,7 +22,7 @@
   <ion-card class="product-card">
     <ion-card-content class="image-container">
       <ion-img [src]="getProductImageSrc(product)" [alt]="product?.product_name || 'Product image'"
-        (ionError)="onImgError($event)">
+        (ionError)="onImgError($event)" style="aspect-ratio: 2 / 1;">
       </ion-img>
     </ion-card-content>
   </ion-card>
