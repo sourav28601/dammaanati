@@ -59,7 +59,7 @@
   "SAVE": "Save",
   "ENTER_EMAIL_VERIFICATION_CODE": "Please Enter Your Email Address To Receive a Verification Code",
   "ENTER_YOUR_EMAIL": "Enter your email",
-  "ENTER_PROPER_EMAIL": "Looks like there's a typo in your email. Can you check it?",
+  "ENTER_PROPER_EMAIL": "Invalid email",
   "ENTER_NAME": "Please Enter Your Name",
   "ENTER_CITY_COUNTRY": "Please Enter Your City And Country",
   "ENTER_VALID_PASSWORD": "Pro tip: Mix capital letters, numbers, and special characters for a strong password!",

@@ -58,7 +58,7 @@
   "NEW_PASSWORD": "كلمة المرور الجديدة",
   "SAVE": "حفظ",
   "ENTER_YOUR_EMAIL": "أدخل بريدك الإلكتروني",
-  "ENTER_PROPER_EMAIL": "*يرجى إدخال عنوان بريد إلكتروني صحيح",
+  "ENTER_PROPER_EMAIL": "البريد الإلكتروني غير صالح",
   "ENTER_NAME": "يرجى إدخال اسمك",
   "ENTER_CITY_COUNTRY": "يرجى إدخال مدينتك وبلدك",
   "ENTER_VALID_PASSWORD": "يرجى إدخال كلمة مرور صحيحة",
