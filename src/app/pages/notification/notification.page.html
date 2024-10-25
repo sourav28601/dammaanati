@@ -33,7 +33,7 @@
     <ion-item *ngIf="selectedNotificationPreference === 'other'">
       <ion-label position="floating">{{ 'ENTER_DAYS' | translate }}</ion-label>
       <ion-input type="number" [(ngModel)]="customDays" (ionInput)="onCustomDaysInput($event)" maxlength="3" min="1"
-        max="365"></ion-input>
+        max="365" style="color:var(--ion-label-color)"></ion-input>
     </ion-item>
     <ion-text color="danger" *ngIf="showErrorMessage">
       <p>{{ errorMessage }}</p>
