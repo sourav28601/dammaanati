@@ -14,7 +14,7 @@
   <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
     <ion-label>{{ 'NAME' | translate }}</ion-label>
     <ion-item lines="full">
-      <ion-input type="text" formControlName="name" required placeholder="Enter Your Name"></ion-input>
+      <ion-input type="text" formControlName="name" required placeholder="{{ 'ENTER_YOUR_NAME' | translate }}"></ion-input>
     </ion-item>
     <ion-text class="ion-text-left" color="danger"
       *ngIf="!signupForm.get('name')?.valid && signupForm.get('name')?.touched">
@@ -24,9 +24,9 @@
     <ion-item>
       <ion-select formControlName="gender" class="never-flip" toggleIcon="caret-down-sharp" interface="popover"
         placeholder="{{ 'SELECT_GENDER' | translate }}">
-        <ion-select-option value="Male">Male</ion-select-option>
-        <ion-select-option value="Female">Female</ion-select-option>
-        <ion-select-option value="Prefer not to say">Prefer not to say</ion-select-option>
+        <ion-select-option value="Male">{{ 'MALE' | translate }}</ion-select-option>
+        <ion-select-option value="Female">{{ 'FEMALE' | translate }}</ion-select-option>
+        <!-- <ion-select-option value="Prefer not to say">{{ 'PRFER_NOT_TO_SAY' | translate }}</ion-select-option> -->
       </ion-select>
     </ion-item>
     <ion-row>
@@ -58,7 +58,7 @@
     </ion-text>
     <ion-label>{{ 'EMAIL_ADDRESS' | translate }}</ion-label>
     <ion-item lines="full">
-      <ion-input type="email" formControlName="email" required placeholder="Enter Your Email"></ion-input>
+      <ion-input type="email" formControlName="email" required placeholder="{{ 'ENTER_YOUR_EMAIL' | translate }}"></ion-input>
     </ion-item>
     <ion-text class="ion-text-left" color="danger"
       *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched">
@@ -68,7 +68,7 @@
     <ion-label>{{ 'PASSWORD' | translate }}</ion-label>
     <ion-item lines="full">
       <ion-input [type]="isTypePassword ? 'password' : 'text'" formControlName="password" required
-        placeholder="Enter Password"></ion-input>
+      placeholder="{{ 'ENTER_PASSWORD' | translate }}"></ion-input>
       <!-- <ion-icon (click)="togglePasswordVisibility()" [name]="isTypePassword ? 'eye-outline' : 'eye-off-outline'"
         slot="end" [color]="isTypePassword ? 'medium' : 'primary'"></ion-icon> -->
         <ion-icon 
@@ -86,7 +86,7 @@
     <ion-label>{{ 'CONFIRM_PASSWORD' | translate }}</ion-label>
     <ion-item lines="full">
       <ion-input [type]="isTypeConfirmPassword ? 'password' : 'text'" formControlName="confirmPassword" required
-        placeholder="Confirm Password"></ion-input>
+      placeholder="{{ 'ENTER_CONFIRM_PASSWORD' | translate }}"></ion-input>
       <!-- <ion-icon (click)="toggleConfirmPasswordVisibility()"
         [name]="isTypeConfirmPassword ? 'eye-outline' : 'eye-off-outline'" slot="end"
         [color]="isTypeConfirmPassword ? 'medium' : 'primary'"></ion-icon> -->

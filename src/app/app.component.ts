@@ -2,11 +2,31 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 declare var window: any;
-import { Keyboard } from '@capacitor/keyboard';
+import { Keyboard, KeyboardResize, KeyboardStyle } from '@capacitor/keyboard';
 import { Location } from "@angular/common";
 import { FcmService } from './core/services/fcm/fcm.service';
 import { LanguageService } from './core/services/language/language.service';
 import { UtilService } from './core/services/utils/utils.service';
+const config = {
+    plugins: {
+        Keyboard: {
+            mode: KeyboardResize.Ionic,       // Use 'mode' here instead of 'resize'
+            style: KeyboardStyle.Dark,        // Set the style separately
+            resizeOnFullScreen: true          // Configure this separately if on Android
+        }
+    }
+};
+
+// Set keyboard resize mode
+Keyboard.setResizeMode({ mode: config.plugins.Keyboard.mode });
+
+// Set keyboard style (for iOS)
+Keyboard.setStyle({ style: config.plugins.Keyboard.style });
+
+// Handle Android resizeOnFullScreen if required
+if (config.plugins.Keyboard.resizeOnFullScreen) {
+    // Android-specific behavior if needed
+}
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -25,6 +45,7 @@ isScannerActive$:any;
         document.body.classList.remove('scanner-active');
       }
     });
+ 
   this.platform.backButton.subscribeWithPriority(10, () => {
       console.log('Handler back button was called!');
       this.location.back();

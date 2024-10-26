@@ -93,35 +93,16 @@ export class VerifyEmailPage implements OnInit {
     });
   }
   resendOTP() {
-    // const data = { email: this.email };
-    const data1 ={ newEmail: this.email };
-    if (this.page === 'account-settings') {
-      console.log("(this.page-----------",this.page)
-      this.apiService.changeUserEmail(data1).subscribe(
-        {
-          next: (response: any) => {
-            this.messageService.presentToast(response.message, 'success');
-          },
-          error: (error: any) => {
-            console.log("error-----", error);
-            const errorMessage = error.error?.message;
-            this.messageService.presentToast(errorMessage,'danger');
-          },
-        }
-      );
-    }else{
-      const data = { email: this.email };
-      this.apiService.resendOTP(data).subscribe({
-        next: (response: any) => {
-          this.messageService.presentToast(response.message || 'OTP resend successfully', 'success');
-        },
-        error: (error: any) => {
-          const errorMessage = error.error?.error || 'Failed to send otp!';
-          this.messageService.presentToast(errorMessage, 'danger');
-        },
-      });
-    }
-   
+    const data = { email: this.email };
+    this.apiService.resendOTP(data).subscribe({
+      next: (response: any) => {
+        this.messageService.presentToast(response.message || 'OTP resend successfully', 'success');
+      },
+      error: (error: any) => {
+        const errorMessage = error.error?.error || 'Failed to send otp!';
+        this.messageService.presentToast(errorMessage, 'danger');
+      },
+    });
   }
 
   onOtpChange(otp: string) {

@@ -177,10 +177,14 @@ export class ProductDetailsPage implements OnInit {
 
   async deleteProductDetail(productId: string) {
     const shouldDelete = await this.utilsService.showConfirmation({
-      header: '',
-      message: `Do you want to delete this Product?`,
-      confirmText: 'Delete',
-      cancelText: 'Cancel',
+      // header: 'Are You Sure ?',
+      // message: `Do you want to delete this Product?`,
+      // confirmText: 'Delete',
+      // cancelText: 'Cancel',
+      header: this.languageService.instant('ARE_YOU_SURE'),
+      message: this.languageService.instant('DELETE_PRODUCT_MESSAGE'),
+      confirmText: this.languageService.instant('DELETE_PRODUCT_CONFIRM'),
+      cancelText: this.languageService.instant('DELETE_PRODUCT_CANCEL'),
     });
 
     if (shouldDelete) {

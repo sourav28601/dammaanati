@@ -20,7 +20,8 @@
       <ion-label position="stacked">{{ 'PRODUCT_NAME' | translate }} <ion-text color="danger">*</ion-text></ion-label>
     <ion-input formControlName="product_name" placeholder="{{ 'PRODUCT_NAME_PLACEHOLDER' | translate }}"></ion-input>
     <ion-text color="danger" *ngIf="productForm.get('product_name').touched && productForm.get('product_name').hasError('required')">
-      {{ 'Product name is required' }}
+      {{ 'PRODUCT_NAME_REQUIRED' | translate }}
+      
     </ion-text>
       <!-- </ion-item> -->
       <!-- <ion-item lines="none"> -->
@@ -83,7 +84,7 @@
         <ion-label position="stacked">{{ 'PURCHASE_DATE' | translate }}<span class="optional-2">({{ 'OPTIONAL' | translate }})</span></ion-label>
         <input type="date" formControlName="purchase_date" class="date_input" (change)="formatDate($event, 'purchase_date')" maxlength="10" [min]="getMinDate()" />
         <ion-text color="danger" *ngIf="productForm.get('purchase_date').touched && productForm.get('purchase_date').hasError('required')">
-          {{ 'Purchase date is required' }}
+          {{ 'PURCHASE_DATE_REQUIRED' | translate }}
         </ion-text>
       <!-- </ion-item> -->
     </ion-item-group>
@@ -94,14 +95,15 @@
       <!-- <ion-item lines="none"> -->
         <ion-label position="stacked">{{ 'WARRANTY_PERIOD' | translate }} <ion-text color="danger">*</ion-text></ion-label>
         <ion-select formControlName="time_period" placeholder="6 Months">
-          <ion-select-option value="1">1 Month</ion-select-option>
-          <ion-select-option value="3">3 Months</ion-select-option>
-          <ion-select-option value="6">6 Months</ion-select-option>
-          <ion-select-option value="12">12 Months</ion-select-option>
-          <ion-select-option value="24">24 Months</ion-select-option>
+          <ion-select-option value="1">{{ '1 Month' | translate }}</ion-select-option>
+          <ion-select-option value="3">{{ '3 Months' | translate }}</ion-select-option>
+          <ion-select-option value="6">{{ '6 Months' | translate }}</ion-select-option>
+          <ion-select-option value="12">{{ '12 Months' | translate }}</ion-select-option>
+          <ion-select-option value="24">{{ '24 Months' | translate }}</ion-select-option>
+          
         </ion-select>
         <ion-text color="danger" *ngIf="productForm.get('time_period').touched && productForm.get('time_period').hasError('required')">
-          {{ 'Warranty period is required' }}
+          {{ 'WARRANTY_PERIOD_REQUIRED' | translate }}
         </ion-text>
       <!-- </ion-item> -->
       <div class="calender-main-div">
@@ -109,14 +111,15 @@
           <ion-label position="stacked">{{ 'WARRANTY_START_DATE' | translate }}</ion-label>
           <input type="date" formControlName="warranty_start_date" class="date_input" (change)="formatDate($event, 'warranty_start_date')" maxlength="10" [min]="getMinDate()" required />
           <ion-text color="danger" *ngIf="productForm.get('warranty_start_date').touched && productForm.get('warranty_start_date').hasError('required')">
-            {{ 'Warranty start date is required' }}
+            {{ 'WARRANTY_START_DATE_REQUIRED' | translate }}
+          
           </ion-text>
         </div>
         <div>
           <ion-label position="stacked">{{ 'WARRANTY_END_DATE' | translate }}</ion-label>
           <input type="date" formControlName="warranty_end_date" class="date_input" (change)="formatDate($event, 'warranty_end_date')" maxlength="10" [min]="getMinDate()" required readonly />
           <ion-text color="danger" *ngIf="productForm.get('warranty_end_date').touched && productForm.get('warranty_end_date').hasError('required')">
-            {{ 'Warranty end date is required' }}
+            {{ 'WARRANTY_END_DATE_REQUIRED' | translate }}
           </ion-text>
         </div>
       </div>
@@ -147,17 +150,17 @@
             <ion-label position="stacked">{{ 'SHOP_NAME' | translate }} <ion-text color="danger">*</ion-text></ion-label>
             <ion-input formControlName="shop_name" placeholder="{{ 'SHOP_NAME_PLACEHOLDER' | translate }}"></ion-input>
             <ion-text color="danger" *ngIf="productForm.get('shop_name').touched && productForm.get('shop_name').hasError('required')">
-              {{ 'Shop name is required' }}
+              {{ 'SHOP_NAME_REQUIRED' | translate }}
             </ion-text>
           </div>
           <div class="input_box">
             <ion-label position="stacked">{{ 'CONTACT_PERSON_NAME' | translate }} <ion-text color="danger">*</ion-text></ion-label>
             <ion-input formControlName="warranty_contact_person_name" placeholder="{{ 'CONTACT_PERSON_NAME_PLACEHOLDER' | translate }}"></ion-input>
             <ion-text color="danger" *ngIf="productForm.get('warranty_contact_person_name').touched && productForm.get('warranty_contact_person_name').hasError('required')">
-              {{ 'Contact person name is required' }}
+              {{ 'CONTACT_PERSON_NAME_REQUIRED' | translate }}
             </ion-text>
             <ion-text color="danger" *ngIf="productForm.get('warranty_contact_person_name').touched && productForm.get('warranty_contact_person_name').hasError('minlength')">
-              {{ 'Contact person name must be at least 3 characters long' }}
+              {{ 'CONTACT_PERSON_NAME_MIN_LENGTH' | translate }}
             </ion-text>
           </div>
         </div>
@@ -174,10 +177,10 @@
               (ionInput)="validatePhoneNumber($event)">
             </ion-input>
             <ion-text color="danger" *ngIf="productForm.get('warranty_contact_person_number').touched && productForm.get('warranty_contact_person_number').hasError('required')">
-              {{ 'Contact number is required' | translate }}
+              {{ 'CONTACT_NUMBER_REQUIRED' | translate }}
             </ion-text>
             <ion-text color="danger" *ngIf="productForm.get('warranty_contact_person_number').touched && productForm.get('warranty_contact_person_number').hasError('pattern')">
-              {{ 'Contact number should be between 10 to 15 digits' | translate }}
+              {{ 'CONTACT_NUMBER_LENGTH' | translate }}
             </ion-text>
           </div>
           
@@ -201,7 +204,7 @@
             <ion-label position="stacked">{{ 'NOTES' | translate }}<ion-text color="danger">*</ion-text></ion-label>
             <ion-textarea formControlName="notes" placeholder="{{ 'NOTES_PLACEHOLDER' | translate }}"></ion-textarea>
             <ion-text color="danger" *ngIf="productForm.get('notes').touched && productForm.get('notes').hasError('required')">
-              {{ 'Notes are required' | translate }}
+              {{ 'NOTES_REQUIRED' | translate }}
             </ion-text>
           </div>
         <!-- </div> -->

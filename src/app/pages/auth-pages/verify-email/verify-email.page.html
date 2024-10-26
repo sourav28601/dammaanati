@@ -29,7 +29,19 @@
   <form [formGroup]="otpForm" (ngSubmit)="verifyOTP()">
     <ion-grid class="signin-button-grid">
       <ion-row class="ion-justify-content-center ion-margin-top">
-        <ng-otp-input class="ng_otp_input" type="number" [(ngModel)]="otp" (onInputChange)="onOtpChange($event)" [ngModelOptions]="{standalone: true}" [config]="{length:4}" ngDefaultControl></ng-otp-input>
+        <ng-otp-input
+        class="ng_otp_input"
+        [(ngModel)]="otp"
+        (onInputChange)="onOtpChange($event)"
+        [ngModelOptions]="{standalone: true}"
+        [config]="{
+          length: 4,
+          inputClass: 'otp-input-field',
+          allowNumbersOnly: true,
+          isPasswordInput: false
+        }"
+        ngDefaultControl>
+      </ng-otp-input>
       </ion-row>
     </ion-grid>
   

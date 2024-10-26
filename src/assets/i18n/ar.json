@@ -13,7 +13,6 @@
   "PASSWORD_MISMATCH_ERROR": "* كلمات المرور غير متطابقة",
   "PERSONAL_DETAILS": "تفاصيل شخصية",
   "NAME": "الاسم",
-  
   "ENTER_YOUR_NAME": "أدخل اسمك",
   "NAME_ERROR": "* يرجى إدخال اسم صالح",
   "SELECT_GENDER": "اختر الجنس",
@@ -218,5 +217,27 @@
    "NO_ITEM":"لا توجد عناصر حتى الآن اضغط على + لإضافة عنصر جديد",
   "NO_PRODUCTS_FOUND": "لم يتم العثور على منتجات",
   "NO_CATEGORIES_FOUND": "لم يتم العثور على فئات",
-  "PRFER_NOT_TO_SAY": "يفضل عدم القول"
+  "PRFER_NOT_TO_SAY": "يفضل عدم القول",
+  "ARE_YOU_SURE": "هل أنت متأكد؟",
+  "DELETE_PRODUCT_MESSAGE": "هل تريد حذف هذا المنتج؟",
+  "DELETE_PRODUCT_CONFIRM": "يمسح",
+  "DELETE_PRODUCT_CANCEL": "يلغي",
+    "PRODUCT_NAME_REQUIRED": "اسم المنتج مطلوب",
+    "WARRANTY_PERIOD_REQUIRED": "فترة الضمان مطلوبة",
+    "WARRANTY_START_DATE_REQUIRED": "تاريخ بدء الضمان مطلوب",
+    "WARRANTY_END_DATE_REQUIRED": "تاريخ انتهاء الضمان مطلوب",
+    "SHOP_NAME_REQUIRED": "اسم المتجر مطلوب",
+    "CONTACT_PERSON_NAME_REQUIRED": "اسم الشخص المسؤول مطلوب",
+    "CONTACT_PERSON_NAME_MIN_LENGTH": "يجب أن يكون اسم الشخص المسؤول 3 أحرف على الأقل",
+    "CONTACT_NUMBER_REQUIRED": "رقم الاتصال مطلوب",
+    "CONTACT_NUMBER_LENGTH": "يجب أن يكون رقم الاتصال بين 10 و 15 رقمًا",
+    "NOTES_REQUIRED": "الملاحظات مطلوبة",
+    "PURCHASE_DATE_REQUIRED": "تاريخ الشراء مطلوب",
+      "1 Month": "1 شهر",
+      "3 Months": "3 أشهر",
+      "6 Months": "6 أشهر",
+      "12 Months": "12 شهر",
+      "24 Months": "24 شهر"
+
+
 }

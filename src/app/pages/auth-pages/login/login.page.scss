@@ -1,14 +1,12 @@
 ion-content {
-    --padding-bottom: 120px; // Adjust this value based on your footer height
-
-  
+  --keyboard-offset: 0px;
+  --scroll-padding-bottom: 100px; /* Adjust if needed */
   ion-footer {
     background: transparent;
     ion-grid {
       padding: 0;
     }
   }
-  
   .signin-button-grid {
     // background: var(--ion-background-color);
     padding: 16px;

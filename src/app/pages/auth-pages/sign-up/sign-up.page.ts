@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Country, City, ICountry, ICity } from 'country-state-city';
@@ -8,7 +8,8 @@ import { LanguageService } from 'src/app/core/services/language/language.service
  import { Geolocation } from '@capacitor/geolocation';
 import { HttpClient } from '@angular/common/http';
 import { LoaderService } from 'src/app/core/services/loader/loader.service';
-
+import { Keyboard } from '@capacitor/keyboard';
+import { IonContent } from '@ionic/angular';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.page.html',
@@ -21,7 +22,8 @@ export class SignUpPage implements OnInit {
   countries: ICountry[] = [];
   citiesByCountry: { [key: string]: ICity[] } = {};
   fcmToken: string;
-
+  @ViewChild(IonContent, { static: false }) content: IonContent;
+  keyboardOpen = false;
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
@@ -42,7 +44,12 @@ export class SignUpPage implements OnInit {
       this.getCurrentLocation();
     });
   }
-
+ ionViewDidEnter() {
+    // Scroll to bottom to avoid keyboard overlaying the form
+    Keyboard.addListener('keyboardWillShow', () => {
+      this.content.scrollToBottom(300);
+    });
+  }
   initCountriesAndCities() {
     const desiredCountries = ['SA', 'AE', 'QA', 'KW', 'BH', 'OM'];
     this.countries = Country.getAllCountries().filter(country => 
