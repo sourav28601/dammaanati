@@ -59,9 +59,6 @@
     <ion-img src="../../../assets/setting-icons/sign-out.svg" slot="start" class="setting-icons"></ion-img>
     <ion-label class="sign-out-label">{{ 'DELETE_ACCOUNT' | translate }}</ion-label>
   </ion-item>
-
-
-
 </ion-content>
 
 <ion-modal id="example-modal" #modal #emailModal>
@@ -90,7 +87,7 @@
       </ion-row>
       <div class="ion-text-end ion-margin-top ion-margin-bottom">
         <ion-button size="small" fill="clear" class="save-changes-button" type="submit"
-          [disabled]="!changeEmailForm.valid">{{ 'SAVE_CHANGES' | translate }}</ion-button>
+          [disabled]="!changeEmailForm.valid" style="color:var(--ion-label-color)">{{ 'SAVE_CHANGES' | translate }}</ion-button>
       </div>
     </form>
   </ng-template>
@@ -156,7 +153,7 @@
       </ion-row>
       <div class="ion-text-end ion-margin-top ion-margin-bottom">
         <ion-button size="small" fill="clear" class="save-changes-button" type="submit"
-        [disabled]="!changePasswordForm.valid">{{ 'SAVE_CHANGES' | translate }}</ion-button>
+        [disabled]="!changePasswordForm.valid" style="color:var(--ion-label-color)">{{ 'SAVE_CHANGES' | translate }}</ion-button>
       </div>
     </form>
     <!-- <form class="email-form" style="background-color: white;" [formGroup]="changePasswordForm"

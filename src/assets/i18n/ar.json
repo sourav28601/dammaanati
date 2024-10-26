@@ -1,4 +1,5 @@
 {
+  "ENTER_VALID_NAME":"أدخل اسمًا صالحًا",
   "SELECT_LANGUAGE": "اختر اللغة",
   "ENGLISH": "English",
   "ARABIC": "العربية",
@@ -60,8 +61,8 @@
   "ENTER_PROPER_EMAIL": "البريد الإلكتروني غير صالح",
   "ENTER_NAME": "يرجى إدخال اسمك",
   "ENTER_CITY_COUNTRY": "يرجى إدخال مدينتك وبلدك",
-  "ENTER_VALID_PASSWORD": "يرجى إدخال كلمة مرور صحيحة",
-  "ENTER_VALID_EMAIL": "يرجى إدخال عنوان بريد إلكتروني صالح",
+  "ENTER_VALID_PASSWORD": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل، وحرف خاص واحد، ورقم واحد",
+  "ENTER_VALID_EMAIL":"أدخل بريدًا إلكترونيًا صالحًا",
   "PASSWORDS_DO_NOT_MATCH": "كلمات المرور غير متطابقة",
   "ENTER_EMAIL_VERIFICATION_CODE": "يرجى إدخال عنوان بريدك الإلكتروني لتلقي رمز التحقق",
   "GENDER": "الجنس",

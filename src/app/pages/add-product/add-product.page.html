@@ -112,7 +112,6 @@
           <input type="date" formControlName="warranty_start_date" class="date_input" (change)="formatDate($event, 'warranty_start_date')" maxlength="10" [min]="getMinDate()" required />
           <ion-text color="danger" *ngIf="productForm.get('warranty_start_date').touched && productForm.get('warranty_start_date').hasError('required')">
             {{ 'WARRANTY_START_DATE_REQUIRED' | translate }}
-          
           </ion-text>
         </div>
         <div>

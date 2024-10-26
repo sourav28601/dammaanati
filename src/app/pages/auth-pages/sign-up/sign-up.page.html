@@ -2,7 +2,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size="4">
-        <ion-button fill="clear" routerLink="/login" class="back-button">
+        <ion-button fill="clear" routerLink="/select-language" class="back-button">
           <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
         </ion-button>
       </ion-col>
@@ -18,7 +18,7 @@
     </ion-item>
     <ion-text class="ion-text-left" color="danger"
       *ngIf="!signupForm.get('name')?.valid && signupForm.get('name')?.touched">
-      <p class="error">Don't use numbers and special characters</p>
+      <p class="error">{{ 'ENTER_VALID_NAME' | translate }}</p>
     </ion-text>
     <ion-label>{{ 'SELECT_GENDER' | translate }}</ion-label>
     <ion-item>

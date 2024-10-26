@@ -31,7 +31,7 @@
 </ion-radio-group>
 
 <ion-item *ngIf="selectedNotificationPreference === 'other'">
-  <ion-label position="floating">{{ 'ENTER_DAYS' | translate }}</ion-label>
+  <ion-label position="floating" style="color:var(--ion-label-color)">{{ 'ENTER_DAYS' | translate }}</ion-label>
   <ion-input 
     type="number" 
     [(ngModel)]="customDays" 

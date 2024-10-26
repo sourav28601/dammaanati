@@ -3,6 +3,7 @@
 // src/theme/variables.scss
 
 :root {
+  --ion-select-box-background:#696969;
   --ion-date-input-color:#000000;
   // --ion-color-black:#000000;
   --ion-dark-background: #ffffff;
@@ -130,6 +131,7 @@
   // }
 }
 body.dark {
+  --ion-select-box-background:#000000;
   --color-medium: #ffffff;
   --ion-color-medium: #ffffff;
   --color-dark: #ffffff;

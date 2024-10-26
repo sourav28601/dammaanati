@@ -171,7 +171,7 @@ export class SignUpPage implements OnInit {
       });
     } else {
       this.loader.hideLoading()
-      this.messageService.presentToast('Please fill all required fields correctly', 'warning');
+      this.messageService.presentToast('Please fill all required fields correctly', 'danger');
     }
   }
 

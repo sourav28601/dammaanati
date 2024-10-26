@@ -7,6 +7,7 @@ import { Location } from "@angular/common";
 import { FcmService } from './core/services/fcm/fcm.service';
 import { LanguageService } from './core/services/language/language.service';
 import { UtilService } from './core/services/utils/utils.service';
+
 const config = {
     plugins: {
         Keyboard: {
@@ -45,7 +46,7 @@ isScannerActive$:any;
         document.body.classList.remove('scanner-active');
       }
     });
- 
+
   this.platform.backButton.subscribeWithPriority(10, () => {
       console.log('Handler back button was called!');
       this.location.back();
