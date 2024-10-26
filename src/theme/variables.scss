@@ -3,8 +3,9 @@
 // src/theme/variables.scss
 
 :root {
-  --ion-select-box-background:#696969;
-  --ion-date-input-color:#000000;
+  --ion-select-box-background:#eaecff;
+  --ion-select-box-color:#4453CE;
+  --ion-date-input-color:#000000; 
   // --ion-color-black:#000000;
   --ion-dark-background: #ffffff;
   --color-label: #4a4a4a;
@@ -117,6 +118,7 @@
   --background-gradient-category: linear-gradient(167.98deg, #9B40CD 0%, #4453CE 100%);
   --background-gradient-category-name: linear-gradient(167.98deg, #9B40CD 0%, #4453CE 100%);
   
+  
   // @media(prefers-color-scheme:dark){
     // dark colors
 
@@ -131,7 +133,8 @@
   // }
 }
 body.dark {
-  --ion-select-box-background:#000000;
+  --ion-select-box-background:#696969;
+  --ion-select-box-color:#ffffff;
   --color-medium: #ffffff;
   --ion-color-medium: #ffffff;
   --color-dark: #ffffff;

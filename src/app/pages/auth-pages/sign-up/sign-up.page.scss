@@ -33,12 +33,12 @@ ion-content {
         padding-right: 1.25rem;
         max-width: 100%;
         position: relative;
-        --background: var(--ion-input-background)
-        color: var(--ion-color-accent);
-        ion-select-option {
-          --background:var(-ion-dark-background) !important;
-          color: var(--ion-color-accent);
-        }
+        // --background:var(--ion-dark-background);
+         color: var(--ion-color-accent);
+        //  ion-select-option{
+        //   --background:black !important;
+        //  color: var(--ion-color-accent);
+        //  }
       }
     }
 
@@ -72,7 +72,7 @@ ion-content {
     .country-div {
       width: 48%;
     }
-    
+
     .city-select-box {
       display: flex;
       justify-content: center;
