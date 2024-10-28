@@ -38,6 +38,7 @@
     "@capacitor/push-notifications": "^6.0.1",
     "@capacitor/share": "^6.0.1",
     "@capacitor/status-bar": "6.0.0",
+    "@ionic-native/in-app-browser": "^5.36.0",
     "@ionic/angular": "^8.0.0",
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",

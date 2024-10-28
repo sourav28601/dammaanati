@@ -1,7 +1,7 @@
 ion-header {
   --background: var(--ion-dark-background);
   ion-toolbar {
-    ion-buttons{
+    ion-buttons {
       color: var(--color-header-title);
     }
     --background: transparent;
@@ -16,12 +16,74 @@ ion-header {
   }
 }
 
-
 .scanner-active {
-    --background: transparent;
-    --ion-background-color: transparent;
+  --background: transparent;
+  --ion-background-color: transparent;
+}
+
+.scanner-transparent {
+  background: transparent;
+}
+
+.result-container {
+  min-height: 100%;
+  padding: 20px;
+  transition: background-color 0.3s ease;
+
+  &.success-container {
+    background-color: rgba(45, 211, 111, 0.1); // Light green background
+    ion-card {
+      background-color: rgba(45, 211, 111, 0.15);
+      border: 1px solid #2dd36f;
+    }
   }
+
+  &.error-container {
+    background-color: rgba(235, 68, 90, 0.1); // Light red background
+    ion-card {
+      background-color: rgba(235, 68, 90, 0.15);
+      border: 1px solid #eb445a;
+    }
+  }
+}
+
+ion-card {
+  margin: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   
-  .scanner-transparent {
-    background: transparent;
+  ion-card-header {
+    padding: 16px;
+    
+    ion-card-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
   }
+}
+
+.success-result {
+  color: #2dd36f;
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.error-result {
+  color: white;
+  background-color: #eb445a;
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.url-result {
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.url-link {
+  color: #3880ff;
+  text-decoration: underline;
+  cursor: pointer;
+}
